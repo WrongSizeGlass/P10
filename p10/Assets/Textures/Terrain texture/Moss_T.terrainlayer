@@ -6,7 +6,7 @@ TerrainLayer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Moss
+  m_Name: Moss_T
   m_DiffuseTexture: {fileID: 2800000, guid: 3b8ced6e1a5b9554e862da13c9b13b19, type: 3}
   m_NormalMapTexture: {fileID: 2800000, guid: 568de413ab346c04ab16d3666c88385e, type: 3}
   m_MaskMapTexture: {fileID: 0}
