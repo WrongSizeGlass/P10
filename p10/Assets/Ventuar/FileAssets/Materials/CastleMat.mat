@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CastleMat
-  m_Shader: {fileID: -6465566751694194690, guid: 39106e72cf05dce46b436d96a3bf64b1, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 00f29202dc154944bbfc52e4330cde14, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -117,6 +117,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _RippleDensity: 1000
+    - _RippleSlimness: 5
+    - _RippleSpeed: 0.5
     - _Shininess: 0
     - _Smoothness: 0.5
     - _SmoothnessSource: 0
@@ -131,14 +134,17 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _UVSec: 0
+    - _WaveSpeed: 0.01
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.3962264, g: 0.34950158, b: 0.34950158, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Base_Color: {r: 0, g: 0.5636725, b: 1, a: 0}
     - _Color: {r: 0.39622638, g: 0.34950155, b: 0.34950155, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _SnowDirection: {r: 0, g: 1, b: 0, a: 0}
+    - _RippleColor: {r: 0.2546725, g: 0.5860671, b: 0.9150943, a: 0}
+    - _SnowDirection: {r: 1, g: 1, b: 1, a: 0}
     - _Snow_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Snow_Direction: {r: 0, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
