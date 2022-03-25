@@ -48,6 +48,18 @@ public class ThirdPersonController : MonoBehaviour
         {
             mSpeedyY = 0;
         }
+        MyAnimator.SetFloat("SpeedY", mSpeedyY / JumpSpeed);
+        
+        if(mJumping && mSpeedyY < 0)
+        {
+            RaycastHit hit;
+            if(Physics.Raycast(transform.position, Vector3.down, out hit, .5f, LayerMask.GetMask("Default")))
+            {
+                mJumping = false;
+                MyAnimator.SetTrigger("Land");
+            }
+        }
+
         mSprinting = Input.GetKey(KeyCode.LeftShift);
 
         Vector3 movement = new Vector3(x, 0, z).normalized;

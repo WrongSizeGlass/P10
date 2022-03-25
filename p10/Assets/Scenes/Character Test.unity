@@ -176,7 +176,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.835694, y: 1}
+    m_SensorSize: {x: 1.912913, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -326,7 +326,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.835694, y: 1}
+    m_SensorSize: {x: 1.912913, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -866,7 +866,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.835694, y: 1}
+    m_SensorSize: {x: 1.912913, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1071,7 +1071,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.835694, y: 1}
+    m_SensorSize: {x: 1.912913, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1243,6 +1243,22 @@ PrefabInstance:
       propertyPath: MyCamera
       value: 
       objectReference: {fileID: 785806514}
+    - target: {fileID: 5820006023365327373, guid: 22e9595e95fff1f4b83f3d87d8c3c9cd, type: 3}
+      propertyPath: JumpSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820006023365327373, guid: 22e9595e95fff1f4b83f3d87d8c3c9cd, type: 3}
+      propertyPath: SprintSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820006023365327373, guid: 22e9595e95fff1f4b83f3d87d8c3c9cd, type: 3}
+      propertyPath: RotationSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820006023365327373, guid: 22e9595e95fff1f4b83f3d87d8c3c9cd, type: 3}
+      propertyPath: AnimationBlendSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6291082111969814221, guid: 22e9595e95fff1f4b83f3d87d8c3c9cd, type: 3}
       propertyPath: m_RootOrder
       value: 1
