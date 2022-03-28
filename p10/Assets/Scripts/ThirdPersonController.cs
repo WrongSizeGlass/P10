@@ -18,11 +18,10 @@ public class ThirdPersonController : MonoBehaviour
     bool mSprinting = false;
     float mSpeedyY = 0;
     float mGravity = -9.81f;
-
     bool mThrow = false;
     bool mJumping = false;
 
-    void Start()
+    void Awake()
     {
         MyController = GetComponent<CharacterController>();
         MyAnimator = GetComponent<Animator>();
