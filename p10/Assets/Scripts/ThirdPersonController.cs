@@ -19,6 +19,7 @@ public class ThirdPersonController : MonoBehaviour
     float mSpeedyY = 0;
     float mGravity = -9.81f;
 
+    bool mThrow = false;
     bool mJumping = false;
 
     void Start()
@@ -60,6 +61,22 @@ public class ThirdPersonController : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            StartCoroutine(Throw());
+        }
+
+        IEnumerator Throw()
+        {
+            mThrow = true;
+            MyAnimator.SetTrigger("Throw");
+
+            yield return new WaitForSeconds(0.9f);
+            mThrow = false;
+            MyAnimator.SetTrigger("ActionFinish");
+        }
+        
+
         mSprinting = Input.GetKey(KeyCode.LeftShift);
 
         Vector3 movement = new Vector3(x, 0, z).normalized;
@@ -84,4 +101,6 @@ public class ThirdPersonController : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(0, mDesiredRotation, 0);
         transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, RotationSpeed * Time.deltaTime);
     }
+
+    
 }
