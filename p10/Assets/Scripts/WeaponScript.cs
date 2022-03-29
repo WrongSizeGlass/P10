@@ -8,7 +8,7 @@ public class WeaponScript : MonoBehaviour
     public bool activated;
 
     public float rotationSpeed;
-
+    public Rigidbody targetToPushBack;
     void Update()
     {
 
@@ -23,6 +23,7 @@ public class WeaponScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 11)
         {
+           
             print(collision.gameObject.name);
             GetComponent<Rigidbody>().Sleep();
             GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
@@ -31,7 +32,19 @@ public class WeaponScript : MonoBehaviour
         }
 
     }
-
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.rigidbody != null )
+        {
+            targetToPushBack = collision.rigidbody.GetComponent<Rigidbody>();
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (targetToPushBack!=null) {
+            targetToPushBack = null;
+        }
+    }
     //private void OnTriggerEnter(Collider other)
     //{
     //    if (other.CompareTag("Breakable"))

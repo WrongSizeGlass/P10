@@ -18,9 +18,10 @@ public class ThirdPersonController : MonoBehaviour
     bool mSprinting = false;
     float mSpeedyY = 0;
     float mGravity = -9.81f;
+    float meleeSpeed;
     bool mThrow = false;
     bool mJumping = false;
-
+    bool meleeAni = false;
     void Awake()
     {
         MyController = GetComponent<CharacterController>();
@@ -29,8 +30,14 @@ public class ThirdPersonController : MonoBehaviour
 
     void Update()
     {
+        
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
+        if (Input.GetButtonDown("Fire1")) {
+
+            StartCoroutine(Melee());
+
+        }
 
         if (Input.GetButtonDown("Jump") && !mJumping)
         {
@@ -60,7 +67,7 @@ public class ThirdPersonController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             StartCoroutine(Throw());
         }
@@ -74,7 +81,19 @@ public class ThirdPersonController : MonoBehaviour
             mThrow = false;
             MyAnimator.SetTrigger("ActionFinish");
         }
-        
+        IEnumerator Melee()
+        {
+
+            meleeAni = true;
+            //meleeSpeed = 0.1f;
+            MyAnimator.SetTrigger("Melee");
+
+
+            yield return new WaitForSeconds(0.9f);
+            meleeAni = false;
+            MyAnimator.SetTrigger("ActionFinish");
+        }
+
 
         mSprinting = Input.GetKey(KeyCode.LeftShift);
 

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class ThrowableHammer : MonoBehaviour
 {
+    public Image crosshair;
+    public WeaponScript ws;
     public Rigidbody hammer;
     public float throwForce = 50;
     public Transform target, curve_point;
@@ -11,19 +13,37 @@ public class ThrowableHammer : MonoBehaviour
     private bool isReturning = false;
     private float time = 0.0f;
     public Transform hand;
-
+    private Rigidbody temp;
+    int counter = 0;
+    public Vector3 ThrowBackForceVector;
+    bool hammerIsThrown = false;
 
     // Update is called once per frame
+    void ThrowBackForce() {
+        if (ws.targetToPushBack != null) {
+            ws.targetToPushBack.AddForceAtPosition(ThrowBackForceVector, hammer.position, ForceMode.Impulse);
+        }
+    }
     void Update()
     {
-        if (Input.GetButtonUp("Fire1"))
-        {
-            ThrowHammer();
+        // Melee
+        if (Input.GetButtonDown("Fire1")&& !hammerIsThrown) { 
+        
         }
 
-        if (Input.GetButtonUp("Fire2"))
+        //Range
+        if (Input.GetButtonUp("Fire2") && !hammerIsThrown)
         {
+            ThrowHammer();
+            hammerIsThrown = true;
+        }
+
+        if (Input.GetButtonDown("Fire2")&& hammerIsThrown && !isReturning)
+        {
+            
+            ThrowBackForce();
             ReturnHammer();
+            temp = null;
         }
 
         if (isReturning) //returning Calcs - Quadratic Bezier curves
@@ -35,7 +55,7 @@ public class ThrowableHammer : MonoBehaviour
                 time += Time.deltaTime;
             }
             else
-            {
+            {            
                 ResetHammer();
             }
         }
@@ -62,6 +82,7 @@ public class ThrowableHammer : MonoBehaviour
     {
         time = 0.0f;
         isReturning = false;
+        hammerIsThrown = false;
         hammer.transform.parent = hand;
         hammer.position = target.position;
         hammer.rotation = target.rotation;
@@ -76,3 +97,6 @@ public class ThrowableHammer : MonoBehaviour
         return p;
     }
 }
+/* if (counter % Mathf.Round(1.5f / Time.fixedDeltaTime)==0) { 
+
+         }*/
