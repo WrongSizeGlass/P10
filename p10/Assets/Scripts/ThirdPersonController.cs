@@ -13,15 +13,17 @@ public class ThirdPersonController : MonoBehaviour
     public float JumpSpeed = 15;
     CharacterController MyController;
     Animator MyAnimator;
-    float mDesiredRotation = 0f;
-    float mDesiredAnimationSpeed = 0f;
-    bool mSprinting = false;
-    float mSpeedyY = 0;
-    float mGravity = -9.81f;
-    float meleeSpeed;
-    bool mThrow = false;
-    bool mJumping = false;
-    bool meleeAni = false;
+    public float mDesiredRotation = 0f;
+    public float mDesiredAnimationSpeed = 0f;
+    public bool mSprinting = false;
+    public float mSpeedyY = 0;
+    public float mGravity = -9.81f;
+    public float meleeSpeed;
+    public bool aiming = false;
+    public bool hasWeapon = true;
+    public bool mThrow = false;
+    public bool mJumping = false;
+    public bool meleeAni = false;
     void Awake()
     {
         MyController = GetComponent<CharacterController>();
@@ -33,6 +35,9 @@ public class ThirdPersonController : MonoBehaviour
         
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
+
+
+
         if (Input.GetButtonDown("Fire1")) {
 
             StartCoroutine(Melee());
@@ -93,7 +98,7 @@ public class ThirdPersonController : MonoBehaviour
             meleeAni = false;
             MyAnimator.SetTrigger("ActionFinish");
         }
-
+        
 
         mSprinting = Input.GetKey(KeyCode.LeftShift);
 
