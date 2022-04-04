@@ -13,10 +13,12 @@
 		_RimColor("Rim Color", Color) = (1,1,1,1)
 		_RimAmount("Rim Amount", Range(0, 1)) = 0.8
 		_RimThreshold("Rim Threshold", Range(0, 1)) = 0.1
+		_SnowColor("Snow Color", Color) = (1,1,1,1)
 	}
 	SubShader
 	{
-		
+		Tags{"Rendertype"="Opaque"}
+		LOD 200
 		Pass
 		{
 			
@@ -67,7 +69,7 @@
 			float _RimAmount;
 			float _RimThreshold;
 
-			float4 frag (v2f i) : SV_Target
+			float4 frag(v2f i) : SV_Target
 			{
 				float3 viewDir = normalize(i.viewDir);
 				float4 sample = tex2D(_MainTex, i.uv);

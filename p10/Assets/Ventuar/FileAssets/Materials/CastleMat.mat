@@ -143,11 +143,12 @@ Material:
     - _AmbientColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Base_Color: {r: 0, g: 0.5636725, b: 1, a: 0}
-    - _Color: {r: 0.39622638, g: 0.34950155, b: 0.34950155, a: 1}
+    - _Color: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RippleColor: {r: 0.2546725, g: 0.5860671, b: 0.9150943, a: 0}
+    - _SnowColor: {r: 1, g: 1, b: 1, a: 1}
     - _SnowDirection: {r: 1, g: 1, b: 1, a: 0}
     - _Snow_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Snow_Direction: {r: 0, g: 1, b: 0, a: 0}
