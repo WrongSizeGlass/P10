@@ -16,8 +16,11 @@ public class ThrowableHammer : MonoBehaviour
     private Rigidbody temp;
     int counter = 0;
     public Vector3 ThrowBackForceVector;
-    bool hammerIsThrown = false;
-
+    bool hammerIsThrown = true;
+    private void Start()
+    {
+        ReturnHammer();
+    }
     // Update is called once per frame
     void ThrowBackForce() {
         if (ws.targetToPushBack != null) {

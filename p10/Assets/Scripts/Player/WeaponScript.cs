@@ -34,7 +34,7 @@ public class WeaponScript : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.rigidbody != null )
+        if (collision.rigidbody != null && collision.transform.tag!="Player" )
         {
             targetToPushBack = collision.rigidbody.GetComponent<Rigidbody>();
         }

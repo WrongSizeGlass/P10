@@ -24,17 +24,32 @@ public class ThirdPersonController : MonoBehaviour
     public bool mThrow = false;
     public bool mJumping = false;
     public bool meleeAni = false;
+    float x;
+    float z;
+    ThrowableHammer th;
     void Awake()
     {
         MyController = GetComponent<CharacterController>();
         MyAnimator = GetComponent<Animator>();
+        th = GetComponent<ThrowableHammer>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
+    void activateTHscript() {
+        if (th.enabled==false && Input.GetKeyDown(KeyCode.E)) {
+            th.enabled = true;
+        }
+    
+    }
+    
 
     void Update()
     {
-        
-        float x = Input.GetAxisRaw("Horizontal");
-        float z = Input.GetAxisRaw("Vertical");
+        if (RotationSpeed<2 && x!=0) {
+            RotationSpeed = 2;
+        }
+        activateTHscript();
+        x = Input.GetAxisRaw("Horizontal");
+        z = Input.GetAxisRaw("Vertical");
 
 
 
