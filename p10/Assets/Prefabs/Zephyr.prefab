@@ -3232,7 +3232,7 @@ Transform:
   m_GameObject: {fileID: 6630909942603070583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 504.44058, y: 0.000029563904, z: 504.63425}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1954064253246244441}
@@ -3326,6 +3326,17 @@ MonoBehaviour:
   RotationSpeed: 15
   AnimationBlendSpeed: 2
   JumpSpeed: 15
+  mDesiredRotation: 0
+  mDesiredAnimationSpeed: 0
+  mSprinting: 0
+  mSpeedyY: 0
+  mGravity: -9.81
+  meleeSpeed: 0
+  aiming: 0
+  hasWeapon: 1
+  mThrow: 0
+  mJumping: 0
+  meleeAni: 0
 --- !u!1 &6681369230294299495
 GameObject:
   m_ObjectHideFlags: 0
