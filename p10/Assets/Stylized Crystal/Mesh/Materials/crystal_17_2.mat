@@ -96,7 +96,7 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _Normals: 3
+    - _Normals: 1.05
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueControl: 0
@@ -109,8 +109,8 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0, g: 0.7190082, b: 1, a: 1}
+    - _Color: {r: 0, g: 0.7176471, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 1, g: 1, b: 1, a: 0}
+    - _FresnelColor: {r: 1, g: 1, b: 1, a: 0.7019608}
     - _IceTiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

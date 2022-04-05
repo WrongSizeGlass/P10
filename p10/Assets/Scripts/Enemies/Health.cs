@@ -6,35 +6,67 @@ public class Health : MonoBehaviour
 {
     public int hp = 2;
     Rigidbody rb;
-    List<string> tags = new List<string> { "House", "Boat", "Player" };
+   // List<string> tags = new List<string> { "House", "Boat", "Player" };
     private string myTag;
-    private bool IWasHit = false;
+
     private bool IamDead = false;
     private Transform player;
     bool once = false;
+    private bool damageEffect = false;
+    public int hpLost = 1;
+    float x, y, z;
+   // Vector3 IwasHitHere;
     // Start is called before the first frame update
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         myTag = this.gameObject.tag;
         rb = GetComponent<Rigidbody>();
+        x = transform.localScale.x;
+        y = transform.localScale.y;
+        z = transform.localScale.z;
     }
     // Update is called once per frame
     void Update() {
-        updateMyState();
-        deathState();
+        updateMyState();      
     }
     public bool getIamDead(){
         return IamDead;
     }
 
     private void updateMyState() {
-        if (IWasHit) {
-            IWasHit = false;
+        if (damageEffect) {
+            
+            effectWhenDamaged();
+            damageEffect = false;
         }
         if (getHp()<=0) {
             IamDead = true;
+            deathState();
         }   
     }
+
+    private void effectWhenDamaged(){
+        setHp(hpLost);
+        switch (myTag){
+            case "House":
+                damageEffect = false;
+                break;
+            case "Player":
+                damageEffect = false;
+                break;
+            case "Ice":
+                shrinkingEffect();
+                damageEffect = false;
+                break;
+            case "Boat":
+                damageEffect = false;
+                break;
+            default:
+                damageEffect = false;
+                break;
+        }
+    }
+
     private void deathState() {
         if (IamDead) {
             switch (myTag) {
@@ -45,6 +77,7 @@ public class Health : MonoBehaviour
                     Debug.LogError("I am dead I don't have a function:" + gameObject.name);
                     break;
                 case "Ice":
+                    deadIce();
                     break;
                 case "Boat":
                     deadBoat();
@@ -55,10 +88,15 @@ public class Health : MonoBehaviour
             }
         }  
     }
-
-    private void deadIce() {
-        Destroy(gameObject);
-    
+ 
+    void shrinkingEffect() {
+        x = x -10;
+        y = x -10;
+        z = x -10;
+        transform.localScale = new Vector3(x,y,z);  
+    }
+    private void deadIce() {       
+        Destroy(gameObject);   
     }
 
     private void deadBoat() {
@@ -78,10 +116,8 @@ public class Health : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Hammer" && this.gameObject.tag != "Player") {
-            
-            setHp(1);
-            IWasHit = true;
-            
+            damageEffect = true;
+            //IwasHitHere = collision.transform.position;
         }
     }
     private void setHp(int dmg) {
@@ -90,5 +126,6 @@ public class Health : MonoBehaviour
     private int getHp() {
         return hp;
     }
+    
 
 }

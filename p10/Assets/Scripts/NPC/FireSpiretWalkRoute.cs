@@ -6,14 +6,15 @@ public class FireSpiretWalkRoute : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private Transform player;
-    [Header("Need to contain children to be used as the route")]
+    [Header("Must contain children to be used as the route")]
     public Transform waypointGroup;
-    [Header("Need to contain child/child->lightComponet")]
+    [Header("Must contain child/child->lightComponet")]
     public Transform LightGroup;
     private List<Transform> waypointList;
     private List<Light> lightList;
     int activeWaypoint = 0;
     private bool finishedRoute = false;
+
     
     private Transform me;
     private bool canWalk = false;

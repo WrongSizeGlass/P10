@@ -8,9 +8,11 @@ public class TrapedFireSpirit : MonoBehaviour
     Vector3 myPos;
     public bool trapped = true;
     FireSpiretWalkRoute FSWR;
+    private Transform player;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         myPos = transform.position;
         FSWR = GetComponent<FireSpiretWalkRoute>();
         
@@ -24,6 +26,7 @@ public class TrapedFireSpirit : MonoBehaviour
             trapped = IamTrapped();
         }
         if (!trapped) {
+            player.GetComponent<Quest1Controller>().setSpirirtComplete(true);
             FSWR.setCanWalk(true);
             this.enabled=false;
         }
