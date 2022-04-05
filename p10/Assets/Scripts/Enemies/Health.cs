@@ -44,6 +44,8 @@ public class Health : MonoBehaviour
                 case "Player":
                     Debug.LogError("I am dead I don't have a function:" + gameObject.name);
                     break;
+                case "Ice":
+                    break;
                 case "Boat":
                     deadBoat();
                     break;
@@ -52,6 +54,11 @@ public class Health : MonoBehaviour
                     break;
             }
         }  
+    }
+
+    private void deadIce() {
+        Destroy(gameObject);
+    
     }
 
     private void deadBoat() {
