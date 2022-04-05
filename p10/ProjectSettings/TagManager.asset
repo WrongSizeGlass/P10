@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - House
+  - Boat
+  - Hammer
   layers:
   - Default
   - TransparentFX

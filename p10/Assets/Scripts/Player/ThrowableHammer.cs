@@ -17,6 +17,9 @@ public class ThrowableHammer : MonoBehaviour
     int counter = 0;
     public Vector3 ThrowBackForceVector;
     bool hammerIsThrown = true;
+    public bool getIsReturning() {
+        return isReturning;
+    }
     private void Start()
     {
         ReturnHammer();

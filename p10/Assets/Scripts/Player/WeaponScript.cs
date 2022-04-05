@@ -9,6 +9,7 @@ public class WeaponScript : MonoBehaviour
 
     public float rotationSpeed;
     public Rigidbody targetToPushBack;
+    public Transform tempTarget;
     void Update()
     {
 
@@ -18,7 +19,10 @@ public class WeaponScript : MonoBehaviour
         }
 
     }
+    public Transform getTempTarget() {
 
+        return tempTarget;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 11)
@@ -30,6 +34,7 @@ public class WeaponScript : MonoBehaviour
             GetComponent<Rigidbody>().isKinematic = true;
             activated = false;
         }
+        tempTarget = collision.transform;
 
     }
     private void OnCollisionStay(Collision collision)
@@ -44,6 +49,7 @@ public class WeaponScript : MonoBehaviour
         if (targetToPushBack!=null) {
             targetToPushBack = null;
         }
+        tempTarget = null;
     }
     //private void OnTriggerEnter(Collider other)
     //{

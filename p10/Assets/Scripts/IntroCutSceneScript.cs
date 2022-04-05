@@ -40,9 +40,9 @@ public class IntroCutSceneScript : MonoBehaviour
         cam.transform.SetParent(hammer.transform);
         myTarget= mainCameraPos.position;
         mainCamRot = mainCamera.transform.rotation;
-       // mainCamRot.x = mainCamRot.x*-1;
-      //  mainCamRot.y = mainCamRot.y*-1;
-       // mainCamRot.z = mainCamRot.z*-1;
+        mainCamRot.x = mainCamRot.x*-1;
+        mainCamRot.y = mainCamRot.y*-1;
+        mainCamRot.z = mainCamRot.z*-1;
     }
 
     // Update is called once per frame
