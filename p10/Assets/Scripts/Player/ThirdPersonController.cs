@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Cinemachine;
 
 public class ThirdPersonController : MonoBehaviour
 {
+
+    private MovementInput input;
     public Camera MyCamera;
     public float Speed = 5f;
     public float SprintSpeed = 5f;
@@ -18,22 +23,34 @@ public class ThirdPersonController : MonoBehaviour
     public bool mSprinting = false;
     public float mSpeedyY = 0;
     public float mGravity = -9.81f;
-    public float meleeSpeed;
+    [Space]
+    [Header("Bools")]
     public bool aiming = false;
     public bool hasWeapon = true;
     public bool mThrow = false;
     public bool mJumping = false;
-    public bool meleeAni = false;
+    [Space]
+    [Header("Parameters")]
+    public float cameraZoomOffset = .3f;
+
     float x;
     float z;
     CameraTest cam;
     ThrowableHammer th;
+    [Header("Cinemachine")]
+    [Space]
+    public CinemachineFreeLook virtualCamera;
+    public CinemachineImpulseSource impulseSource;
+
     void Awake()
     {
+        
         cam = MyCamera.GetComponent<CameraTest>();
+        input = GetComponent<MovementInput>();
         MyController = GetComponent<CharacterController>();
         MyAnimator = GetComponent<Animator>();
         th = GetComponent<ThrowableHammer>();
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
     void activateTHscript() {
@@ -46,20 +63,14 @@ public class ThirdPersonController : MonoBehaviour
 
     void Update()
     {
+        
+
         if (RotationSpeed<2 && x!=0) {
             RotationSpeed = 2;
         }
         activateTHscript();
         x = Input.GetAxisRaw("Horizontal");
         z = Input.GetAxisRaw("Vertical");
-
-
-
-        if (Input.GetButtonDown("Fire1")) {
-
-            StartCoroutine(Melee());
-
-        }
 
         if (Input.GetButtonDown("Jump") && !mJumping)
         {
@@ -89,7 +100,7 @@ public class ThirdPersonController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             StartCoroutine(Throw());
         }
@@ -97,33 +108,22 @@ public class ThirdPersonController : MonoBehaviour
         IEnumerator Throw()
         {
             mThrow = true;
-            MyAnimator.SetTrigger("Throw");
+            MyAnimator.SetTrigger("throw");
 
             yield return new WaitForSeconds(0.9f);
             mThrow = false;
             MyAnimator.SetTrigger("ActionFinish");
         }
-        IEnumerator Melee()
-        {
-
-            meleeAni = true;
-            //meleeSpeed = 0.1f;
-            MyAnimator.SetTrigger("Melee");
 
 
-            yield return new WaitForSeconds(0.9f);
-            meleeAni = false;
-            MyAnimator.SetTrigger("ActionFinish");
-        }
-       
-
-        mSprinting = Input.GetKey(KeyCode.LeftShift);
+        mSprinting = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Mouse3);
 
         Vector3 movement = new Vector3(x, 0, z).normalized;
 
+        //Vector3 rotatedMovement = Quaternion.Euler(0, MyCamera.transform.rotation.eulerAngles.y, 0) * movement;
         Vector3 rotatedMovement = Quaternion.Euler(cam.getTargetRotationBody()) * movement;
         Vector3 verticalMovement = Vector3.up * mSpeedyY;
-        MyController.Move((verticalMovement + (rotatedMovement * (mSprinting ? SprintSpeed : Speed))) * Speed * Time.deltaTime);
+        MyController.Move(Speed * Time.deltaTime * (verticalMovement + (rotatedMovement * (mSprinting ? SprintSpeed : Speed))));
 
         if (rotatedMovement.magnitude > 0) 
         {
@@ -139,6 +139,8 @@ public class ThirdPersonController : MonoBehaviour
 
         Quaternion currentRotation = Quaternion.Euler(cam.getTargetRotationBody());
         Quaternion targetRotation = Quaternion.Euler(cam.getTargetRotationBody());
+        //Quaternion currentRotation = transform.rotation;
+        //Quaternion targetRotation = Quaternion.Euler(0, mDesiredRotation, 0);
         transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, RotationSpeed * Time.deltaTime);
     }
 

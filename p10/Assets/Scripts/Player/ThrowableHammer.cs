@@ -2,26 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using Cinemachine;
 public class ThrowableHammer : MonoBehaviour
 {
     public Image crosshair;
     public WeaponScript ws;
     public Rigidbody hammer;
-    public float throwForce = 50;
+    private Vector3 origLocPos;
+    private Vector3 origLocRot;
     public Transform target, curve_point;
     private Vector3 old_pos;
     private bool isReturning = false;
     private float time = 0.0f;
     public Transform hand;
+    public Transform spine;
+    public Transform weapon;
+
     private Rigidbody temp;
     int counter = 0;
     public Vector3 ThrowBackForceVector;
     bool hammerIsThrown = true;
+    [Header("Parameters")]
+    public float throwForce = 50;
     public bool getIsReturning() {
         return isReturning;
     }
     private void Start()
     {
+        origLocPos = weapon.localPosition;
+        origLocRot = weapon.localEulerAngles;
         ReturnHammer();
     }
     // Update is called once per frame
@@ -32,19 +42,15 @@ public class ThrowableHammer : MonoBehaviour
     }
     void Update()
     {
-        // Melee
-        if (Input.GetButtonDown("Fire1")&& !hammerIsThrown) { 
-        
-        }
 
         //Range
-        if (Input.GetButtonUp("Fire2") && !hammerIsThrown)
+        if (Input.GetButtonUp("Fire1") && !hammerIsThrown)
         {
             ThrowHammer();
             hammerIsThrown = true;
         }
 
-        if (Input.GetButtonDown("Fire2")&& hammerIsThrown && !isReturning)
+        if (Input.GetButtonDown("Fire1")&& hammerIsThrown && !isReturning)
         {
             
             ThrowBackForce();
@@ -89,9 +95,10 @@ public class ThrowableHammer : MonoBehaviour
         time = 0.0f;
         isReturning = false;
         hammerIsThrown = false;
+        weapon.parent = hand;
         hammer.transform.parent = hand;
-        hammer.position = target.position;
-        hammer.rotation = target.rotation;
+        weapon.localEulerAngles = origLocRot;
+        weapon.localPosition = origLocPos;
     }
 
     Vector3 getBQCPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
