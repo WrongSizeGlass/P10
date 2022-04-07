@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Flare
-  m_Shader: {fileID: -6465566751694194690, guid: 433a179361eead14f882ec16a58d0f20, type: 3}
+  m_Name: Ice Glow
+  m_Shader: {fileID: -6465566751694194690, guid: d54c100e8f10a764aa3be4cec2a2166e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_6672c237d4e04f98935ee700ba6a091c_Out_0:
-        m_Texture: {fileID: 2800000, guid: 5e586c19aee6d134d96e7be7ff1d4d43, type: 3}
+        m_Texture: {fileID: 2800000, guid: 972f4412696656b40b6717d419fe5a9e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -104,8 +104,6 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimAmount: 0.8
-    - _RimThreshold: 0.174
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -114,17 +112,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _AmbientColor: {r: 0, g: 0, b: 0, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 0, b: 0.07093382, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FireColor: {r: 1, g: 1, b: 1, a: 0}
-    - _RimColor: {r: 1, g: 0.8950032, b: 0, a: 1}
-    - _SnowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FireColor: {r: 1, g: 0.6079835, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &3205687128531610091
+--- !u!114 &8711233642434192539
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
