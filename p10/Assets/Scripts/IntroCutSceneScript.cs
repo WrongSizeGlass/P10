@@ -107,7 +107,7 @@ public class IntroCutSceneScript : MonoBehaviour
             }
 
         }
-        Debug.Log(rig.velocity);
+        //Debug.Log(rig.velocity);
     }
     private void setTransit(bool newTransit) {
         transit = newTransit;  

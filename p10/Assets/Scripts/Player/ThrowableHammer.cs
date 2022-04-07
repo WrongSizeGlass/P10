@@ -28,10 +28,14 @@ public class ThrowableHammer : MonoBehaviour
     public bool getIsReturning() {
         return isReturning;
     }
-    private void Start()
+    private void Awake()
     {
         origLocPos = weapon.localPosition;
         origLocRot = weapon.localEulerAngles;
+    }
+    private void Start()
+    {
+        
         ReturnHammer();
     }
     // Update is called once per frame

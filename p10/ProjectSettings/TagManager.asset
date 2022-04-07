@@ -8,6 +8,7 @@ TagManager:
   - Boat
   - Hammer
   - Ice
+  - Lamppost
   layers:
   - Default
   - TransparentFX

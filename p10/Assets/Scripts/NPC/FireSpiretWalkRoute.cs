@@ -89,5 +89,13 @@ public class FireSpiretWalkRoute : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("turn on " + other.name);
+        if (other.tag=="Lamppost") {
+            
+            other.transform.GetComponent<Transform>().GetChild(0).GetComponent<Light>().enabled = true;
+        }
+    }
 
 }
