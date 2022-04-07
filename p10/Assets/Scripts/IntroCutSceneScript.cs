@@ -49,7 +49,7 @@ public class IntroCutSceneScript : MonoBehaviour
         if (rig.velocity != Vector3.zero)
         {
             cam.transform.RotateAround(hammer.transform.position, Vector3.up*-1, (30*rig.velocity.y) * Time.deltaTime);
-            Debug.Log(rig.velocity);
+           // Debug.Log(rig.velocity);
         }
         if (rig.velocity.magnitude<= lowVel.magnitude && !returnToPlayer)
         {

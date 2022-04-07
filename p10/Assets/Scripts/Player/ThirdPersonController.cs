@@ -26,9 +26,11 @@ public class ThirdPersonController : MonoBehaviour
     public bool meleeAni = false;
     float x;
     float z;
+    CameraTest cam;
     ThrowableHammer th;
     void Awake()
     {
+        cam = MyCamera.GetComponent<CameraTest>();
         MyController = GetComponent<CharacterController>();
         MyAnimator = GetComponent<Animator>();
         th = GetComponent<ThrowableHammer>();
@@ -113,13 +115,13 @@ public class ThirdPersonController : MonoBehaviour
             meleeAni = false;
             MyAnimator.SetTrigger("ActionFinish");
         }
-        
+       
 
         mSprinting = Input.GetKey(KeyCode.LeftShift);
 
         Vector3 movement = new Vector3(x, 0, z).normalized;
 
-        Vector3 rotatedMovement = Quaternion.Euler(0, MyCamera.transform.rotation.eulerAngles.y, 0) * movement;
+        Vector3 rotatedMovement = Quaternion.Euler(cam.getTargetRotationBody()) * movement;
         Vector3 verticalMovement = Vector3.up * mSpeedyY;
         MyController.Move((verticalMovement + (rotatedMovement * (mSprinting ? SprintSpeed : Speed))) * Speed * Time.deltaTime);
 
@@ -135,8 +137,8 @@ public class ThirdPersonController : MonoBehaviour
 
         MyAnimator.SetFloat("Speed", Mathf.Lerp(MyAnimator.GetFloat("Speed"), mDesiredAnimationSpeed, AnimationBlendSpeed * Time.deltaTime));
 
-        Quaternion currentRotation = transform.rotation;
-        Quaternion targetRotation = Quaternion.Euler(0, mDesiredRotation, 0);
+        Quaternion currentRotation = Quaternion.Euler(cam.getTargetRotationBody());
+        Quaternion targetRotation = Quaternion.Euler(cam.getTargetRotationBody());
         transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, RotationSpeed * Time.deltaTime);
     }
 
