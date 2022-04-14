@@ -49,7 +49,7 @@ public class FireSpiretWalkRoute : MonoBehaviour
         }
     }
     void followWaypoints() {
-        me.position = Vector3.MoveTowards(me.position, waypointList[activeWaypoint].position, 1.35f * Time.deltaTime);
+        me.position = Vector3.MoveTowards(me.position, waypointList[activeWaypoint].position, 2.5f * Time.deltaTime);
         me.LookAt(waypointList[activeWaypoint].position);
         if (Vector3.Distance(me.position, waypointList[activeWaypoint].position)<0.25f) {
             activeWaypoint++;
@@ -65,7 +65,9 @@ public class FireSpiretWalkRoute : MonoBehaviour
     public bool getCanWalk() {
         return canWalk;
     }
-
+    public bool getFinishedRoute() {
+        return finishedRoute;
+    }
     // Turn on the light
     private void FixedUpdate()
     {
