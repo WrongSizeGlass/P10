@@ -10,6 +10,9 @@ public class WeaponScript : MonoBehaviour
     public float rotationSpeed;
     public Rigidbody targetToPushBack;
     public Transform tempTarget;
+    public AudioSource audioSource;
+    public AudioClip hammerHit;
+    public float volume = 0.5f;
     void Update()
     {
 
@@ -27,12 +30,12 @@ public class WeaponScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 11)
         {
-           
             print(collision.gameObject.name);
             GetComponent<Rigidbody>().Sleep();
             GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             GetComponent<Rigidbody>().isKinematic = true;
             activated = false;
+            audioSource.PlayOneShot(hammerHit, volume);
         }
         tempTarget = collision.transform;
 

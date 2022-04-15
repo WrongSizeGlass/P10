@@ -18,11 +18,16 @@ public class ThrowableHammer : MonoBehaviour
     public Transform hand;
     public Transform spine;
     public Transform weapon;
+    public AudioSource audioSource;
+    public AudioClip hammerThrow;
+    public AudioClip hammerBack;
+    public float volume = 0.5f;
 
     private Rigidbody temp;
     int counter = 0;
     public Vector3 ThrowBackForceVector;
     bool hammerIsThrown = true;
+
     [Header("Parameters")]
     public float throwForce = 50;
     public bool getIsReturning() {
@@ -50,13 +55,14 @@ public class ThrowableHammer : MonoBehaviour
         //Range
         if (Input.GetButtonUp("Fire1") && !hammerIsThrown)
         {
+            audioSource.PlayOneShot(hammerThrow, volume);
             ThrowHammer();
             hammerIsThrown = true;
         }
 
         if (Input.GetButtonDown("Fire1")&& hammerIsThrown && !isReturning)
         {
-            
+            audioSource.PlayOneShot(hammerBack, volume);
             ThrowBackForce();
             ReturnHammer();
             temp = null;

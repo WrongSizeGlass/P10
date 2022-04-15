@@ -18,6 +18,9 @@ public class ThirdPersonController : MonoBehaviour
     public float JumpSpeed = 15;
     CharacterController MyController;
     Animator MyAnimator;
+    public AudioSource audioSource;
+    public AudioClip walk;
+    public float volume = 1f;
     public float mDesiredRotation = 0f;
     public float mDesiredAnimationSpeed = 0f;
     public bool mSprinting = false;
@@ -29,6 +32,7 @@ public class ThirdPersonController : MonoBehaviour
     public bool hasWeapon = true;
     public bool mThrow = false;
     public bool mJumping = false;
+    public bool mPull = false;
     [Space]
     [Header("Parameters")]
     public float cameraZoomOffset = .3f;
@@ -90,7 +94,35 @@ public class ThirdPersonController : MonoBehaviour
         }
         MyAnimator.SetFloat("SpeedY", mSpeedyY / JumpSpeed);
         
-        if(mJumping && mSpeedyY < 0)
+        if(Input.GetButton("Vertical"))
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.volume = Random.Range(0.7f, 1f);
+                audioSource.pitch = Random.Range(0.7f, 1.1f);
+                audioSource.PlayOneShot(walk, volume);
+            }
+        }
+        else
+        {
+            audioSource.Stop();
+        }
+
+        /*if (Input.GetButton("Horizontal"))
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.volume = Random.Range(0.8f, 1f);
+                audioSource.pitch = Random.Range(0.7f, 1.1f);
+                audioSource.PlayOneShot(walk, volume);
+            }
+        }
+        else
+        {
+            audioSource.Stop();
+        }*/
+
+        if (mJumping && mSpeedyY < 0)
         {
             RaycastHit hit;
             if(Physics.Raycast(transform.position, Vector3.down, out hit, .5f, LayerMask.GetMask("Default")))
@@ -103,18 +135,26 @@ public class ThirdPersonController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             StartCoroutine(Throw());
+            //StartCoroutine(Pulling());
         }
 
         IEnumerator Throw()
         {
             mThrow = true;
             MyAnimator.SetTrigger("throw");
-
             yield return new WaitForSeconds(0.9f);
             mThrow = false;
             MyAnimator.SetTrigger("ActionFinish");
         }
 
+        /*IEnumerator Pulling()
+        {
+            mPull = true;
+            MyAnimator.SetTrigger("pulling");
+            yield return new WaitForSeconds(0.9f);
+            mPull = false;
+            MyAnimator.SetTrigger("ActionFinish");
+        }*/
 
         mSprinting = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Mouse3);
 
