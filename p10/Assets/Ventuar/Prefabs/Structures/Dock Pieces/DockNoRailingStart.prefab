@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 4548226904759619169}
   - component: {fileID: 6732737368687169444}
   - component: {fileID: 6093981541284373885}
+  - component: {fileID: 628566648485236292}
   m_Layer: 0
   m_Name: Post04
   m_TagString: Untagged
@@ -198,6 +199,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.089342564, y: 0.92492557, z: 0.08821365}
   m_Center: {x: -0.31219697, y: -0.11888079, z: 0.33734512}
+--- !u!54 &628566648485236292
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5086797175804606319}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6412518077136276335
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +227,7 @@ GameObject:
   - component: {fileID: 4180537838722497439}
   - component: {fileID: 1901684086183243522}
   - component: {fileID: 2261519331064706486}
+  - component: {fileID: 2193438173533217223}
   m_Layer: 0
   m_Name: Post03
   m_TagString: Untagged
@@ -295,6 +313,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08484933, y: 0.9234733, z: 0.08615011}
   m_Center: {x: -0.0011029989, y: -0.23535994, z: 0.0101005435}
+--- !u!54 &2193438173533217223
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6412518077136276335}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7516525588010257739
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +341,7 @@ GameObject:
   - component: {fileID: 6144105973349362782}
   - component: {fileID: 3747070363156651695}
   - component: {fileID: 8620898433749410345}
+  - component: {fileID: 3700815922713402608}
   m_Layer: 0
   m_Name: Post01
   m_TagString: Untagged
@@ -392,6 +427,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.088281184, y: 0.92347324, z: 0.08759019}
   m_Center: {x: -0.00020711124, y: -0.23508634, z: 0.00026006997}
+--- !u!54 &3700815922713402608
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7516525588010257739}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7701951655019145040
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +455,7 @@ GameObject:
   - component: {fileID: 4724093130020853256}
   - component: {fileID: 7788980113809675868}
   - component: {fileID: 8465554960992537655}
+  - component: {fileID: 4070786667391506028}
   m_Layer: 0
   m_Name: Post02
   m_TagString: Untagged
@@ -489,3 +541,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.089342564, y: 0.92492557, z: 0.08821359}
   m_Center: {x: -0.0034848303, y: -0.23129052, z: 0.00095681846}
+--- !u!54 &4070786667391506028
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7701951655019145040}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

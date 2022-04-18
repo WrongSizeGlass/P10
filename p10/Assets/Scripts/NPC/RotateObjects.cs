@@ -136,6 +136,7 @@ public class RotateObjects : MonoBehaviour
     void canDamageAnimationStart(){
         if (!getCanDamage() && counter % Mathf.Round(ParticalDuriation / Time.fixedDeltaTime) == 0){
             setCanDamage(true);
+            counter = 0;
         }
     }
     void cannotDamageAnimationEnd()
@@ -143,6 +144,7 @@ public class RotateObjects : MonoBehaviour
         if (getCanDamage() && counter % Mathf.Round((AttactColdDownDuriation) / Time.fixedDeltaTime) == 0){
             setCanDamage(false);
             resetAttact = true;
+            counter = 0;
         }
     }
 

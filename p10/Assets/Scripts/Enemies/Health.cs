@@ -115,12 +115,12 @@ public class Health : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Hammer" && this.gameObject.tag != "Player") {
+        if (collision.collider.tag == "Hammer" && this.gameObject.tag != "Player" || collision.collider.tag == "shockWave") {
             damageEffect = true;
             //IwasHitHere = collision.transform.position;
         }
     }
-    private void setHp(int dmg) {
+    public void setHp(int dmg) {
         hp = hp - dmg;
     }
     private int getHp() {

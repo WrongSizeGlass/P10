@@ -9,6 +9,7 @@ TagManager:
   - Hammer
   - Ice
   - Lamppost
+  - shockWave
   layers:
   - Default
   - TransparentFX
