@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: CastleMat
-    second: {fileID: 2100000, guid: 8b606165bef026c40b26c7bfed5a1c38, type: 2}
+    second: {fileID: 2100000, guid: 78b6b30c38638fe4581b9f1cac390e71, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

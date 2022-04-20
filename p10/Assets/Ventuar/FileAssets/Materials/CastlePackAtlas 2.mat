@@ -134,7 +134,7 @@ Material:
     - _Snow_Blend_Distance: 0.05
     - _Snow_Color_Noise_Size: 250
     - _Snow_Color_Noise_Strength: 0.5
-    - _Snow_Opacity: 1
+    - _Snow_Opacity: 0.22
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0

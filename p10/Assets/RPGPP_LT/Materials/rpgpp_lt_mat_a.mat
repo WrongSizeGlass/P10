@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: rpgpp_lt_mat_a
-  m_Shader: {fileID: 4800000, guid: 0717917ee9a78eb4491cd021efe50ae9, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 39106e72cf05dce46b436d96a3bf64b1, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -220,7 +220,7 @@ Material:
     - _Snow_Blend_Distance: 0.05
     - _Snow_Color_Noise_Size: 250
     - _Snow_Color_Noise_Strength: 0.5
-    - _Snow_Opacity: 1
+    - _Snow_Opacity: 0.5
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
@@ -231,7 +231,7 @@ Material:
     - _pwer: 1
     m_Colors:
     - _AmbientColor: {r: 0, g: 0, b: 0, a: 1}
-    - _BaseColor: {r: 0.4528302, g: 0.3066174, b: 0.1003916, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Bottom: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

@@ -8,8 +8,6 @@ public class BossBehavior : MonoBehaviour
     [Header("Introduction variables")]
     [SerializeField] private Transform leftTargetGroup;
     [SerializeField] private Transform rightTargetGroup;
-    [SerializeField] private GameObject leftFireOff;
-    [SerializeField] private GameObject rightFireOff;
     private List<Transform> leftTargets;
     private List<Transform> rightTargets;
     [SerializeField]private int sunkedCounter = 0;
@@ -24,6 +22,8 @@ public class BossBehavior : MonoBehaviour
     [Header("General variables")]
     [SerializeField] private Transform lw;
     [SerializeField] private Transform rw;
+    [SerializeField] private GameObject leftFireOff;
+    [SerializeField] private GameObject rightFireOff;
     [SerializeField] private MeshRenderer leftVisualMarker;
     [SerializeField] private MeshRenderer rightVisualMarker;
     private VisualAOERotateAround leftVaoe;

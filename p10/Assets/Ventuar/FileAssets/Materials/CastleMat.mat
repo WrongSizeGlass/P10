@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CastleMat
-  m_Shader: {fileID: 4800000, guid: 0717917ee9a78eb4491cd021efe50ae9, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 39106e72cf05dce46b436d96a3bf64b1, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -149,7 +149,7 @@ Material:
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RippleColor: {r: 0.2546725, g: 0.5860671, b: 0.9150943, a: 0}
     - _SnowColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SnowDirection: {r: 1, g: 1, b: 1, a: 0}
+    - _SnowDirection: {r: 0, g: 1, b: 0, a: 0}
     - _Snow_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Snow_Direction: {r: 0, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
