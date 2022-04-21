@@ -15,6 +15,8 @@ public class Health : MonoBehaviour
     private bool damageEffect = false;
     public int hpLost = 1;
     float x, y, z;
+    public bool bossIce = false;
+    [SerializeField] private BossBehavior bb;
    // Vector3 IwasHitHere;
     // Start is called before the first frame update
     void Start() {
@@ -90,12 +92,17 @@ public class Health : MonoBehaviour
     }
  
     void shrinkingEffect() {
-        x = x -10;
-        y = x -10;
-        z = x -10;
+            x = x - 10;
+            y = y - 10;
+            z = z - 10;
+        
+        
         transform.localScale = new Vector3(x,y,z);  
     }
-    private void deadIce() {       
+    private void deadIce() {
+        if (bossIce) {
+            bb.degrementHP();
+        }
         Destroy(gameObject);   
     }
 

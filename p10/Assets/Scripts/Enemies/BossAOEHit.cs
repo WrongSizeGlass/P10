@@ -23,7 +23,6 @@ public class BossAOEHit : AOEHIt
         sc = GetComponent<SphereCollider>();
         sc.enabled = false;
         // beam = transform.GetChild(0).GetComponent<GameObject>();
-
     }
     public void setCanAttack(bool set) {
         canAttack = set;
@@ -40,6 +39,9 @@ public class BossAOEHit : AOEHIt
     public void setBeamActive(bool set) {
         isBeamActive = set;
         beam.SetActive(set);
+    }
+    public string getName() {
+        return this.name;
     }
     // getters
     public bool getCanAttack() {
