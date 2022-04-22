@@ -75,7 +75,7 @@ public class BossBehavior : MonoBehaviour
     // should change if ice is destroid
     [SerializeField] private bool hasChangeMovementIndex = false;
     private bool hasTargetPos = false;
-
+    private bool endGame = false;
 
     private bool changeMovementIndex = false;
 
@@ -131,6 +131,10 @@ public class BossBehavior : MonoBehaviour
         if (getHp() <= 0) {
             dead = true;
             setTransform(deadPos.position, 1);
+            if (Vector3.Distance(transform.position, deadPos.position) < 1.75)
+            {
+                endGame = true;
+            }
             if (Vector3.Distance(transform.position, deadPos.position)< 1.55) {
                
                 transform.position = deadPos.position;
@@ -408,5 +412,8 @@ public class BossBehavior : MonoBehaviour
     }
     public int getHp() {
         return hp;
+    }
+    public bool getDead() {
+        return endGame;
     }
 }

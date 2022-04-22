@@ -21,24 +21,24 @@ public class Quest1Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fireSpiritQuest.SetActive(false);
+       // fireSpiritQuest.SetActive(false);
     }
     public void incrementBoatsSinked() {
         boatsSinked++;
     }
-    private int getBoatsSinked() {
+    public int getBoatsSinked() {
         return boatsSinked;
     }
     // Update is called once per frame
     void Update()
     {
-        if (getBoatsSinked()>=2) {
+        /*if (getBoatsSinked()>=2) {
             BoatComplete = true;
         }
         if (BoatComplete) {
             fireSpiritQuest.SetActive(true);
         }
-        LevelOneComplete = BoatComplete && FireSpiritComplete && LandpostComplete;
+        LevelOneComplete = BoatComplete && FireSpiritComplete && LandpostComplete;*/
 
     }
     public void setSpirirtComplete( bool set) {

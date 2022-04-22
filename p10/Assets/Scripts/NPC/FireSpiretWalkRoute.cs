@@ -68,6 +68,9 @@ public class FireSpiretWalkRoute : MonoBehaviour
     public bool getFinishedRoute() {
         return finishedRoute;
     }
+    public bool getLastLightIsOn() {
+        return exitLightTurnOn;
+    }
     // Turn on the light
     private void FixedUpdate()
     {
@@ -79,7 +82,7 @@ public class FireSpiretWalkRoute : MonoBehaviour
     void turnOnLights()
     {
         // inspired by divied and councur algorithm
-        if (counter % Mathf.Round(0.3f / Time.fixedDeltaTime) == 0) {
+        if (counter % Mathf.Round(0.15f / Time.fixedDeltaTime) == 0) {
             LowLightCounter++;
             HighLightCounter--;
             lightList[LowLightCounter].enabled = true;

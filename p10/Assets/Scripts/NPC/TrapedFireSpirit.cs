@@ -9,23 +9,38 @@ public class TrapedFireSpirit : MonoBehaviour
     public bool trapped = true;
     FireSpiretWalkRoute FSWR;
     private Transform player;
+    [SerializeField] private Transform myParent;
+    [SerializeField] private Transform ice;
+    bool once = false;
     // Start is called before the first frame update
     void Start()
     {
+        myParent = transform.parent.GetComponent<Transform>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        myPos = transform.position;
+        
         FSWR = GetComponent<FireSpiretWalkRoute>();
         
+
+
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (trapped) {
+        if (!once && Vector3.Distance(transform.position, myParent.position) < 0.1f)
+        {
+            myPos = transform.position;
+            once = true;
+        }else if(!once) {
+            transform.position = Vector3.MoveTowards(transform.position, myParent.position, 1.25f * Time.deltaTime);
+            ice.position = Vector3.MoveTowards(ice.position, myParent.position, 1.25f * Time.deltaTime);
+        }   
+
+        if (trapped && once) {
             trapped = IamTrapped();
         }
-        if (!trapped) {
+        if (!trapped && once) {
             player.GetComponent<Quest1Controller>().setSpirirtComplete(true);
             FSWR.setCanWalk(true);
             this.enabled=false;

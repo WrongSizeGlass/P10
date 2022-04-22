@@ -3216,8 +3216,6 @@ GameObject:
   - component: {fileID: 121110166110977207}
   - component: {fileID: 5820006023365327372}
   - component: {fileID: 5820006023365327373}
-  - component: {fileID: 1671725490403548211}
-  - component: {fileID: 1135569953710762807}
   m_Layer: 0
   m_Name: Zephyr
   m_TagString: Untagged
@@ -3328,44 +3326,22 @@ MonoBehaviour:
   RotationSpeed: 15
   AnimationBlendSpeed: 2
   JumpSpeed: 15
+  audioSource: {fileID: 0}
+  walk: {fileID: 0}
+  volume: 1
   mDesiredRotation: 0
   mDesiredAnimationSpeed: 0
   mSprinting: 0
   mSpeedyY: 0
   mGravity: -9.81
-  meleeSpeed: 0
   aiming: 0
   hasWeapon: 1
   mThrow: 0
   mJumping: 0
-  meleeAni: 0
---- !u!114 &1671725490403548211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6630909942603070583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9093a441105097740a444e81f96650ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lvl1: {fileID: 0}
-  lvl2: {fileID: 0}
-  lvl3: {fileID: 0}
---- !u!114 &1135569953710762807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6630909942603070583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1b3da8d71930f64eb87b474ffb105b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  mPull: 0
+  cameraZoomOffset: 0.3
+  virtualCamera: {fileID: 0}
+  impulseSource: {fileID: 0}
 --- !u!1 &6681369230294299495
 GameObject:
   m_ObjectHideFlags: 0

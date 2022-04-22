@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class RotateObjects : MonoBehaviour
 {
+    [SerializeField] private GameObject visualAid;
     public bool rotate = true;
-
+    bool start = false;
     int counter = 0;
     float y = 2.5f;
     public float timer=1;
@@ -50,7 +51,7 @@ public class RotateObjects : MonoBehaviour
         Vector3 temp =  player.position;
         temp.y = temp.y + 0.5f;
         
-        if (!getFireQuestComplete()) {
+        if (!getFireQuestComplete() && start) {
             if (l1Off && !once|| !once && l2Off) {
                 AttactColdDownDuriation = AttactColdDownDuriation / 2;
                 speed = 2*speed;
@@ -112,7 +113,7 @@ public class RotateObjects : MonoBehaviour
         {
            
             myTarget = player.position;
-
+           
             if (mr.enabled)
             {
                 mr.enabled = false;
@@ -124,6 +125,7 @@ public class RotateObjects : MonoBehaviour
         }
         // Send objects towards players
         if (setHit) {
+           
             canDamageAnimationStart();
             aoe.SetActive(true);
             aoe.transform.position = myTarget;
@@ -161,6 +163,9 @@ public class RotateObjects : MonoBehaviour
     }
     public void setCanDamage(bool set){
         canDamage = set;
+    }
+    public void setStart(bool set) {
+        start = set;
     }
 
 }
