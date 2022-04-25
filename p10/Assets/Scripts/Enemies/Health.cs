@@ -17,19 +17,69 @@ public class Health : MonoBehaviour
     float x, y, z;
     public bool bossIce = false;
     [SerializeField] private BossBehavior bb;
-   // Vector3 IwasHitHere;
+    [SerializeField] private MainQuestController mqc;
+    [SerializeField] private Transform waterRespawnGroup;
+    [SerializeField] private Transform ChurchRespawnGroup;
+    [SerializeField] private Transform BossRespawnGroup;
+    [SerializeField] private RotateObjects ro;
+    private List<Transform> waterRespawnList;
+    private List<Transform> ChurchRespawnList;
+    private List<Transform> BossRespawnList;
+    Vector3 closesPos;
+    Vector3 startClosesPos;
+    bool playerHitWater = false;
+    private CharacterController cc;
+    string dmgByQuest="";
+    int startHp;
+    // Vector3 IwasHitHere;
     // Start is called before the first frame update
     void Start() {
+        startHp = hp;
+        cc = GetComponent<CharacterController>();
+        startClosesPos = new Vector3(999, 999, 999);
+        closesPos = startClosesPos;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         myTag = this.gameObject.tag;
         rb = GetComponent<Rigidbody>();
         x = transform.localScale.x;
         y = transform.localScale.y;
         z = transform.localScale.z;
+        if (waterRespawnGroup!=null) {
+            waterRespawnList = new List<Transform>();
+            for (int i = 0; i < waterRespawnGroup.childCount; i++) {
+                waterRespawnList.Add(waterRespawnGroup.GetChild(i).GetComponent<Transform>());
+
+            }
+        }
+        if (ChurchRespawnGroup != null)
+        {
+            ChurchRespawnList = new List<Transform>();
+            for (int i = 0; i < ChurchRespawnGroup.childCount; i++)
+            {
+                ChurchRespawnList.Add(ChurchRespawnGroup.GetChild(i).GetComponent<Transform>());
+
+            }
+        }
+        if (BossRespawnGroup != null)
+        {
+            BossRespawnList = new List<Transform>();
+            for (int i = 0; i < BossRespawnGroup.childCount; i++)
+            {
+                BossRespawnList.Add(BossRespawnGroup.GetChild(i).GetComponent<Transform>());
+
+            }
+        }
     }
     // Update is called once per frame
     void Update() {
-        updateMyState();      
+        updateMyState();
+        /*if (ro != null) {
+            if (ro.getDealDmg()) {
+                damageEffect = true;
+                updateMyState();
+            }
+        }*/
+        playerIsDead();
     }
     public bool getIamDead(){
         return IamDead;
@@ -39,9 +89,10 @@ public class Health : MonoBehaviour
         if (damageEffect) {
             
             effectWhenDamaged();
-            damageEffect = false;
+            
         }
-        if (getHp()<=0) {
+        if (getHp()<=0 && myTag !="Player") {
+
             IamDead = true;
             deathState();
         }   
@@ -49,11 +100,13 @@ public class Health : MonoBehaviour
 
     private void effectWhenDamaged(){
         setHp(hpLost);
+        
         switch (myTag){
             case "House":
                 damageEffect = false;
                 break;
             case "Player":
+                Debug.LogError("damage player");
                 damageEffect = false;
                 break;
             case "Ice":
@@ -76,6 +129,7 @@ public class Health : MonoBehaviour
                     Debug.LogError("I am dead I don't have a function:" + gameObject.name);
                     break;
                 case "Player":
+                    playerIsDead();
                     Debug.LogError("I am dead I don't have a function:" + gameObject.name);
                     break;
                 case "Ice":
@@ -105,6 +159,30 @@ public class Health : MonoBehaviour
         }
         Destroy(gameObject);   
     }
+    void playerIsDead() {
+        if (waterRespawnGroup != null){
+            if (playerHitWater){
+                Debug.LogError("respown player");
+                respondPlayerFromWater();
+            }
+        }
+        if (ChurchRespawnGroup != null && dmgByQuest =="Quest2") {
+            if (getHp() <= 0) {
+                respondPlayerFromChurch();
+            }
+        }
+        if (BossRespawnGroup != null && dmgByQuest == "Quest3")
+        {
+            if (getHp() <= 0)
+            {
+                respondPlayerFromBoss();
+            }
+        }
+        //mqc.setPlayerIsDead(true);
+    }
+    public void setQuest(string tag) {
+        dmgByQuest = tag;
+    }
 
     private void deadBoat() {
         if (!once) {
@@ -122,10 +200,98 @@ public class Health : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Hammer" && this.gameObject.tag != "Player" || collision.collider.tag == "shockWave") {
+        if (collision.collider.tag == "Hammer" && myTag != "Player" || collision.collider.tag == "shockWave") {
             damageEffect = true;
             //IwasHitHere = collision.transform.position;
         }
+        if (collision.collider.tag=="Water" && myTag =="Player") {
+            Debug.LogError("### Water hit ");
+        }
+        if (collision.collider.tag == "shockWave" && myTag == "Player")
+        {
+            //damageEffect = true;
+            Debug.LogError("### shockWave hit ");
+        }
+
+    }
+    public void setDamageEffect(bool set) {
+        damageEffect = set;
+    }
+    int q = 99;
+    public void respondPlayerFromWater()
+    {
+        cc.enabled = false;
+        for (int i = 0; i < waterRespawnList.Count; i++)
+        {
+            if (Vector3.Distance(waterRespawnList[i].position, transform.position) < Vector3.Distance(transform.position, closesPos))
+            {
+                closesPos = waterRespawnList[i].position;
+                q = i;
+                Debug.LogError("### " + waterRespawnList[i].name);
+            }
+
+        }
+        if (q!=99) {
+            this.gameObject.transform.position = waterRespawnList[q].position;
+            closesPos = startClosesPos;
+            playerHitWater = false;
+            q = 99;
+            Debug.LogError("### RESSPPPOOOONN");
+            cc.enabled = true;
+        }
+    }
+    public void respondPlayerFromBoss()
+    {
+        cc.enabled = false;
+        for (int i = 0; i < BossRespawnList.Count; i++)
+        {
+            if (Vector3.Distance(BossRespawnList[i].position, transform.position) < Vector3.Distance(transform.position, closesPos))
+            {
+                closesPos = BossRespawnList[i].position;
+                q = i;
+                Debug.LogError("### " + BossRespawnList[i].name);
+            }
+
+        }
+        if (q != 99)
+        {
+            this.gameObject.transform.position = BossRespawnList[q].position;
+            closesPos = startClosesPos;
+            hp = startHp;
+            q = 99;
+            Debug.LogError("### RESSPPPOOOONN");
+            cc.enabled = true;
+        }
+    }
+
+    public void respondPlayerFromChurch()
+    {
+        cc.enabled = false;
+        for (int i = 0; i < ChurchRespawnList.Count; i++)
+        {
+            if (Vector3.Distance(ChurchRespawnList[i].position, transform.position) < Vector3.Distance(transform.position, closesPos))
+            {
+                closesPos = ChurchRespawnList[i].position;
+                q = i;
+                Debug.LogError("### " + ChurchRespawnList[i].name);
+            }
+            ro.setStart(false);
+        }
+        if (q != 99)
+        {
+            this.gameObject.transform.position = ChurchRespawnList[q].position;
+            closesPos = startClosesPos;
+            hp = startHp;
+            q = 99;
+            Debug.LogError("### RESSPPPOOOONN");
+            cc.enabled = true;
+        }
+    }
+
+
+
+    public void setHpLost(int dmg) {
+        hpLost = dmg;
     }
     public void setHp(int dmg) {
         hp = hp - dmg;
@@ -133,6 +299,8 @@ public class Health : MonoBehaviour
     private int getHp() {
         return hp;
     }
-    
+   public void setPlayerHitWater(bool set) {
+        playerHitWater = set;
+    }
 
 }

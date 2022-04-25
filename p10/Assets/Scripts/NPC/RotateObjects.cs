@@ -5,6 +5,7 @@ using UnityEngine;
 public class RotateObjects : MonoBehaviour
 {
     [SerializeField] private GameObject visualAid;
+    [SerializeField] private AOEHIt aoeBool;
     public bool rotate = true;
     bool start = false;
     int counter = 0;
@@ -15,6 +16,7 @@ public class RotateObjects : MonoBehaviour
     public float ParticalDuriation = 5;
     public float AttactColdDownDuriation = 5;
     [SerializeField] private Transform target;
+    [SerializeField] private Health h;
     private Transform player;
     private List<Transform> waypointList;
     private Transform me;
@@ -84,6 +86,9 @@ public class RotateObjects : MonoBehaviour
                 resetAttact = false;
                 aoe.SetActive(false);
                 AEHA.setHit(false);
+                onceDmg = false;
+                h.setDamageEffect(false);
+                aoeBool.setIsHitting(false);
             }
         }
     
@@ -145,11 +150,28 @@ public class RotateObjects : MonoBehaviour
     {
         if (getCanDamage() && counter % Mathf.Round((AttactColdDownDuriation) / Time.fixedDeltaTime) == 0){
             setCanDamage(false);
-            resetAttact = true;
+            
             counter = 0;
+            if (aoeBool.getIsHitting()) {
+                //setDealDmg(true);
+                h.setHp(1);
+                //  h.setDamageEffect(true);
+                h.setQuest(this.tag);
+                onceDmg = true;
+                Debug.Log("¤¤ Hitting player");
+                
+            }
+            resetAttact = true;
         }
     }
-
+    bool onceDmg = false;
+    bool dealDmg = false;
+    public bool getDealDmg() {
+        return dealDmg;
+    }
+    public void setDealDmg(bool set) {
+        dealDmg = set;
+    }
 
     private int getHitCounter() {
         return hitCounter;

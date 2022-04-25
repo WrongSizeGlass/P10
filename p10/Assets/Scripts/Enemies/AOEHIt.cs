@@ -7,6 +7,7 @@ public class AOEHIt : MonoBehaviour
    public RotateObjects ro;
    
     private bool PlayerIsHit;
+    public bool isHitting = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,15 +26,27 @@ public class AOEHIt : MonoBehaviour
             Debug.Log("player is hit");
             setPlayerIsHit(true);
         }
+        if (other.tag == "Player") {
+            isHitting = true;
+            Debug.Log("Hitting player");
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player" && ro.getCanDamage()){
             setPlayerIsHit(false);
         }
+        if (other.tag =="Player") {
+            isHitting = false;
+        }
     }
-
-    bool getPlayerIsHit() {
+    public bool getIsHitting() {
+        return isHitting;
+    }
+    public void setIsHitting(bool set) {
+        isHitting = set;
+    }
+    public bool getPlayerIsHit() {
         return PlayerIsHit;
     }
     public void setPlayerIsHit(bool set){

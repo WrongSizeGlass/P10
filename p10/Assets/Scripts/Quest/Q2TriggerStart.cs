@@ -19,9 +19,11 @@ public class Q2TriggerStart : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag=="Player") {
+        if (other.tag == "Player")
+        {
             ro.setStart(true);
         }
+      
     }
     private void OnTriggerExit(Collider other)
     {

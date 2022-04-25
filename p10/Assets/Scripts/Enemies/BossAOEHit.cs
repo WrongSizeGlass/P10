@@ -14,7 +14,9 @@ public class BossAOEHit : AOEHIt
     bool isBeamActive = false;
     bool sinkTheHarbor = false;
     SphereCollider sc;
-
+    bool intro = true;
+    [SerializeField] Transform player;
+    float dist = 1;
     // setters
     public void setBossBehavior(Transform set) {
       //  myParent = transform.parent.GetComponent<Transform>();
@@ -24,6 +26,13 @@ public class BossAOEHit : AOEHIt
         sc.enabled = false;
         // beam = transform.GetChild(0).GetComponent<GameObject>();
     }
+
+    public void setIntro(bool set) {
+        intro = set;
+    }
+    public bool getIntro() {
+        return intro;
+    }
     public void setCanAttack(bool set) {
         canAttack = set;
     }
@@ -32,6 +41,7 @@ public class BossAOEHit : AOEHIt
     }
     public void setMyResetPos() {
         myResetPos = myParent.position;
+        dist = 1;
     }
     public void setSinkTheHarbor(bool set) {
         sinkTheHarbor = set;
@@ -92,19 +102,45 @@ public class BossAOEHit : AOEHIt
     void Update()
     {
         //setMyResetPos();
-        if (getSinkTheHarbor())
+        if (getSinkTheHarbor() && getIntro())
         {
             Debug.Log("!!! sink harbour");
             dht.enabled = true;
             sc.enabled = true;
         }
-        else {
+        else if(!getSinkTheHarbor() && getIntro())
+        {
             sc.enabled = false;
             dht.enabled = false;
         }
+        if (!getIntro() && Vector3.Distance(transform.position, player.position) < dist)
+        {
+            sc.enabled = true;
+        }else {
+            sc.enabled = false;
+            hasHit = false;
+        }
         setMyResetPos();
     }
-    
+    bool hasHit = false;
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player") {
+            Debug.LogError("## player is here");
+            hasHit = true;
+            dist = 1.5f;
+        }
+    }
 
-
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Debug.LogError("## player left");
+            hasHit = false;
+        }
+    }
+    public bool getHasHit() {
+        return hasHit;
+    }
 }

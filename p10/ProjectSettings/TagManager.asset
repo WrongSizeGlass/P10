@@ -10,6 +10,8 @@ TagManager:
   - Ice
   - Lamppost
   - shockWave
+  - Quest2
+  - Quest3
   layers:
   - Default
   - TransparentFX

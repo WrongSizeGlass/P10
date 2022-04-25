@@ -66,6 +66,7 @@ public class BossBehavior : MonoBehaviour
     private List<Transform> movementPatternList;
     private bool startCombat = false;
     [SerializeField] private Transform player;
+    private Health h;
     [SerializeField] private Transform deadPos;
     // comming back to it
     [SerializeField] private ArenaTrigger bossArena;
@@ -81,7 +82,7 @@ public class BossBehavior : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-
+        h = player.GetComponent<Health>();
         movementPatternList = new List<Transform>();
         leftTargets = new List<Transform>();
         rightTargets = new List<Transform>();
@@ -113,7 +114,9 @@ public class BossBehavior : MonoBehaviour
         counter++;
         counter2++;
         currentWeapon = currentWeapon > 1 ? 0 : currentWeapon;
-
+        boosHitL.setIntro(!bossIntroEnd);
+        boosHitR.setIntro(!bossIntroEnd);
+        
         // bossIntro
         if (!bossIntroEnd) {
             bossIntro();
@@ -122,6 +125,7 @@ public class BossBehavior : MonoBehaviour
         } else if (bossIntroEnd && !dead) {
             bossMovement();
             if (bossArena.getBossCanAttack()) {
+                AttactDuriation = 2;
                 bossAttackPlayer();
             }
         }
@@ -170,6 +174,7 @@ public class BossBehavior : MonoBehaviour
 
                 temp = player.position;
                 moveToTarget(selectWeapon(), false, player);
+               
             }
             
         }
@@ -283,10 +288,12 @@ public class BossBehavior : MonoBehaviour
         if (!hasAttacked) {
             // get+move to target
             introMoveToTarget(LorR);
+            dmgOnce = false;
             if (distToActivate < 0.1f) {
                 // start explosion animation
                 canDamageAnimationStart(LorR);
             }
+           
         }
         if (hasAttacked) {
             // start damage/end part of explosion and reset
@@ -358,16 +365,36 @@ public class BossBehavior : MonoBehaviour
             LorR.setSinkTheHarbor(true);
             Debug.LogError("sink harbour");
         }
-        
-        if ( counter2 % Mathf.Round((AttactDuriation) / Time.fixedDeltaTime) == 0 && counter2!=0){
-           // LorR.transform.SetParent(LorR.getMyParent());
-            
+        /*if (counter2 % Mathf.Round((AttactDuriation - 1.5f) / Time.fixedDeltaTime) == 0 && !intro)
+        {
+            if ( LorR.getHasHit())
+            {
+                h.setQuest(this.tag);
+                h.setDamageEffect(true);
+                //dmgOnce = true;
+            }
+
+        }*/
+
+        if (counter2 % Mathf.Round((AttactDuriation) / Time.fixedDeltaTime) == 0 && counter2 != 0)
+        {
+            // LorR.transform.SetParent(LorR.getMyParent());
+
             LorR.Resetposition();
             //setNewWeapon(LorR.transform.name);
-            if (intro) {
+            if (intro)
+            {
                 stage++;
             }
-            
+            if (!intro && LorR.getHasHit())
+            {
+                h.setQuest(this.tag);
+                h.setDamageEffect(true);
+                Debug.LogError("dmg player long colddown");
+                //dmgOnce = true;
+            }
+            //h.setDamageEffect(false);
+
             //stage++;
             counter = 0;
             distToActivate = 99;
@@ -378,7 +405,11 @@ public class BossBehavior : MonoBehaviour
             once = false;
             Debug.LogError("RESET!! " + LorR.name);
         }
+        else {
+            h.setDamageEffect(false);
+        }
     }
+    bool dmgOnce = false;
     // set GUI of the weapon pos
     void setGUI(bool on, GameObject fireOff = null, MeshRenderer mr = null, VisualAOERotateAround rotateGUI = null, Transform rotateTarget = null){
         fireOff.SetActive(on);
