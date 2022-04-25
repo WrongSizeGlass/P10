@@ -98,8 +98,8 @@ public class ThirdPersonController : MonoBehaviour
         {
             if (!audioSource.isPlaying)
             {
-                audioSource.volume = Random.Range(0.7f, 1f);
-                audioSource.pitch = Random.Range(0.7f, 1.1f);
+                audioSource.volume = Random.Range(0.3f, 0.5f);
+                audioSource.pitch = Random.Range(0.3f, 0.6f);
                 audioSource.PlayOneShot(walk, volume);
             }
         }
