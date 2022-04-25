@@ -21,12 +21,15 @@ public class MainQuestController : MonoBehaviour
     Vector3 closesPos;
     Vector3 startClosesPos;
     bool playerHitWater = false;
+    [SerializeField] GameObject bc;
+    //[SerializeField] CameraTest ct;
     void Start(){
         startClosesPos = new Vector3(999,999,999);
         closesPos = startClosesPos;
         lvl1Group.SetActive(false);
         level2Controller(false);
-        level3Controller(false);
+        level3Controller(false, false);
+       // level3Controller(true, true);
         waterRespawnList = new List<Transform>();
         for (int i=0; i<waterRespawnGroup.childCount; i++) {
             waterRespawnList.Add(waterRespawnGroup.GetChild(i).GetComponent<Transform>());
@@ -43,8 +46,12 @@ public class MainQuestController : MonoBehaviour
     void level2Controller(bool set) {
         lvl2Group.SetActive(set);
     }
-
-    void level3Controller( bool set) {
+    bool bossOnce = false;
+    void level3Controller( bool set, bool test) {
+        if (!bossOnce && test) {
+            bc.SetActive(true);
+            bossOnce = true;
+        }
         lvl3Group.SetActive(set);
     }
 
@@ -61,7 +68,8 @@ public class MainQuestController : MonoBehaviour
             level2Controller(true);
         }
         if (lvl2Complete) {
-            level3Controller(true);
+            Debug.LogError("¤¤ test?" );
+            level3Controller(true, true);
         }
         if (lvl3Complete) {
             Debug.LogError("Congrats you have completed the game");
@@ -89,6 +97,9 @@ public class MainQuestController : MonoBehaviour
             
             once = true;
         }
+        /*if (bossOnce && !bc.enabled) {
+            ct.enabled = true;
+        }*/
     }
     bool once = false;
     public void playerHitsWater() {

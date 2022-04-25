@@ -60,7 +60,7 @@ public class BossBehavior : MonoBehaviour
     private int currentWeapon = 0;
     private int weaponIndex;
     private int hpChange = 3;
-
+    public bool returnCamera = false;
     [Header("Boss Combat variables")]
     [SerializeField] private Transform movementPatternGroup;
     private List<Transform> movementPatternList;
@@ -364,6 +364,7 @@ public class BossBehavior : MonoBehaviour
 
             LorR.setSinkTheHarbor(true);
             Debug.LogError("sink harbour");
+            returnCamera = true;
         }
         /*if (counter2 % Mathf.Round((AttactDuriation - 1.5f) / Time.fixedDeltaTime) == 0 && !intro)
         {
@@ -379,12 +380,13 @@ public class BossBehavior : MonoBehaviour
         if (counter2 % Mathf.Round((AttactDuriation) / Time.fixedDeltaTime) == 0 && counter2 != 0)
         {
             // LorR.transform.SetParent(LorR.getMyParent());
-
+            
             LorR.Resetposition();
             //setNewWeapon(LorR.transform.name);
             if (intro)
             {
                 stage++;
+                
             }
             if (!intro && LorR.getHasHit())
             {
@@ -410,6 +412,9 @@ public class BossBehavior : MonoBehaviour
         }
     }
     bool dmgOnce = false;
+    public bool getReturnCamera() {
+        return returnCamera;
+    }
     // set GUI of the weapon pos
     void setGUI(bool on, GameObject fireOff = null, MeshRenderer mr = null, VisualAOERotateAround rotateGUI = null, Transform rotateTarget = null){
         fireOff.SetActive(on);

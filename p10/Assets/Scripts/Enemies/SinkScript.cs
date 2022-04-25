@@ -12,6 +12,7 @@ public class SinkScript : MonoBehaviour
 
         temp = transform.position;
         temp.y = 0;
+        GetComponent<BoxCollider>().isTrigger = true;
         
     }
 

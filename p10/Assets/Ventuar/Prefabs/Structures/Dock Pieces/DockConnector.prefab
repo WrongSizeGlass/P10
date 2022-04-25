@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4207685394501658}
   - component: {fileID: 33835948576536230}
   - component: {fileID: 23420047349404132}
-  - component: {fileID: 3429351346946409187}
+  - component: {fileID: 3626993218351119763}
   m_Layer: 0
   m_Name: DockConnector
   m_TagString: Untagged
@@ -88,7 +88,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3429351346946409187
+--- !u!65 &3626993218351119763
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,8 +99,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7947539, y: 0.04000479, z: 0.7481754}
-  m_Center: {x: 0.0018113405, y: -0.16303335, z: -0.00504224}
+  m_Size: {x: 0.7947542, y: 0.04000479, z: 0.7481756}
+  m_Center: {x: 0.0018132485, y: -0.16303478, z: -0.0050403345}
 --- !u!1 &5196168146463843062
 GameObject:
   m_ObjectHideFlags: 0
