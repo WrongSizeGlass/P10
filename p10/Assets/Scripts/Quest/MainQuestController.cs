@@ -17,7 +17,11 @@ public class MainQuestController : MonoBehaviour
     [SerializeField] private bool playerIsDead = false;
 
     [SerializeField] private Transform waterRespawnGroup;
+    [SerializeField] private Transform lightgroup;
+    [SerializeField] private Transform lightgroup1;
+    [SerializeField] private Transform lightgroup2;
     private List<Transform> waterRespawnList;
+
     Vector3 closesPos;
     Vector3 startClosesPos;
     bool playerHitWater = false;
@@ -36,7 +40,21 @@ public class MainQuestController : MonoBehaviour
         
         }
     }
+ 
+    void lightOff() {
+        for (int i=0; i< lightgroup.childCount; i++) {
+            lightgroup.GetChild(i).transform.GetChild(0).GetComponent<Light>().enabled = false;
+        }
+        for (int i = 0; i < lightgroup1.childCount; i++)
+        {
+            lightgroup1.GetChild(i).transform.GetChild(0).GetComponent<Light>().enabled = false;
+        }
+        for (int i = 0; i < lightgroup2.childCount; i++)
+        {
+            lightgroup2.GetChild(i).transform.GetChild(0).GetComponent<Light>().enabled = false;
+        }
 
+    }
     void level1Controller() {
         if (q1.getBoatsSinked()>1) {
             // activate trapped fire spirit
@@ -50,9 +68,13 @@ public class MainQuestController : MonoBehaviour
     void level3Controller( bool set, bool test) {
         if (!bossOnce && test) {
             bc.SetActive(true);
+            lvl2Group.SetActive(false);
+            lvl1Group.SetActive(false);
             bossOnce = true;
+            lightOff();
         }
         lvl3Group.SetActive(set);
+        
     }
 
     // Update is called once per frame

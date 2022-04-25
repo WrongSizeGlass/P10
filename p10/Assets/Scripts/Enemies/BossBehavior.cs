@@ -366,21 +366,9 @@ public class BossBehavior : MonoBehaviour
             Debug.LogError("sink harbour");
             returnCamera = true;
         }
-        /*if (counter2 % Mathf.Round((AttactDuriation - 1.5f) / Time.fixedDeltaTime) == 0 && !intro)
-        {
-            if ( LorR.getHasHit())
-            {
-                h.setQuest(this.tag);
-                h.setDamageEffect(true);
-                //dmgOnce = true;
-            }
-
-        }*/
-
         if (counter2 % Mathf.Round((AttactDuriation) / Time.fixedDeltaTime) == 0 && counter2 != 0)
         {
-            // LorR.transform.SetParent(LorR.getMyParent());
-            
+            // activete lyd
             LorR.Resetposition();
             //setNewWeapon(LorR.transform.name);
             if (intro)

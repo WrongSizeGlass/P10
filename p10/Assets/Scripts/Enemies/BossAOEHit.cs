@@ -83,15 +83,12 @@ public class BossAOEHit : AOEHIt
             setBeamActive(false);
             setResetAttact(true);
             setCanAttack(true);
-            test();
+
             
             //bb.incrementWeapon();
         }
     }
-    public void test() {
 
-        Debug.Log("current pos " + transform.position + " startpos " + myResetPos + " name " + transform.name+ "\n can attack: " + getCanAttack());
-    }
 
     // Start is called before the first frame update
     void Start(){
@@ -104,7 +101,7 @@ public class BossAOEHit : AOEHIt
         //setMyResetPos();
         if (getSinkTheHarbor() && getIntro())
         {
-            Debug.Log("!!! sink harbour");
+           
             dht.enabled = true;
             sc.enabled = true;
         }

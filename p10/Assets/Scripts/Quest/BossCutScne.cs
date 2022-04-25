@@ -39,7 +39,7 @@ public class BossCutScne : MonoBehaviour
     bool playerPos=false;
     bool backwards = false;
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (Vector3.Distance(bb.transform.position, transform.position) < 7.5f)
         {
@@ -61,14 +61,14 @@ public class BossCutScne : MonoBehaviour
         }
         if (backwards && !playerPos) {
             moveBack();
-            if (Vector3.Distance(transform.position, waypoint[0].position) < 0.1) {
+            if (Vector3.Distance(transform.position, waypoint[0].position) < 1.5) {
                 playerPos = true;
             }
         }
         if (playerPos && bb.getReturnCamera()) {
             transform.position = Vector3.MoveTowards(transform.position, player.position, 2.5f * Time.deltaTime);
             transform.LookAt(start);
-            if (Vector3.Distance(transform.position, player.position) < 0.1) {
+            if (Vector3.Distance(transform.position, player.position) < 1.5) {
                 transform.position = cam.transform.position;
                 transform.rotation = cam.transform.rotation;
                 cam.SetActive(true);
@@ -77,9 +77,7 @@ public class BossCutScne : MonoBehaviour
             }
             //this.enabled = false;
         }
-        Debug.LogError("¤¤ " + descindex);
-        Debug.LogWarning("¤¤ " + bb.getReturnCamera());
-        Debug.LogWarning("¤¤ return to player " + playerPos);
+ 
 
     }
     void moveTowardsTheBoss() {
