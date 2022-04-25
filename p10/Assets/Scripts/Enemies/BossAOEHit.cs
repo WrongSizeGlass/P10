@@ -99,24 +99,31 @@ public class BossAOEHit : AOEHIt
     void Update()
     {
         //setMyResetPos();
-        if (getSinkTheHarbor() && getIntro())
-        {
-           
-            dht.enabled = true;
-            sc.enabled = true;
+        if (getIntro()) {
+            if (getSinkTheHarbor())
+            {
+
+                dht.enabled = true;
+                sc.enabled = true;
+            }
+            else if (!getSinkTheHarbor())
+            {
+                sc.enabled = false;
+                dht.enabled = false;
+            }
         }
-        else if(!getSinkTheHarbor() && getIntro())
-        {
-            sc.enabled = false;
-            dht.enabled = false;
+        if (!getIntro()) {
+            if (Vector3.Distance(transform.position, player.position) < dist)
+            {
+                sc.enabled = true;
+            }
+            else
+            {
+                sc.enabled = false;
+                hasHit = false;
+            }
         }
-        if (!getIntro() && Vector3.Distance(transform.position, player.position) < dist)
-        {
-            sc.enabled = true;
-        }else {
-            sc.enabled = false;
-            hasHit = false;
-        }
+        
         setMyResetPos();
     }
     bool hasHit = false;
