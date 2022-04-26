@@ -57,7 +57,45 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5ad41fd400701824b9149aabb4fa4c73, type: 3}
       propertyPath: m_Name
-      value: Open_Side_L_House
+      value: Open_Side_L_House Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ad41fd400701824b9149aabb4fa4c73, type: 3}
+--- !u!1 &1980100805066176075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9009476212775683752, guid: 5ad41fd400701824b9149aabb4fa4c73, type: 3}
+  m_PrefabInstance: {fileID: 7382153854180962531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &119092312803857031
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980100805066176075}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7321516171901871987, guid: 5ad41fd400701824b9149aabb4fa4c73, type: 3}
+--- !u!1 &4492129660917812714 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2871627566966620919, guid: 5ad41fd400701824b9149aabb4fa4c73, type: 3}
+  m_PrefabInstance: {fileID: 7382153854180962531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &893538844801132050
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4492129660917812714}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6678698510441151354, guid: 5ad41fd400701824b9149aabb4fa4c73, type: 3}

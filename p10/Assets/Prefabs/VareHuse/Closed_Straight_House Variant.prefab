@@ -57,7 +57,45 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2efc97fece8c9cb4f91d9f07add9de4c, type: 3}
       propertyPath: m_Name
-      value: Closed_Straight_House
+      value: Closed_Straight_House Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efc97fece8c9cb4f91d9f07add9de4c, type: 3}
+--- !u!1 &204180408345678147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9042823282152037902, guid: 2efc97fece8c9cb4f91d9f07add9de4c, type: 3}
+  m_PrefabInstance: {fileID: 9199705198833176397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4168330406083157078
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204180408345678147}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 808351113893456957, guid: 2efc97fece8c9cb4f91d9f07add9de4c, type: 3}
+--- !u!1 &8260338083124423377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8283959633903147620, guid: 2efc97fece8c9cb4f91d9f07add9de4c, type: 3}
+  m_PrefabInstance: {fileID: 9199705198833176397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4104133344379962873
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260338083124423377}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8276331014849666357, guid: 2efc97fece8c9cb4f91d9f07add9de4c, type: 3}

@@ -12,6 +12,7 @@ TagManager:
   - shockWave
   - Quest2
   - Quest3
+  - PressE
   layers:
   - Default
   - TransparentFX
