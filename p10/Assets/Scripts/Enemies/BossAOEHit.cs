@@ -17,6 +17,11 @@ public class BossAOEHit : AOEHIt
     bool intro = true;
     [SerializeField] Transform player;
     float dist = 1;
+
+    public AudioSource audioSource;
+    //public AudioClip Anticipation;
+    public AudioClip Explosion;
+    public float volume = 0.5f;
     // setters
     public void setBossBehavior(Transform set) {
       //  myParent = transform.parent.GetComponent<Transform>();
@@ -133,6 +138,11 @@ public class BossAOEHit : AOEHIt
             Debug.LogError("## player is here");
             hasHit = true;
             dist = 1.5f;
+        }
+        if (other.transform != null)
+        {
+            //play sound explosion
+            audioSource.PlayOneShot(Explosion, volume);
         }
     }
 

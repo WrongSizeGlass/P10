@@ -80,6 +80,12 @@ public class BossBehavior : MonoBehaviour
 
     private bool changeMovementIndex = false;
 
+    [Header("Sound settings")]
+    public AudioSource audioSource;
+    //public AudioClip Anticipation;
+    public AudioClip Explosion;
+    public float volume = 0.5f;
+
     // Start is called before the first frame update
     void Start() {
         h = player.GetComponent<Health>();
@@ -312,7 +318,8 @@ public class BossBehavior : MonoBehaviour
             boosHitR.resetPos();
             setGUI(true, leftFireOff, leftVisualMarker, leftVaoe, target);
 
-        } else if (LorR.getName() == rightWeapon && !intro) {
+        }
+        else if (LorR.getName() == rightWeapon && !intro) {
             rw.SetParent(null);
             rw.position = Vector3.MoveTowards(rw.position, temp, weaponSpeed * Time.deltaTime);
             distToActivate = Vector3.Distance(temp, rw.position);
@@ -410,6 +417,16 @@ public class BossBehavior : MonoBehaviour
         if (rotateGUI != null){
             rotateGUI.setTarget(rotateTarget.position);
         }
+        /*if (on)
+        {
+            //play sound
+            audioSource.PlayOneShot(Explosion, volume);
+        }
+        if (!on)
+        {
+            //play sound
+            audioSource.PlayOneShot(Explosion, volume);
+        }*/
     }
     // select weapon left or right
     private void setNewWeapon(string weapon) {
