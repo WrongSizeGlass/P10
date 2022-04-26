@@ -38,7 +38,7 @@ public class Health : MonoBehaviour
     int startHp;
     // Vector3 IwasHitHere;
     // Start is called before the first frame update
-    void Start() {
+    void Awake() {
         startHp = hp;
         if (healthBar != null)
         {
@@ -89,7 +89,9 @@ public class Health : MonoBehaviour
                 updateMyState();
             }
         }*/
-        playerIsDead();
+        if (myTag=="Player") {
+            playerIsDead();
+        }
     }
     public bool getIamDead(){
         return IamDead;
