@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     public int hp = 2;
+    public int currentHealth;
+    public HealthBar healthBar;
     Rigidbody rb;
-   // List<string> tags = new List<string> { "House", "Boat", "Player" };
+
+    // List<string> tags = new List<string> { "House", "Boat", "Player" };
     private string myTag;
 
     private bool IamDead = false;
@@ -35,6 +40,11 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         startHp = hp;
+        if (healthBar != null)
+        {
+            healthBar.SetMaxHealth(hp);
+        }
+        
         cc = GetComponent<CharacterController>();
         startClosesPos = new Vector3(999, 999, 999);
         closesPos = startClosesPos;
@@ -106,6 +116,7 @@ public class Health : MonoBehaviour
                 damageEffect = false;
                 break;
             case "Player":
+                healthBar.SetHealth(getHp());
                 Debug.LogError("damage player");
                 damageEffect = false;
                 break;
@@ -178,6 +189,7 @@ public class Health : MonoBehaviour
                 respondPlayerFromBoss();
             }
         }
+        healthBar.SetMaxHealth(hp);
         //mqc.setPlayerIsDead(true);
     }
     public void setQuest(string tag) {
@@ -296,7 +308,7 @@ public class Health : MonoBehaviour
     public void setHp(int dmg) {
         hp = hp - dmg;
     }
-    private int getHp() {
+    public int getHp() {
         return hp;
     }
    public void setPlayerHitWater(bool set) {
