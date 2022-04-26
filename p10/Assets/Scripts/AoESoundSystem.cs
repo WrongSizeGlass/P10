@@ -9,20 +9,20 @@ public class AoESoundSystem : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip Anticipation;
     public AudioClip Explosion;
-    public float timer = 0.0f;
+    //public float timer = 0.0f;
     public float volume = 0.5f;
 
     // Update is called once per frame
     public void Update()
     {
-        timer += Time.deltaTime;
+        /*timer += Time.deltaTime;
         
         if(timer < 0.1f)
         {
             StartCoroutine(PlaySounds());
             
             //StopAllCoroutines();
-        }
+        }*/
     }
 
     public IEnumerator PlaySounds()
