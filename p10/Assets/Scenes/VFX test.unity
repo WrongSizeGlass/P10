@@ -509,6 +509,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: vfx_Fire_v1
       objectReference: {fileID: 0}
+    - target: {fileID: 6837802847665172407, guid: 4e66e492747830844bf2aa8558701c7c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6837802847731678156, guid: 4e66e492747830844bf2aa8558701c7c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e66e492747830844bf2aa8558701c7c, type: 3}
 --- !u!1001 &7294183431965612974
