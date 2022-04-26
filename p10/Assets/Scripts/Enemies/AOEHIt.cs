@@ -8,6 +8,7 @@ public class AOEHIt : MonoBehaviour
     public AudioSource audioSource;
     //public AudioClip Anticipation;
     public AudioClip Explosion;
+    public float startvolume = 0.5f;
     public float volume = 0.5f;
 
     private bool PlayerIsHit;
@@ -37,6 +38,7 @@ public class AOEHIt : MonoBehaviour
         if(other.transform != null)
         {
             //play sound explosion
+            volume = startvolume;
             audioSource.PlayOneShot(Explosion, volume);
         }
     }
@@ -48,6 +50,7 @@ public class AOEHIt : MonoBehaviour
         if (other.tag =="Player") {
             isHitting = false;
         }
+        volume = 0;
     }
     public bool getIsHitting() {
         return isHitting;

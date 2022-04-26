@@ -18,10 +18,10 @@ public class BossAOEHit : AOEHIt
     [SerializeField] Transform player;
     float dist = 1;
 
-    public AudioSource audioSource;
+    //public AudioSource audioSource;
     //public AudioClip Anticipation;
-    public AudioClip Explosion;
-    public float volume = 0.5f;
+  //  public AudioClip Explosion;
+   // public float volume = 0.5f;
     // setters
     public void setBossBehavior(Transform set) {
       //  myParent = transform.parent.GetComponent<Transform>();
@@ -97,6 +97,7 @@ public class BossAOEHit : AOEHIt
 
     // Start is called before the first frame update
     void Start(){
+        audioSource = GetComponent<AudioSource>();
         //Resetposition();
     }
 
@@ -142,8 +143,10 @@ public class BossAOEHit : AOEHIt
         if (other.transform != null)
         {
             //play sound explosion
-            audioSource.PlayOneShot(Explosion, volume);
+            
         }
+        volume = startvolume;
+        audioSource.PlayOneShot(Explosion, volume);
     }
 
     private void OnTriggerExit(Collider other)
@@ -152,6 +155,7 @@ public class BossAOEHit : AOEHIt
         {
             Debug.LogError("## player left");
             hasHit = false;
+            volume = 0;
         }
     }
     public bool getHasHit() {
