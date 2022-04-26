@@ -5,7 +5,11 @@ using UnityEngine;
 public class AOEHIt : MonoBehaviour
 {
    public RotateObjects ro;
-   
+    public AudioSource audioSource;
+    //public AudioClip Anticipation;
+    public AudioClip Explosion;
+    public float volume = 0.5f;
+
     private bool PlayerIsHit;
     public bool isHitting = false;
     // Start is called before the first frame update
@@ -30,6 +34,11 @@ public class AOEHIt : MonoBehaviour
             isHitting = true;
             Debug.Log("Hitting player");
         }
+        if(other.transform != null)
+        {
+            //play sound explosion
+            audioSource.PlayOneShot(Explosion, volume);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -52,4 +61,5 @@ public class AOEHIt : MonoBehaviour
     public void setPlayerIsHit(bool set){
         PlayerIsHit = set;
     }
+    
 }
