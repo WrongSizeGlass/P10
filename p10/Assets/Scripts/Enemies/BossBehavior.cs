@@ -383,7 +383,7 @@ public class BossBehavior : MonoBehaviour
                 stage++;
                 
             }
-            if (!intro && LorR.getHasHit())
+            if (!intro && LorR.getHasHit() && LorR.audioSource.isPlaying)
             {
                 h.setQuest(this.tag);
                 h.setDamageEffect(true);

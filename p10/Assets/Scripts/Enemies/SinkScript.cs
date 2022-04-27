@@ -6,10 +6,11 @@ public class SinkScript : MonoBehaviour
     // Start is called before the first frame update
     Vector3 temp;
     public float sinkingSpeed = 0.5f;
+    AudioSource sound;
 
     void Start()
     {
-
+        sound = GetComponent<AudioSource>();
         temp = transform.position;
         temp.y = 0;
         GetComponent<BoxCollider>().isTrigger = true;
@@ -21,6 +22,7 @@ public class SinkScript : MonoBehaviour
     {
 
         if (gameObject.transform.position != temp){
+            sound.enabled = true;
             gameObject.transform.position = Vector3.MoveTowards(transform.position, temp, sinkingSpeed * Time.deltaTime);
         }else {
             Destroy(this.gameObject);

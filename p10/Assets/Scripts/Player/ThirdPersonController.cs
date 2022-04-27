@@ -18,9 +18,11 @@ public class ThirdPersonController : MonoBehaviour
     public float JumpSpeed = 15;
     CharacterController MyController;
     Animator MyAnimator;
-    public AudioSource audioSource;
+    private AudioSource audioSource;
     public AudioClip walk;
+    public AudioClip run;
     public float volume = 1f;
+    public float picth = 1f;
     public float mDesiredRotation = 0f;
     public float mDesiredAnimationSpeed = 0f;
     public bool mSprinting = false;
@@ -48,7 +50,7 @@ public class ThirdPersonController : MonoBehaviour
 
     void Awake()
     {
-        
+        audioSource = GetComponent<AudioSource>();
         cam = MyCamera.GetComponent<CameraTest>();
         input = GetComponent<MovementInput>();
         MyController = GetComponent<CharacterController>();
@@ -63,19 +65,37 @@ public class ThirdPersonController : MonoBehaviour
         }
     
     }
-    
+    bool movementBool = false;
+    bool isPlaying = false;
+    bool setPlay = false;
+    void playSound(AudioClip audio) {
+        if (!audioSource.isPlaying) {
+            isPlaying = false;
+            
+            audioSource.Stop();
+        }
+        if ( !isPlaying)
+        {
+            isPlaying = true;
+            audioSource.volume = Random.Range(0.3f, 0.5f);
+            audioSource.pitch = Random.Range(0.3f, 0.65f);
+           // audioSource.pitch = picth;
+            audioSource.PlayOneShot(audio);
+            audioSource.Play();
+        }
 
+    }
     void Update()
     {
-        
 
+        
         if (RotationSpeed<2 && x!=0) {
             RotationSpeed = 2;
         }
         activateTHscript();
         x = Input.GetAxisRaw("Horizontal");
         z = Input.GetAxisRaw("Vertical");
-
+        movementBool = x != 0 || z != 0;
         if (Input.GetButtonDown("Jump") && !mJumping)
         {
             mJumping = true;
@@ -93,20 +113,14 @@ public class ThirdPersonController : MonoBehaviour
             mSpeedyY = 0;
         }
         MyAnimator.SetFloat("SpeedY", mSpeedyY / JumpSpeed);
-        
-        if(Input.GetButton("Vertical"))
-        {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.volume = Random.Range(0.3f, 0.5f);
-                audioSource.pitch = Random.Range(0.3f, 0.6f);
-                audioSource.PlayOneShot(walk, volume);
-            }
+
+        if (movementBool && !audioSource.isPlaying && !mSprinting) {
+            playSound(walk);
         }
-        else
-        {
-            audioSource.Stop();
+        if (movementBool && !audioSource.isPlaying && mSprinting){
+            playSound(run);
         }
+
 
         /*if (Input.GetButton("Horizontal"))
         {

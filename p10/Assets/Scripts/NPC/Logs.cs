@@ -18,6 +18,7 @@ public class Logs : MonoBehaviour
     {
         if ( Vector3.Distance( player.transform.position, transform.position)<1f && Input.GetKeyDown(KeyCode.E)) {
             fire.SetActive(true);
+            ice.GetComponent<AudioSource>().volume = 0;
             ice.SetActive(false);
             fireActive = true;
             Debug.LogError("__%%%%__");

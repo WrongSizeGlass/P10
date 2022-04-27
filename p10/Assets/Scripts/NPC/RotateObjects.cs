@@ -11,7 +11,7 @@ public class RotateObjects : MonoBehaviour
     int counter = 0;
     float y = 2.5f;
     public float timer=1;
-    public float speed = 5f;
+    public float speed = 10f;
     public float iceSpeed = 2.5f;
     public float ParticalDuriation = 5;
     public float AttactColdDownDuriation = 5;
@@ -56,7 +56,7 @@ public class RotateObjects : MonoBehaviour
         if (!getFireQuestComplete() && start) {
             if (l1Off && !once|| !once && l2Off) {
                 AttactColdDownDuriation = AttactColdDownDuriation / 2;
-                speed = 2*speed;
+               // speed = 2*speed;
                 once = true;
             }
 
@@ -154,11 +154,12 @@ public class RotateObjects : MonoBehaviour
             counter = 0;
             if (aoeBool.getIsHitting()) {
                 //setDealDmg(true);
-                h.setHp(1);
-                //  h.setDamageEffect(true);
+                //h.setHp(1);
+                h.playerTakeDamage();
+
                 h.setQuest(this.tag);
                 onceDmg = true;
-                Debug.Log("¤¤ Hitting player");
+                Debug.Log("¤¤ Hitting player dmgEffect:" + h.getDamageEffect());
                 
             }
             resetAttact = true;

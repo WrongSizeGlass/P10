@@ -6,14 +6,17 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+
+    [SerializeField] private AudioClip takeDmgSound;
+    [SerializeField] private AudioClip isDeadSound;
     public int hp = 2;
     public int currentHealth;
     public HealthBar healthBar;
     Rigidbody rb;
-
+    public float vol = 0.4f;
     // List<string> tags = new List<string> { "House", "Boat", "Player" };
     private string myTag;
-
+    AudioSource sound;
     private bool IamDead = false;
     private Transform player;
     bool once = false;
@@ -36,9 +39,11 @@ public class Health : MonoBehaviour
     private CharacterController cc;
     string dmgByQuest="";
     int startHp;
+    int hitCounter = 0;
     // Vector3 IwasHitHere;
     // Start is called before the first frame update
     void Awake() {
+        sound = GetComponent<AudioSource>();
         startHp = hp;
         if (healthBar != null)
         {
@@ -89,8 +94,19 @@ public class Health : MonoBehaviour
                 updateMyState();
             }
         }*/
-        if (myTag=="Player") {
+        /*if (myTag=="Player") {
             playerIsDead();
+        }*/
+        if (myTag =="Player") {
+            if (!sound.isPlaying && playDmgSound){
+                playDmgSound = false;
+
+            }
+            if (!sound.isPlaying && pcisDead)
+            {
+                pcisDead = false;
+                hitCounter = 0;
+            }
         }
     }
     public bool getIamDead(){
@@ -98,12 +114,14 @@ public class Health : MonoBehaviour
     }
 
     private void updateMyState() {
-        if (damageEffect) {
+        if (getDamageEffect()) {
             
             effectWhenDamaged();
+            Debug.LogError("¤¤ player is damaged " );
             
         }
-        if (getHp()<=0 && myTag !="Player") {
+        Debug.LogError("¤¤ player is damaged " + getDamageEffect());
+        if (getHp()<=0 ) {
 
             IamDead = true;
             deathState();
@@ -111,26 +129,30 @@ public class Health : MonoBehaviour
     }
 
     private void effectWhenDamaged(){
-        setHp(hpLost);
-        
+       
         switch (myTag){
             case "House":
+                
                 damageEffect = false;
                 break;
             case "Player":
-                healthBar.SetHealth(getHp());
+                playerTakeDamage();
+                
                 Debug.LogError("damage player");
                 damageEffect = false;
                 break;
             case "Ice":
+                setHp(hpLost);
                 shrinkingEffect();
                 damageEffect = false;
                 break;
             case "Boat":
+                setHp(hpLost);
                 damageEffect = false;
                 break;
             default:
-                damageEffect = false;
+              
+               // damageEffect = false;
                 break;
         }
     }
@@ -157,22 +179,80 @@ public class Health : MonoBehaviour
             }
         }  
     }
- 
+    bool playDmgSound = false;
     void shrinkingEffect() {
+        Debug.Log(" ## I am damaged play sound");
+        if (!playDmgSound) {
+            playSound(takeDmgSound, hitCounter);
+            playDmgSound = true;
+        }
+        Debug.LogError("## play " + sound.isPlaying + " hit counter: " + hitCounter);
             x = x - 10;
             y = y - 10;
             z = z - 10;
         
         
-        transform.localScale = new Vector3(x,y,z);  
+        transform.localScale = new Vector3(x,y,z);
+        if (!sound.isPlaying) {
+            playDmgSound = false;
+            
+        }
+        
     }
+    public void playerTakeDamage() {
+        setHp(hpLost);
+        hitCounter++;
+        if (!playDmgSound)
+        {
+            playSound(takeDmgSound, hitCounter);
+            playDmgSound = true;
+            Debug.LogError("¤¤ player is taking damage playing: " + sound.isPlaying);
+        }
+        
+        healthBar.SetHealth(getHp());
+    }
+
+
+    bool deadOnce = false;
     private void deadIce() {
+        if (!deadOnce) {
+            playSound(isDeadSound,0);
+            deadOnce = true;
+        }
         if (bossIce) {
             bb.degrementHP();
         }
-        Destroy(gameObject);   
+        if (!sound.isPlaying) {
+            Destroy(gameObject);
+        }
     }
+    bool playing = false;
+    public void playSound(AudioClip audio, int index)
+    {
+        int i = index;
+        Debug.LogError("## i: " + i + " index: " + index + " isPlaying " + sound.isPlaying);
+        if (!sound.isPlaying)
+        {
+            playing = false;
+            sound.Stop();
+        }
+        if (!playing && !sound.isPlaying && i == index)
+        {
+            playing = true;
+            vol = 1;
+            sound.PlayOneShot(audio, vol);
+           // sound.Play();
+            i++;
+            Debug.LogError("## PLAY is playing : " + audio.name);
+        }
+
+    }
+    bool pcisDead = false;
     void playerIsDead() {
+        if (!pcisDead) {
+            playSound(isDeadSound, 0);
+            pcisDead = true;
+        }
         if (waterRespawnGroup != null){
             if (playerHitWater){
                 Debug.LogError("respown player");
@@ -193,15 +273,20 @@ public class Health : MonoBehaviour
         }
         healthBar.SetMaxHealth(hp);
         //mqc.setPlayerIsDead(true);
+        
     }
     public void setQuest(string tag) {
         dmgByQuest = tag;
     }
-
+    bool deadboat = false;
     private void deadBoat() {
         if (!once) {
             player.GetComponent<Quest1Controller>().incrementBoatsSinked();
             once = true;
+        }
+        if (!deadboat) {
+            playSound(isDeadSound, 0);
+            deadboat = true;
         }
         GetComponent<MeshCollider>().convex = true;
         GetComponent<MeshCollider>().isTrigger = true;
@@ -230,6 +315,9 @@ public class Health : MonoBehaviour
     }
     public void setDamageEffect(bool set) {
         damageEffect = set;
+    }
+    public bool getDamageEffect() {
+        return damageEffect;
     }
     int q = 99;
     public void respondPlayerFromWater()
@@ -316,5 +404,9 @@ public class Health : MonoBehaviour
    public void setPlayerHitWater(bool set) {
         playerHitWater = set;
     }
+
+    
+    
+
 
 }
