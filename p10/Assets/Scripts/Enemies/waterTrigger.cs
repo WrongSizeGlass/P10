@@ -20,7 +20,7 @@ public class waterTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag =="Player") {
-            h.setPlayerHitWater(true);
+            h.respondPlayerFromWater();
             Debug.LogError("PLAYER ### ");
 
         }

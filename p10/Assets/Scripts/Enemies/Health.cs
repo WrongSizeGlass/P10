@@ -377,10 +377,11 @@ public class Health : MonoBehaviour
                 q = i;
                 Debug.LogError("### " + ChurchRespawnList[i].name);
             }
-            ro.setStart(false);
+            
         }
         if (q != 99)
         {
+            ro.setStart(false);
             this.gameObject.transform.position = ChurchRespawnList[q].position;
             closesPos = startClosesPos;
             hp = startHp;

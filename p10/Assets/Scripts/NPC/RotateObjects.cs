@@ -91,18 +91,18 @@ public class RotateObjects : MonoBehaviour
                 aoeBool.setIsHitting(false);
             }
         }
-    
+        Debug.LogError("%% bonfire on " +getFireQuestComplete());
        
     }
     bool l1Off = false;
     bool l2Off = false;
     void TurnOnOffBoonFires() {
         // set target position
-        if (L1.getFireActive() && !l1Off){
+        if (L1.getFireActive() ){
             
             l1Off = true;
         }
-        if (L2.getFireActive() && !l2Off){
+        if (L2.getFireActive() ){
            
             l2Off = true;
         }
