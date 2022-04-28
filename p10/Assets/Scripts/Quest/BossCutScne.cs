@@ -72,6 +72,7 @@ public class BossCutScne : MonoBehaviour
                 transform.position = cam.transform.position;
                 transform.rotation = cam.transform.rotation;
                 cam.SetActive(true);
+                cutSceneDone = true;
                // ct.enabled = true;
                 this.enabled = false;
             }
@@ -119,5 +120,8 @@ public class BossCutScne : MonoBehaviour
         }
     }
 
-
+    bool cutSceneDone = false;
+    public bool getCutSceneDone() {
+        return cutSceneDone;
+    }
 }

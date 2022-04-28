@@ -59,12 +59,14 @@ public class MainQuestController : MonoBehaviour
         if (q1.getBoatsSinked()>1) {
             // activate trapped fire spirit
             lvl1Group.SetActive(true);
+            lvl1Active = true;
         }
     }
     void level2Controller(bool set) {
         lvl2Group.SetActive(set);
     }
     bool bossOnce = false;
+    bool lvl1Active = false;
     void level3Controller( bool set, bool test) {
         if (!bossOnce && test) {
             bc.SetActive(true);
@@ -76,7 +78,9 @@ public class MainQuestController : MonoBehaviour
         lvl3Group.SetActive(set);
         
     }
-
+    public bool getLvl1Active() {
+        return lvl1Active;
+    }
     // Update is called once per frame
     void Update(){
         lvl1Complete = getWalkRouteComplete(Q1WalkRoute);
@@ -157,4 +161,17 @@ public class MainQuestController : MonoBehaviour
     public void setPlayerHitsWater(bool set) {
         playerHitWater = set;
     }
+    public bool getLvl1Complete() {
+        return lvl1Complete;
+    }
+    public bool getLvl2Complete()
+    {
+        return lvl2Complete;
+    }
+    public bool getLvl3Complete()
+    {
+        return lvl3Complete;
+    }
+
+
 }

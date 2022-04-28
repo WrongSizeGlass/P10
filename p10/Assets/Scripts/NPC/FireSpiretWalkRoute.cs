@@ -15,6 +15,8 @@ public class FireSpiretWalkRoute : MonoBehaviour
     int activeWaypoint = 0;
     private bool finishedRoute = false;
 
+    private bool startBanter = false;
+    private bool startBanter2 = false;
     
     private Transform me;
     private bool canWalk = false;
@@ -57,6 +59,12 @@ public class FireSpiretWalkRoute : MonoBehaviour
         if (activeWaypoint>waypointList.Count-1) {
             finishedRoute = true;
             setCanWalk(false);
+        }
+        if (activeWaypoint == 1) {
+            startBanter = true;
+        }
+        if (activeWaypoint == 6) {
+            startBanter2 = true;
         }
     }
     public void setCanWalk(bool ICan) {
@@ -102,5 +110,10 @@ public class FireSpiretWalkRoute : MonoBehaviour
             other.transform.GetComponent<Transform>().GetChild(0).GetComponent<Light>().enabled = true;
         }
     }
-
+    public bool getBanter1() {
+        return startBanter;
+    }
+    public bool getBanter2(){
+        return startBanter2;
+    }
 }
