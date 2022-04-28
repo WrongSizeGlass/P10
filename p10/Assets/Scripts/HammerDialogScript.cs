@@ -16,6 +16,7 @@ public class HammerDialogScript : MonoBehaviour
     bool lvl1Active = false;
     bool lvl1Banter = false;
     bool playLvl2Intro = false;
+    bool playLvl2BonfireIntro = false;
     bool playLvl2TrappedSpirit = false;
     bool lvl2Banter1 = false;
     bool lvl2Banter2 = false;
@@ -34,7 +35,7 @@ public class HammerDialogScript : MonoBehaviour
         if (th.getPlayHammerIntroVoiceLine() && !hammerIntro && !sound.isPlaying)
         {
             // play hammer intro dialog
-            playSound(i);
+            playSound();
             hammerIntro = true;
         }
 
@@ -42,14 +43,14 @@ public class HammerDialogScript : MonoBehaviour
         {
             // quest 1 intro
             i++;
-            playSound(1);
+            playSound();
             lvl1Intro = true;
         }
         if (mqc.getLvl1Active() && !lvl1Active && !sound.isPlaying)
         {
             i++;
             // play trapped fire spirit dialog
-            playSound(2);
+            playSound();
             lvl1Active = true;
         }
         // banter
@@ -57,48 +58,55 @@ public class HammerDialogScript : MonoBehaviour
         {
             i++;
             // player lvl 1 Banter
-            playSound(3);
+            playSound();
             lvl1Banter = true;
         }
         if (mqc.getLvl1Complete() && !playLvl2Intro && !sound.isPlaying)
         {
             i++;
             // play intro to lvl 2
-            playSound(4);
+            playSound();
             playLvl2Intro = true;
+        }
+        if (playLvl2Intro  && !playLvl2BonfireIntro && !sound.isPlaying)
+        {
+            i++;
+            // play intro to lvl 2
+            playSound();
+            playLvl2BonfireIntro = true;
         }
         if (q2.getChurchComplete() && !playLvl2TrappedSpirit && !sound.isPlaying)
         {
             i++;
             // play trapped firespirit 2
-            playSound(5);
+            playSound();
             playLvl2TrappedSpirit = true;
         }
         if (walk2.getBanter1() && !lvl2Banter1 && !sound.isPlaying)
         {
             i++;
             // player lvl 2.1 Banter
-            playSound(6);
+            playSound();
             lvl2Banter1 = true;
         }
         if (walk2.getBanter2() && !lvl2Banter2 && !sound.isPlaying)
         {
             i++;
             // player lvl 2.2 Banter
-            playSound(7);
+            playSound();
             lvl2Banter2 = true;
         }
         if (bcs.getCutSceneDone() && !lvl3CutSceneDone && !sound.isPlaying)
         {
             i++;
             // voiceline f�rdig med cutscene
-            playSound(8);
+            playSound();
             lvl3CutSceneDone = true;
         }
 
     }
     bool isPlaying = false;
-    void playSound(int index)
+    void playSound()
     {
         if (!sound.isPlaying)
         {
