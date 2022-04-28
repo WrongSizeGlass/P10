@@ -103,7 +103,7 @@ public class Health : MonoBehaviour
 
             }
             if (!sound.isPlaying && pcisDead)
-            {
+            {   
                 pcisDead = false;
                 hitCounter = 0;
             }
@@ -122,7 +122,7 @@ public class Health : MonoBehaviour
         }
         Debug.LogError("¤¤ player is damaged " + getDamageEffect());
         if (getHp()<=0 ) {
-
+            
             IamDead = true;
             deathState();
         }   
@@ -182,8 +182,13 @@ public class Health : MonoBehaviour
     bool playDmgSound = false;
     void shrinkingEffect() {
         Debug.Log(" ## I am damaged play sound");
-        if (!playDmgSound) {
+        if (!playDmgSound && getHp()>=1) {
             playSound(takeDmgSound, hitCounter);
+            playDmgSound = true;
+        }
+        if (!playDmgSound && getHp() < 1)
+        {
+            playSound(isDeadSound, hitCounter);
             playDmgSound = true;
         }
         Debug.LogError("## play " + sound.isPlaying + " hit counter: " + hitCounter);
@@ -240,9 +245,10 @@ public class Health : MonoBehaviour
         if (!playing && !sound.isPlaying && i == index)
         {
             playing = true;
-            vol = 1;
-            sound.PlayOneShot(audio, vol);
-           // sound.Play();
+            sound.volume = 1;
+            sound.pitch = 1;
+            sound.PlayOneShot(audio);
+            sound.Play();
             i++;
             Debug.LogError("## PLAY is playing : " + audio.name);
         }
