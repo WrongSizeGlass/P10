@@ -212,15 +212,16 @@ public class Health : MonoBehaviour
         healthBar.SetHealth(getHp());
     }
 
-
+    bool onceDmg = false;
     bool deadOnce = false;
     private void deadIce() {
         if (!deadOnce) {
             playSound(isDeadSound,0);
             deadOnce = true;
         }
-        if (bossIce) {
+        if (bossIce && !onceDmg) {
             bb.degrementHP();
+            onceDmg = true;
         }
         if (!sound.isPlaying) {
             Destroy(gameObject);
