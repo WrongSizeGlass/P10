@@ -24,7 +24,7 @@ public class HammerDialogScript : MonoBehaviour
     [SerializeField] private List<AudioClip> audioTrack;
     void Start()
     {
-        sound.GetComponent<AudioSource>();
+        sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
