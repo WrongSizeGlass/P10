@@ -942,7 +942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2172203799247647226, guid: 4868f5779fdf7f9429cdfa7e4e598035, type: 3}
       propertyPath: m_Name
-      value: Lif_with_Camera
+      value: Lif_with_Camera Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2172203799247647226, guid: 4868f5779fdf7f9429cdfa7e4e598035, type: 3}
       propertyPath: m_IsActive
@@ -1000,6 +1000,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4623635754745762500, guid: 4868f5779fdf7f9429cdfa7e4e598035, type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623635754745762500, guid: 4868f5779fdf7f9429cdfa7e4e598035, type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623635754745762500, guid: 4868f5779fdf7f9429cdfa7e4e598035, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4872112318626333333, guid: 4868f5779fdf7f9429cdfa7e4e598035, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1016,6 +1028,10 @@ PrefabInstance:
       propertyPath: throwForce
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 4874127364802470442, guid: 4868f5779fdf7f9429cdfa7e4e598035, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2716800514936966218}
     - target: {fileID: 4874127364802470442, guid: 4868f5779fdf7f9429cdfa7e4e598035, type: 3}
       propertyPath: ThrowBackForceVector.x
       value: 0
@@ -1400,6 +1416,14 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7727441259307742830, guid: 4868f5779fdf7f9429cdfa7e4e598035, type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7727441259307742830, guid: 4868f5779fdf7f9429cdfa7e4e598035, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8046770906529435624, guid: 4868f5779fdf7f9429cdfa7e4e598035, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -1513,6 +1537,11 @@ Transform:
 --- !u!1 &2468214781810828633 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5178765531585706967, guid: 4868f5779fdf7f9429cdfa7e4e598035, type: 3}
+  m_PrefabInstance: {fileID: 7322421523266936462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2716800514936966218 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4623635754745762500, guid: 4868f5779fdf7f9429cdfa7e4e598035, type: 3}
   m_PrefabInstance: {fileID: 7322421523266936462}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2754538963226066080 stripped

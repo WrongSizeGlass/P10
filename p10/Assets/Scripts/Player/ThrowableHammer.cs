@@ -89,7 +89,7 @@ public class ThrowableHammer : MonoBehaviour
         hammer.transform.parent = null;
         hammer.isKinematic= false;
         hammer.AddForce(Camera.main.transform.TransformDirection(Vector3.forward) * throwForce, ForceMode.Impulse);
-        hammer.AddTorque(hammer.transform.TransformDirection(Vector3.right) * 100, ForceMode.Impulse);
+        hammer.AddTorque(hammer.transform.TransformDirection(Vector3.right) * 150, ForceMode.Impulse);
     }
     //Return Hammer
     void ReturnHammer()
