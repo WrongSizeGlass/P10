@@ -9,10 +9,16 @@ public class WeaponScript : MonoBehaviour
 
     public float rotationSpeed;
     public Rigidbody targetToPushBack;
+    private Rigidbody rB;
     public Transform tempTarget;
     public AudioSource audioSource;
     public AudioClip hammerHit;
-    public float volume = 0.5f;
+    public float volume = 0.01f;
+
+    private void Awake()
+    {
+        rB = GetComponent<Rigidbody>();
+    }
     void Update()
     {
 
@@ -28,7 +34,8 @@ public class WeaponScript : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 11)
+        activated = false;
+        /*if (collision.gameObject.layer == 11)
         {
             print(collision.gameObject.name);
             GetComponent<Rigidbody>().Sleep();
@@ -37,16 +44,25 @@ public class WeaponScript : MonoBehaviour
             activated = false;
             audioSource.PlayOneShot(hammerHit, volume);
         }
-        tempTarget = collision.transform;
-
+        GetComponent<Rigidbody>().Sleep();
+        GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+        GetComponent<Rigidbody>().isKinematic = true;*/
+        
+        print(collision.gameObject.name);
+        audioSource.PlayOneShot(hammerHit, volume);
+        if (!activated && collision.collider.tag == "Ice")
+        {
+            tempTarget = collision.transform;
+            rB.isKinematic = true;
+        }
     }
-    private void OnCollisionStay(Collision collision)
+    /*private void OnCollisionStay(Collision collision)
     {
         if (collision.rigidbody != null && collision.transform.tag!="Player" )
         {
             targetToPushBack = collision.rigidbody.GetComponent<Rigidbody>();
         }
-    }
+    }*/
     private void OnCollisionExit(Collision collision)
     {
         if (targetToPushBack!=null) {
