@@ -21,7 +21,7 @@ public class MainQuestController : MonoBehaviour
     [SerializeField] private Transform lightgroup1;
     [SerializeField] private Transform lightgroup2;
     private List<Transform> waterRespawnList;
-
+    bool lvl1Active = false;
     Vector3 closesPos;
     Vector3 startClosesPos;
     bool playerHitWater = false;
@@ -59,6 +59,7 @@ public class MainQuestController : MonoBehaviour
         if (q1.getBoatsSinked()>1) {
             // activate trapped fire spirit
             lvl1Group.SetActive(true);
+            lvl1Active = true;
         }
     }
     void level2Controller(bool set) {
@@ -144,7 +145,10 @@ public class MainQuestController : MonoBehaviour
     bool getIsBossDead() {
        return BB.getDead();
     }
-
+    public bool getLvl1Active()
+    {
+        return lvl1Active;
+    }
     public void setPlayerIsDead(bool set) {
         playerIsDead = set;
     }
@@ -157,4 +161,17 @@ public class MainQuestController : MonoBehaviour
     public void setPlayerHitsWater(bool set) {
         playerHitWater = set;
     }
+    public bool getLvl1Complete()
+    {
+        return lvl1Complete;
+    }
+    public bool getLvl2Complete()
+    {
+        return lvl2Complete;
+    }
+    public bool getLvl3Complete()
+    {
+        return lvl3Complete;
+    }
+
 }

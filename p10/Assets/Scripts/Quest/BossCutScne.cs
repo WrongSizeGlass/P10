@@ -69,6 +69,7 @@ public class BossCutScne : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, player.position, 2.5f * Time.deltaTime);
             transform.LookAt(start);
             if (Vector3.Distance(transform.position, player.position) < 1.5) {
+                cutSceneDone = true;
                 transform.position = cam.transform.position;
                 transform.rotation = cam.transform.rotation;
                 cam.SetActive(true);
@@ -118,6 +119,10 @@ public class BossCutScne : MonoBehaviour
 
         }
     }
-
+    bool cutSceneDone = false;
+    public bool getCutSceneDone()
+    {
+        return cutSceneDone;
+    }
 
 }
