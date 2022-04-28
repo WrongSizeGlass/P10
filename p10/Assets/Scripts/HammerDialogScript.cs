@@ -29,6 +29,7 @@ public class HammerDialogScript : MonoBehaviour
     [TextArea(4, 10)]
     [SerializeField] private string[] sentences;
     public TextMeshProUGUI textComponent;
+    public GameObject dialogueBox;
     public float textSpeed;
     void Start()
     {
@@ -50,6 +51,7 @@ public class HammerDialogScript : MonoBehaviour
         {
             // quest 1 intro
             i++;
+            textComponent.text = "";
             playSound();
             lvl1Intro = true;
         }
@@ -57,6 +59,7 @@ public class HammerDialogScript : MonoBehaviour
         {
             i++;
             // play trapped fire spirit dialog
+            textComponent.text = "";
             playSound();
             lvl1Active = true;
         }
@@ -65,6 +68,7 @@ public class HammerDialogScript : MonoBehaviour
         {
             i++;
             // player lvl 1 Banter
+            textComponent.text = "";
             playSound();
             lvl1Banter = true;
         }
@@ -72,6 +76,7 @@ public class HammerDialogScript : MonoBehaviour
         {
             i++;
             // play intro to lvl 2
+            textComponent.text = "";
             playSound();
             playLvl2Intro = true;
         }
@@ -79,6 +84,7 @@ public class HammerDialogScript : MonoBehaviour
         {
             i++;
             // play intro to lvl 2
+            textComponent.text = "";
             playSound();
             playLvl2BonfireIntro = true;
         }
@@ -86,6 +92,7 @@ public class HammerDialogScript : MonoBehaviour
         {
             i++;
             // play trapped firespirit 2
+            textComponent.text = "";
             playSound();
             playLvl2TrappedSpirit = true;
         }
@@ -94,6 +101,7 @@ public class HammerDialogScript : MonoBehaviour
         {
             i++;
             // player lvl 2.2 Banter
+            textComponent.text = "";
             playSound();
             lvl2Banter2 = true;
         }
@@ -101,8 +109,14 @@ public class HammerDialogScript : MonoBehaviour
         {
             i++;
             // voiceline f�rdig med cutscene
+            textComponent.text = "";
             playSound();
             lvl3CutSceneDone = true;
+        }
+
+        if (!sound.isPlaying)
+        {
+            dialogueBox.SetActive(false);
         }
 
     }
@@ -118,6 +132,7 @@ public class HammerDialogScript : MonoBehaviour
         if (!isPlaying)
         {
             isPlaying = true;
+            dialogueBox.SetActive(true);
             StartDialogue();
             // audioSource.pitch = picth;
             sound.PlayOneShot(audioTrack[i]);

@@ -92,7 +92,8 @@ MonoBehaviour:
     but those ice crystals are where he is the weakest. Try to destroy them and he
     will go to where he came from.
   textComponent: {fileID: 0}
-  textSpeed: 20
+  dialogueBox: {fileID: 0}
+  textSpeed: 0.05
 --- !u!82 &2923855730780780743
 AudioSource:
   m_ObjectHideFlags: 0
