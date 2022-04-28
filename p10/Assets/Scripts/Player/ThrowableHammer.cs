@@ -42,7 +42,6 @@ public class ThrowableHammer : MonoBehaviour
     {
         
         ReturnHammer();
-        setPlayHammerIntroVoiceLine(true);
     }
     // Update is called once per frame
     void ThrowBackForce() {
@@ -119,13 +118,6 @@ public class ThrowableHammer : MonoBehaviour
         float uu = u * u;
         Vector3 p = (uu * p0) + (2 * u * t * p1) + (tt * p2);
         return p;
-    }
-    bool hammerIntro = false;
-    public bool getPlayHammerIntroVoiceLine() {
-        return hammerIntro;
-    }
-    public void setPlayHammerIntroVoiceLine(bool set) {
-        hammerIntro = set;
     }
 }
 /* if (counter % Mathf.Round(1.5f / Time.fixedDeltaTime)==0) { 

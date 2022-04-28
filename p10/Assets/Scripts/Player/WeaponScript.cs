@@ -12,9 +12,7 @@ public class WeaponScript : MonoBehaviour
     public Transform tempTarget;
     public AudioSource audioSource;
     public AudioClip hammerHit;
-    Vector3 temp;
     public float volume = 0.5f;
-    bool returnHammer = false;
     void Update()
     {
 
@@ -22,9 +20,6 @@ public class WeaponScript : MonoBehaviour
         {
             transform.localEulerAngles += Vector3.forward * rotationSpeed * Time.deltaTime;
         }
-       /* if (tempTarget!=null && !returnHammer) {
-            transform.position = tempTarget.position;
-        }*/
 
     }
     public Transform getTempTarget() {
@@ -33,16 +28,15 @@ public class WeaponScript : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        //if (collision.gameObject.layer == 11)
-        //{
+        if (collision.gameObject.layer == 11)
+        {
             print(collision.gameObject.name);
             GetComponent<Rigidbody>().Sleep();
             GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             GetComponent<Rigidbody>().isKinematic = true;
             activated = false;
             audioSource.PlayOneShot(hammerHit, volume);
-            temp = transform.position;
-        //}
+        }
         tempTarget = collision.transform;
 
     }

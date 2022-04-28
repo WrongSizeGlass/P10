@@ -45,9 +45,6 @@ public class Quest2Controller : MonoBehaviour
         }
 
     }
-    public bool getChurchComplete() {
-        return iceQuest;
-    }
     public bool getQuest2Complete() {
         return quest2Complete;
     }
