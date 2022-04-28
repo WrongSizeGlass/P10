@@ -31,15 +31,18 @@ public class HammerDialogScript : MonoBehaviour
     public TextMeshProUGUI textComponent;
     public GameObject dialogueBox;
     public float textSpeed;
+ 
     void Start()
     {
         textComponent.text = string.Empty;
         sound = GetComponent<AudioSource>();
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+    
         if (th.getPlayHammerIntroVoiceLine() && !hammerIntro && !sound.isPlaying)
         {
             // play hammer intro dialog
