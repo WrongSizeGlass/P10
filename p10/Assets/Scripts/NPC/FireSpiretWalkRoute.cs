@@ -15,16 +15,21 @@ public class FireSpiretWalkRoute : MonoBehaviour
     int activeWaypoint = 0;
     private bool finishedRoute = false;
 
-    
+    string myName;
     private Transform me;
     private bool canWalk = false;
     private bool exitLightTurnOn;
     int counter = 0;
     int LowLightCounter;
     int HighLightCounter;
+    bool IamLvl1=false;
     
     void Start()
-    {      
+    {
+        myName = transform.name;
+        if (myName== "fireSpiritLvl1") {
+            IamLvl1 = true;
+        }
         lightList = new List<Light>();
         waypointList = new List<Transform>();
         for (int i = 0; i < waypointGroup.childCount; i++) {
@@ -43,9 +48,9 @@ public class FireSpiretWalkRoute : MonoBehaviour
     // Walking the route
     void Update(){
         if (getCanWalk()) {
-            if (Vector3.Distance(me.position,player.position)<3.5) {
-                followWaypoints();
-            }
+
+           followWaypoints();
+
         }
     }
     void followWaypoints() {
@@ -55,7 +60,7 @@ public class FireSpiretWalkRoute : MonoBehaviour
             activeWaypoint++;
         }
         if (activeWaypoint>waypointList.Count-1) {
-            finishedRoute = true;
+            finnishedWalk = true;
             setCanWalk(false);
         }
         if (activeWaypoint == 1)
@@ -66,6 +71,7 @@ public class FireSpiretWalkRoute : MonoBehaviour
         {
             startBanter2 = true;
         }
+        
     }
     public void setCanWalk(bool ICan) {
         canWalk = ICan;
@@ -83,9 +89,28 @@ public class FireSpiretWalkRoute : MonoBehaviour
     private void FixedUpdate()
     {
         counter++;
-        if (!exitLightTurnOn && finishedRoute) {
-            turnOnLights();
+        if (IamLvl1){
+            if (!exitLightTurnOn && finnishedWalk && playerActivatedInn || !exitLightTurnOn && playerActivatedInn){
+                turnOnLights();
+                finishedRoute = true;
+            }
+        }else {
+            if (!exitLightTurnOn && finnishedWalk && playerOnTheCorrectStreet || !exitLightTurnOn && playerOnTheCorrectStreet) {
+                turnOnLights();
+                finishedRoute = true;
+            }
+        
         }
+
+    }
+    bool finnishedWalk = false;
+    bool playerOnTheCorrectStreet = false;
+    bool playerActivatedInn = false;
+    public void setCorrectStreet(bool set) {
+        playerOnTheCorrectStreet = set;
+    }
+    public  void setActivatedInn(bool set) {
+        playerActivatedInn = set;
     }
     void turnOnLights()
     {
