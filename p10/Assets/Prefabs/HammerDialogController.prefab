@@ -61,6 +61,38 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 00d25e0b0b0b974479c17a8ba676573b, type: 3}
   - {fileID: 8300000, guid: 74dfd87451687174eb14029bdd9c10f7, type: 3}
   - {fileID: 8300000, guid: 25fb1667b3a191d4db8f3072205c1e41, type: 3}
+  sentences:
+  - "Ah, I see that I have joined a young soul in this endeavour. You see youngling,
+    I was thrown away by Thor, the god of thunder, as he got into his battle with
+    the World Serpent. Unfortunately, I won\u2019t be able to give the innate thunder
+    abilities of Thor but I can be thrown at immense speed and recall back to you."
+  - "Now little one. Let\u2019s try to train you a little in using the hammer. Let\u2019s
+    go over to the harbour and sink two of those ships. Nobody is going to use them
+    now, are they?\r"
+  - 'Good, young one. Very good. This village, as far as I can feel, is haunted by
+    ice spirits. There used to be fire spirits around here to warm up the village.
+    Perhaps they are trapped within some ice crystals. Go around and see if you can
+    use the hammer to free them. '
+  - "You know, I was once forged to defend this realm from various creatures from
+    other realms. Thor used me so much that he doesn\u2019t even consider that I
+    have feelings."
+  - Some fires and lights are not completely lit near the church. Perhaps something
+    happened there and needs our attention.
+  - There is one of the infamous ice spirit I talked about earlier. Do be careful
+    as they fire out Ice spells which I would prefer if you avoided. If you get close
+    enough to the bonfires, we can enable the fire to turn back to normal and scare
+    it away.
+  - "I see another fire spirit trapped. You know the drill. Don\u2019t let this be
+    trapped forever."
+  - "It\u2019s strange, isn\u2019t it? How the whole world is about to end, and yet
+    I don\u2019t feel anything.\r Maybe the world isn\u2019t about to end because
+    I haven\u2019t seen any signs of Naglfar yet.\r.. \nDamn it, why did I say that,
+    now Naglfar will definitely show up.\r\n"
+  - Oh, dear. It seems you have angered Naglfar, the ship of the damned. He is powerful,
+    but those ice crystals are where he is the weakest. Try to destroy them and he
+    will go to where he came from.
+  textComponent: {fileID: 0}
+  textSpeed: 20
 --- !u!82 &2923855730780780743
 AudioSource:
   m_ObjectHideFlags: 0

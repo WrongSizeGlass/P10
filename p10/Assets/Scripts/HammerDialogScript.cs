@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HammerDialogScript : MonoBehaviour
 {
@@ -24,8 +25,13 @@ public class HammerDialogScript : MonoBehaviour
     int i = 0;
     AudioSource sound;
     [SerializeField] private List<AudioClip> audioTrack;
+    [TextArea(4, 10)]
+    [SerializeField] private string[] sentences;
+    public TextMeshProUGUI textComponent;
+    public float textSpeed;
     void Start()
     {
+        textComponent.text = string.Empty;
         sound = GetComponent<AudioSource>();
     }
 
@@ -44,6 +50,7 @@ public class HammerDialogScript : MonoBehaviour
             // quest 1 intro
             i++;
             playSound();
+            StartDialogue();
             lvl1Intro = true;
         }
         if (mqc.getLvl1Active() && !lvl1Active && !sound.isPlaying)
@@ -117,5 +124,18 @@ public class HammerDialogScript : MonoBehaviour
             sound.Play();
         }
 
+    }
+    void StartDialogue()
+    {
+        StartCoroutine(typeLine());
+    }
+
+    IEnumerator typeLine()
+    {
+        foreach (char c in sentences[i].ToCharArray())
+        {
+            textComponent.text += c;
+            yield return new WaitForSeconds(textSpeed);
+        }
     }
 }
