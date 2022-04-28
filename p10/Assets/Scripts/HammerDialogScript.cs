@@ -82,13 +82,7 @@ public class HammerDialogScript : MonoBehaviour
             playSound();
             playLvl2TrappedSpirit = true;
         }
-        if (walk2.getBanter1() && !lvl2Banter1 && !sound.isPlaying)
-        {
-            i++;
-            // player lvl 2.1 Banter
-            playSound();
-            lvl2Banter1 = true;
-        }
+   
         if (walk2.getBanter2() && !lvl2Banter2 && !sound.isPlaying)
         {
             i++;

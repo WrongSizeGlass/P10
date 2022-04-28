@@ -62,7 +62,7 @@ public class FireSpiretWalkRoute : MonoBehaviour
         {
             startBanter = true;
         }
-        if (activeWaypoint == 6)
+        if (activeWaypoint == 4)
         {
             startBanter2 = true;
         }
