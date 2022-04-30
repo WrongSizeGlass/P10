@@ -51,7 +51,7 @@ public class NatureTrigger : MonoBehaviour
             
             natureEffect.SetActive(true);
             if (canTalk) {
-                Debug.LogError("myNumber = " + myNr);
+             //   Debug.LogError("myNumber = " + myNr);
                 hds.setNatureExternalList(myNr, true);
             }
         }

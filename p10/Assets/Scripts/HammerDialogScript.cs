@@ -22,6 +22,7 @@ public class HammerDialogScript : MonoBehaviour
     private int ni = 0;
     private int j = 0;
     private int nj = 0;
+    private int counter = 0;
     private AudioSource sound;
     private List<bool> mainDialogLocalBoolList;
     private List<bool> natureDialogLocalBoolList;
@@ -39,7 +40,9 @@ public class HammerDialogScript : MonoBehaviour
     void Start()
     {
         mainDialogLocalBoolList = new List<bool>();
+        natureDialogLocalBoolList = new List<bool>();
         mainDialogExternalBoolList = new List<bool>();
+        natureDialogExternalBoolList = new List<bool>();
        
         for (int i=0; i<audioTrack.Count; i++) {
             mainDialogLocalBoolList.Add(false);
@@ -55,12 +58,17 @@ public class HammerDialogScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update(){
-        if (!sound.isPlaying && i < audioTrack.Count) {
-            SetCondition(audioTrack, sentences, mainDialogExternalBoolList, mainDialogLocalBoolList,true,i,j);
+    void FixedUpdate(){
+        counter++;
+        if (counter % Mathf.Round((1.5f) / Time.fixedDeltaTime) == 0){
+            if (!sound.isPlaying && i < audioTrack.Count){
+                SetCondition(audioTrack, sentences, mainDialogExternalBoolList, mainDialogLocalBoolList, true, i, j);
+            }
         }
-        if (!sound.isPlaying && ni<natureTrack.Count) {
-            SetCondition(natureTrack, natureSentences, natureDialogExternalBoolList, natureDialogLocalBoolList,false,ni,nj);
+        if (counter % Mathf.Round((1f) / Time.fixedDeltaTime) == 0){
+            if (!sound.isPlaying && ni < natureTrack.Count){
+                SetCondition(natureTrack, natureSentences, natureDialogExternalBoolList, natureDialogLocalBoolList, false, ni, nj);
+            }
         }
         if (!sound.isPlaying){
             dialogueBox.SetActive(false);

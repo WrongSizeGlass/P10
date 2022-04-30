@@ -128,7 +128,7 @@ public class PlayerPositionMap : MonoBehaviour
             mapName = SceneManager.GetActiveScene().name;
             setOnce = true;
         }
-        Debug.LogError("j1:" + writeJason1 + " j2: " + writeJason2 + " j3 " + writeJason3);
+       // Debug.LogError("j1:" + writeJason1 + " j2: " + writeJason2 + " j3 " + writeJason3);
 
         if (!p1once && writeJason1){
             if (q1 == null && !p1once){
@@ -171,52 +171,15 @@ public class PlayerPositionMap : MonoBehaviour
             }
             
         }
-        /* if (!p2once && writeJason2)
-         {
-             if (q2 == null && !p2once)
-             {
-                 q2 = new PuzzleData(MyUniqueID, p2timer.MyName + p2timer.selfID, p2timer.PlayerTimeCounter, MyEmergent, (p2timer.ECC_1 + p2timer.ECC_2));
-                 for (int i = 0; i < p2timer.playerPositionList.Count; i++)
-                 {
-                     q2.Player_Positions.Insert(0, p2timer.playerPositionList[i].ToString());
-                 }
-                 //P2Data.BasketCounter = p2timer.basketCounter;
-                // P2Data.WaterIsPumping = p2timer.WaterPumpBool;
-                 sd.CollectionList.Insert(indexCounter, q2);
-                 indexCounter++;
-                 p2once = true;
-                 Debug.Log("event capsule score: " + (p2timer.ECC_1 + p2timer.ECC_2));
-             }
-         }
-         if (!p3once && writeJason3)
-         {
-             if (P3Data == null && !p3once)
-             {
-                 P3Data = new PuzzleData(MyUniqueID, p3timer.MyName + p3timer.selfID, p3timer.PlayerTimeCounter, MyEmergent, (p3timer.ECC_1 + p3timer.ECC_2));
-                 for (int i = 0; i < p3timer.playerPositionList.Count; i++)
-                 {
-                     P3Data.Player_Positions.Insert(0, p3timer.playerPositionList[i].ToString());
-                 }
-                 csd.CollectionList.Insert(indexCounter, P3Data);
-                 indexCounter++;
-                 p3once = true;
-             }
-         }*/
-        /* if (csd.CollectionList.Count == 3)
-         {
-             canExit = true;
-         }
-         if (csd.CollectionList.Count > 3 && csd.CollectionList.Count <= 5)
-         {
-             canExit = false;
-         }*/
-        // if (sd.CollectionList.Count == 6 && !staticWriteOnce)
+      
         if (p3once && !staticWriteOnce)
         {
             writeJson(sd);
             staticWriteOnce = true;
         }
-
+        if (Exit()) {
+            SceneManager.LoadSceneAsync(2);
+        }
     }
     static bool oneTime = false;
     public bool Exit()

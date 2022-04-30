@@ -21,7 +21,7 @@ public class Logs : MonoBehaviour
             ice.GetComponent<AudioSource>().volume = 0;
             ice.SetActive(false);
             fireActive = true;
-            Debug.LogError("__%%%%__");
+           // Debug.LogError("__%%%%__");
         }
     }
     public bool getFireActive() {

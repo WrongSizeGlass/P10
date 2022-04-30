@@ -91,7 +91,7 @@ public class RotateObjects : MonoBehaviour
                 aoeBool.setIsHitting(false);
             }
         }
-        Debug.LogError("%% bonfire on " +getFireQuestComplete());
+        //Debug.LogError("%% bonfire on " +getFireQuestComplete());
        
     }
     bool l1Off = false;

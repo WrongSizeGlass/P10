@@ -20,6 +20,7 @@ public class MainQuestController : MonoBehaviour
     [SerializeField] private Transform lightgroup;
     [SerializeField] private Transform lightgroup1;
     [SerializeField] private Transform lightgroup2;
+    [SerializeField] private GameObject natureEffect;
     private List<Transform> waterRespawnList;
     bool lvl1Active = false;
     Vector3 closesPos;
@@ -53,6 +54,7 @@ public class MainQuestController : MonoBehaviour
         {
             lightgroup2.GetChild(i).transform.GetChild(0).GetComponent<Light>().enabled = false;
         }
+        natureEffect.SetActive(false);
 
     }
     void level1Controller() {
@@ -91,7 +93,7 @@ public class MainQuestController : MonoBehaviour
             level2Controller(true);
         }
         if (lvl2Complete) {
-            Debug.LogError("¤¤ test?" );
+          //  Debug.LogError("¤¤ test?" );
             level3Controller(true, true);
         }
         if (lvl3Complete) {
@@ -147,7 +149,7 @@ public class MainQuestController : MonoBehaviour
     }
     public bool getLvl1Active()
     {
-        Debug.Log("lvl1 is active: " + lvl1Active);
+        //Debug.Log("lvl1 is active: " + lvl1Active);
         return lvl1Active;
     }
     public void setPlayerIsDead(bool set) {

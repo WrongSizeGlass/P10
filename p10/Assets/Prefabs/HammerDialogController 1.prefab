@@ -1,0 +1,211 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2586858058441938596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2586858058441938597}
+  - component: {fileID: 2586858058441938599}
+  - component: {fileID: 2586858058441938598}
+  m_Layer: 0
+  m_Name: HammerDialogController 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2586858058441938597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2586858058441938596}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2586858058441938599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2586858058441938596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80868e5dca4bfdd40a1f10f016e7ff3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  th: {fileID: 0}
+  mqc: {fileID: 0}
+  q2: {fileID: 0}
+  walk1: {fileID: 0}
+  walk2: {fileID: 0}
+  bcs: {fileID: 0}
+  textComponent: {fileID: 0}
+  dialogueBox: {fileID: 0}
+  textSpeed: 0.02
+  audioTrack:
+  - {fileID: 8300000, guid: 495438b9d704245439336aabb00d3c03, type: 3}
+  - {fileID: 8300000, guid: 287a5d54184571b42acd6edf76805ba3, type: 3}
+  - {fileID: 8300000, guid: 9a43478de9efe6a4a8b36e1cef705974, type: 3}
+  - {fileID: 8300000, guid: 7414b37fa039c59418b3f8b9007df866, type: 3}
+  - {fileID: 8300000, guid: 0eaf869d093fa3e478856baa24e2b215, type: 3}
+  - {fileID: 8300000, guid: 7988f77c754873a4bb556bf5a750aa81, type: 3}
+  - {fileID: 8300000, guid: 00d25e0b0b0b974479c17a8ba676573b, type: 3}
+  - {fileID: 8300000, guid: 74dfd87451687174eb14029bdd9c10f7, type: 3}
+  - {fileID: 8300000, guid: 25fb1667b3a191d4db8f3072205c1e41, type: 3}
+  natureTrack:
+  - {fileID: 8300000, guid: a9dbe8b817f06f84f8f8c4e873c1afbb, type: 3}
+  - {fileID: 8300000, guid: e1beebdefbf630d49bcae09270b34189, type: 3}
+  - {fileID: 8300000, guid: dbc5fd50ad7432449b8e45b3dd1ddfd1, type: 3}
+  - {fileID: 8300000, guid: f6db57bcc0f8fcd4ab82595efda4e009, type: 3}
+  - {fileID: 8300000, guid: 5066fa34c1fa9b349b3d772e0f9692ec, type: 3}
+  sentences:
+  - "Ah, I see that I have joined a young soul in this endeavour. You see youngling,
+    I was thrown away by Thor, the god of thunder, as he got into his battle with
+    the World Serpent. Unfortunately, I won\u2019t be able to give the innate thunder
+    abilities of Thor but I can be thrown at immense speed and recall back to you."
+  - "Now little one. Let\u2019s try to train you a little in using the hammer. Let\u2019s
+    go over to the harbour and sink two of those ships. Nobody is going to use them
+    now, are they?\r"
+  - 'Good, young one. Very good. This village, as far as I can feel, is haunted by
+    ice spirits. There used to be fire spirits around here to warm up the village.
+    Perhaps they are trapped within some ice crystals. Go around and see if you can
+    use the hammer to free them. '
+  - "You know, I was once forged to defend this realm from various creatures from
+    other realms. Thor used me so much that he doesn\u2019t even consider that I
+    have feelings."
+  - Some fires and lights are not completely lit near the church. Perhaps something
+    happened there and needs our attention.
+  - There is one of the infamous ice spirit I talked about earlier. Do be careful
+    as they fire out Ice spells which I would prefer if you avoided. If you get close
+    enough to the bonfires, we can enable the fire to turn back to normal and scare
+    it away.
+  - "I see another fire spirit trapped. You know the drill. Don\u2019t let this be
+    trapped forever."
+  - "It\u2019s strange, isn\u2019t it? How the whole world is about to end and yet
+    I don\u2019t feel anything.\r \nMaybe the world isn\u2019t about to end because
+    I haven\u2019t seen any signs of Naglfar yet.\r.. \nDamn it, why did I say that,
+    now Naglfar will definitely show up.\r\n"
+  - Oh, dear. It seems you have angered Naglfar, the ship of the damned. He is powerful,
+    but those ice crystals are where he is the weakest. Try to destroy them and he
+    will go to where he came from.
+  natureSentences:
+  - Great, now that you have freed the fire spirit, there is another spirit trapped
+    in the tree over there with the flowers.
+  - 'There is another spirit trapped near the inn of where you found me.
+
+'
+  - 'Great, now that you have freed the fire spirit, I can feel a spirit is trapped
+    where they hang laundry on the other side of the town.
+
+'
+  - There is another spirit trapped in a tree further down the path.
+  - Thank you for freeing all of those spirits. The last spirit is trapped in a lamppost,
+    in the market place
+--- !u!82 &2586858058441938598
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2586858058441938596}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

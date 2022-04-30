@@ -136,7 +136,7 @@ public class BossAOEHit : AOEHIt
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player") {
-            Debug.LogError("## player is here");
+            //Debug.LogError("## player is here");
             hasHit = true;
             dist = 1.5f;
         }
@@ -153,7 +153,7 @@ public class BossAOEHit : AOEHIt
     {
         if (other.tag == "Player")
         {
-            Debug.LogError("## player left");
+          //  Debug.LogError("## player left");
             hasHit = false;
             volume = 0;
         }

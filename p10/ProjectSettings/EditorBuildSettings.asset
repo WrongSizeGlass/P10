@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Multiple_Nuclei.unity
     guid: 363f9071e654a5c44aadb2207fa0548c
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: 7ceec77b2a32c3047bab5fa07ade0c6e
   m_configObjects: {}

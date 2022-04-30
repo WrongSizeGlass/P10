@@ -138,7 +138,7 @@ public class Health : MonoBehaviour
             case "Player":
                 playerTakeDamage();
                 
-                Debug.LogError("damage player");
+               // Debug.LogError("damage player");
                 damageEffect = false;
                 break;
             case "Ice":
@@ -165,7 +165,7 @@ public class Health : MonoBehaviour
                     break;
                 case "Player":
                     playerIsDead();
-                    Debug.LogError("I am dead I don't have a function:" + gameObject.name);
+                    //Debug.LogError("I am dead I don't have a function:" + gameObject.name);
                     break;
                 case "Ice":
                     deadIce();

@@ -28,11 +28,12 @@ public class BossCutScne : MonoBehaviour
         //start = cam.transform.position;
         //startq= cam.transform.rotation;
         waypoint = new List<Transform>();
+        descwaypoint = new List<Transform>();
         for (int i=0; i<waypointGroup.childCount; i++) {
             waypoint.Add(waypointGroup.GetChild(i).GetComponent<Transform>());
         }
-        for (int i = waypointGroup.childCount; i >-1 ; i--){
-            descwaypoint.Add(waypointGroup.GetChild(i).GetComponent<Transform>());
+        for (int i = waypoint.Count-1; i >= 0; i--){
+            descwaypoint.Add(waypoint[i]);
         }
     }
     bool once = false;
@@ -95,9 +96,9 @@ public class BossCutScne : MonoBehaviour
         {
             descindex++;
         }
-        Debug.LogError("¤¤ return");
-        
-        setTransform(waypoint[descindex].position, 5, bb.getReturnCamera());
+        // Debug.LogError("¤¤ return");
+
+        setTransform(waypoint[descindex].position, 5, true);//bb.getReturnCamera());
     }
     void setTransform(Vector3 target, float speed, bool boss)
     {

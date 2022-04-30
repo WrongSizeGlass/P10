@@ -37,12 +37,7 @@ public class Quest2Controller : MonoBehaviour
         }
         // walkaround
         quest2Complete= fswr.getFinishedRoute();
-        if (iceQuest) {
-            Debug.LogError("ice quest"+ iceQuest);
-        }
-        if (quest2Complete) {
-            Debug.LogError("Quest 2 is complete" + quest2Complete);
-        }
+     
 
     }
     public bool getChurchComplete()

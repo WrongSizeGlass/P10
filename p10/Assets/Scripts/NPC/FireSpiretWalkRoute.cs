@@ -66,11 +66,11 @@ public class FireSpiretWalkRoute : MonoBehaviour
             finnishedWalk = true;
             setCanWalk(false);
         }
-        if (activeWaypoint == 2)
+        if (activeWaypoint == 4)
         {
             startBanter = true;
         }
-        if (activeWaypoint == 4)
+        if (activeWaypoint == 5)
         {
             startBanter2 = true;
         }
@@ -132,7 +132,7 @@ public class FireSpiretWalkRoute : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("turn on " + other.name);
+        //Debug.Log("turn on " + other.name);
         if (other.tag=="Lamppost") {
             
             other.transform.GetComponent<Transform>().GetChild(0).GetComponent<Light>().enabled = true;

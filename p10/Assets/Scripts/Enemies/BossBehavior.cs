@@ -250,7 +250,9 @@ public class BossBehavior : MonoBehaviour
         }
         // only fire weapons when ship has reached the second waypoint, set limits for targets in the harbor
         if (sunkedCounter < 3 && movementIndex > 1) {
-            setWeaponsForBossIntro();
+            
+                setWeaponsForBossIntro();
+            
         }
 
         if (stopIntroMovement && sunkedCounter>2) {
@@ -268,7 +270,10 @@ public class BossBehavior : MonoBehaviour
         if (movementIndex > introWaypointList.Count - 1) {
             stopIntroMovement = true;
         }
-        setTransform(introWaypointList[movementIndex].position, introMovement);
+        if (movementIndex <= introWaypointList.Count - 1)
+        {
+            setTransform(introWaypointList[movementIndex].position, introMovement);
+        }
     }
 
     void setWeaponsForBossIntro() {
@@ -354,12 +359,12 @@ public class BossBehavior : MonoBehaviour
             hasAttacked = true;
             if (LorR.getName()==leftWeapon)
             {
-                Debug.LogError("turn off left");
+               // Debug.LogError("turn off left");
                 setGUI(false, leftFireOff, leftVisualMarker) ;
             }else if(LorR.getName() == rightWeapon)
             {
                 setGUI(false, rightFireOff, rightVisualMarker);
-                Debug.LogError("turn off right");
+               // Debug.LogError("turn off right");
             }
         counter2 = 0;
       // }
@@ -370,7 +375,7 @@ public class BossBehavior : MonoBehaviour
         if (counter % Mathf.Round((AttactDuriation-1.1f) / Time.fixedDeltaTime) == 0 && intro){
 
             LorR.setSinkTheHarbor(true);
-            Debug.LogError("sink harbour");
+           // Debug.LogError("sink harbour");
             returnCamera = true;
         }
         if (counter2 % Mathf.Round((AttactDuriation) / Time.fixedDeltaTime) == 0 && counter2 != 0)
@@ -387,7 +392,7 @@ public class BossBehavior : MonoBehaviour
             {
                 h.setQuest(this.tag);
                 h.setDamageEffect(true);
-                Debug.LogError("dmg player long colddown");
+              //  Debug.LogError("dmg player long colddown");
                 //dmgOnce = true;
             }
             //h.setDamageEffect(false);
@@ -400,7 +405,7 @@ public class BossBehavior : MonoBehaviour
             hasAttacked = false;
             hit = false;
             once = false;
-            Debug.LogError("RESET!! " + LorR.name);
+           // Debug.LogError("RESET!! " + LorR.name);
         }
         else {
             h.setDamageEffect(false);
