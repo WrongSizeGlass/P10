@@ -23,7 +23,10 @@ public class FireSpiretWalkRoute : MonoBehaviour
     int LowLightCounter;
     int HighLightCounter;
     bool IamLvl1=false;
-    
+    bool walkHasStarted = false;
+    public bool getWalkHasStarted() {
+        return walkHasStarted;
+    }
     void Start()
     {
         myName = transform.name;
@@ -50,11 +53,11 @@ public class FireSpiretWalkRoute : MonoBehaviour
         if (getCanWalk()) {
 
            followWaypoints();
-
+            walkHasStarted = true;
         }
     }
     void followWaypoints() {
-        me.position = Vector3.MoveTowards(me.position, waypointList[activeWaypoint].position, 2.5f * Time.deltaTime);
+        me.position = Vector3.MoveTowards(me.position, waypointList[activeWaypoint].position, 1.5f * Time.deltaTime);
         me.LookAt(waypointList[activeWaypoint].position);
         if (Vector3.Distance(me.position, waypointList[activeWaypoint].position)<0.25f) {
             activeWaypoint++;
@@ -63,7 +66,7 @@ public class FireSpiretWalkRoute : MonoBehaviour
             finnishedWalk = true;
             setCanWalk(false);
         }
-        if (activeWaypoint == 1)
+        if (activeWaypoint == 2)
         {
             startBanter = true;
         }

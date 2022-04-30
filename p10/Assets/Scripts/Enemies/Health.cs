@@ -117,10 +117,10 @@ public class Health : MonoBehaviour
         if (getDamageEffect()) {
             
             effectWhenDamaged();
-            Debug.LogError("い player is damaged " );
+        //    Debug.LogError("い player is damaged " );
             
         }
-        Debug.LogError("い player is damaged " + getDamageEffect());
+      //  Debug.LogError("い player is damaged " + getDamageEffect());
         if (getHp()<=0 ) {
             
             IamDead = true;
@@ -181,7 +181,7 @@ public class Health : MonoBehaviour
     }
     bool playDmgSound = false;
     void shrinkingEffect() {
-        Debug.Log(" ## I am damaged play sound");
+       // Debug.Log(" ## I am damaged play sound");
         if (!playDmgSound && getHp()>=1) {
             playSound(takeDmgSound, hitCounter);
             playDmgSound = true;
@@ -191,7 +191,7 @@ public class Health : MonoBehaviour
             playSound(isDeadSound, hitCounter);
             playDmgSound = true;
         }
-        Debug.LogError("## play " + sound.isPlaying + " hit counter: " + hitCounter);
+      //  Debug.LogError("## play " + sound.isPlaying + " hit counter: " + hitCounter);
             x = x - 10;
             y = y - 10;
             z = z - 10;
@@ -211,7 +211,7 @@ public class Health : MonoBehaviour
         {
             playSound(takeDmgSound, hitCounter);
             playDmgSound = true;
-            Debug.LogError("い player is taking damage playing: " + sound.isPlaying);
+           // Debug.LogError("い player is taking damage playing: " + sound.isPlaying);
         }
         
         healthBar.SetHealth(getHp());
@@ -236,7 +236,7 @@ public class Health : MonoBehaviour
     public void playSound(AudioClip audio, int index)
     {
         int i = index;
-        Debug.LogError("## i: " + i + " index: " + index + " isPlaying " + sound.isPlaying);
+       // Debug.LogError("## i: " + i + " index: " + index + " isPlaying " + sound.isPlaying);
         if (!sound.isPlaying)
         {
             playing = false;
@@ -250,7 +250,7 @@ public class Health : MonoBehaviour
             sound.PlayOneShot(audio);
             sound.Play();
             i++;
-            Debug.LogError("## PLAY is playing : " + audio.name);
+          //  Debug.LogError("## PLAY is playing : " + audio.name);
         }
 
     }
@@ -262,7 +262,7 @@ public class Health : MonoBehaviour
         }
         if (waterRespawnGroup != null){
             if (playerHitWater){
-                Debug.LogError("respown player");
+               // Debug.LogError("respown player");
                 respondPlayerFromWater();
             }
         }
@@ -311,12 +311,12 @@ public class Health : MonoBehaviour
             //IwasHitHere = collision.transform.position;
         }
         if (collision.collider.tag=="Water" && myTag =="Player") {
-            Debug.LogError("### Water hit ");
+           // Debug.LogError("### Water hit ");
         }
         if (collision.collider.tag == "shockWave" && myTag == "Player")
         {
             //damageEffect = true;
-            Debug.LogError("### shockWave hit ");
+           // Debug.LogError("### shockWave hit ");
         }
 
     }
@@ -336,7 +336,7 @@ public class Health : MonoBehaviour
             {
                 closesPos = waterRespawnList[i].position;
                 q = i;
-                Debug.LogError("### " + waterRespawnList[i].name);
+               // Debug.LogError("### " + waterRespawnList[i].name);
             }
 
         }
@@ -345,7 +345,7 @@ public class Health : MonoBehaviour
             closesPos = startClosesPos;
             playerHitWater = false;
             q = 99;
-            Debug.LogError("### RESSPPPOOOONN");
+          //  Debug.LogError("### RESSPPPOOOONN");
             cc.enabled = true;
         }
     }
@@ -358,7 +358,7 @@ public class Health : MonoBehaviour
             {
                 closesPos = BossRespawnList[i].position;
                 q = i;
-                Debug.LogError("### " + BossRespawnList[i].name);
+               // Debug.LogError("### " + BossRespawnList[i].name);
             }
 
         }
@@ -368,7 +368,7 @@ public class Health : MonoBehaviour
             closesPos = startClosesPos;
             hp = startHp;
             q = 99;
-            Debug.LogError("### RESSPPPOOOONN");
+          //  Debug.LogError("### RESSPPPOOOONN");
             cc.enabled = true;
         }
     }
@@ -382,7 +382,7 @@ public class Health : MonoBehaviour
             {
                 closesPos = ChurchRespawnList[i].position;
                 q = i;
-                Debug.LogError("### " + ChurchRespawnList[i].name);
+             //   Debug.LogError("### " + ChurchRespawnList[i].name);
             }
             
         }
@@ -393,7 +393,7 @@ public class Health : MonoBehaviour
             closesPos = startClosesPos;
             hp = startHp;
             q = 99;
-            Debug.LogError("### RESSPPPOOOONN");
+           // Debug.LogError("### RESSPPPOOOONN");
             cc.enabled = true;
         }
     }

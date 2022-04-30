@@ -7,153 +7,129 @@ using TMPro;
 public class HammerDialogScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    [Header("External variables")]
     [SerializeField] private ThrowableHammer th;
     [SerializeField] private MainQuestController mqc;
     [SerializeField] private Quest2Controller q2;
     [SerializeField] private FireSpiretWalkRoute walk1;
     [SerializeField] private FireSpiretWalkRoute walk2;
     [SerializeField] private BossCutScne bcs;
-    bool hammerIntro = false;
-    bool lvl1Intro = false;
-    bool lvl1Active = false;
-    bool lvl1Banter = false;
-    bool playLvl2Intro = false;
-    bool playLvl2BonfireIntro = false;
-    bool playLvl2TrappedSpirit = false;
-    bool lvl2Banter1 = false;
-    bool lvl2Banter2 = false;
-    bool lvl3CutSceneDone = false;
-    int i = 0;
-    AudioSource sound;
-    [SerializeField] private List<AudioClip> audioTrack;
-    [TextArea(4, 10)]
-    [SerializeField] private string[] sentences;
     public TextMeshProUGUI textComponent;
     public GameObject dialogueBox;
     public float textSpeed;
- 
+
+    private int i = 0;
+    private int ni = 0;
+    private int j = 0;
+    private int nj = 0;
+    private AudioSource sound;
+    private List<bool> mainDialogLocalBoolList;
+    private List<bool> natureDialogLocalBoolList;
+    private List<bool> mainDialogExternalBoolList;
+    private List<bool> natureDialogExternalBoolList;
+
+    [Header("Dialog variables")]
+    [SerializeField] private List<AudioClip> audioTrack;
+    [SerializeField] private List<AudioClip> natureTrack;
+    [TextArea(4, 10)]
+    [SerializeField] private string[] sentences;
+    [TextArea(4, 10)]
+    [SerializeField] private string[] natureSentences;
+
     void Start()
     {
+        mainDialogLocalBoolList = new List<bool>();
+        mainDialogExternalBoolList = new List<bool>();
+       
+        for (int i=0; i<audioTrack.Count; i++) {
+            mainDialogLocalBoolList.Add(false);
+            mainDialogExternalBoolList.Add(false);
+        }
+        for (int i =0; i<natureTrack.Count; i++) {
+            natureDialogLocalBoolList.Add(false);
+            natureDialogExternalBoolList.Add(false);
+        }
         textComponent.text = string.Empty;
         sound = GetComponent<AudioSource>();
        
     }
 
     // Update is called once per frame
-    void Update()
-    {
-    
-        if (th.getPlayHammerIntroVoiceLine() && !hammerIntro && !sound.isPlaying)
-        {
-            // play hammer intro dialog
-            playSound();
-            hammerIntro = true;
+    void Update(){
+        if (!sound.isPlaying && i < audioTrack.Count) {
+            SetCondition(audioTrack, sentences, mainDialogExternalBoolList, mainDialogLocalBoolList,true,i,j);
         }
-
-        if (hammerIntro && !lvl1Intro && !sound.isPlaying)
-        {
-            // quest 1 intro
-            i++;
-            textComponent.text = "";
-            playSound();
-            lvl1Intro = true;
+        if (!sound.isPlaying && ni<natureTrack.Count) {
+            SetCondition(natureTrack, natureSentences, natureDialogExternalBoolList, natureDialogLocalBoolList,false,ni,nj);
         }
-        if (mqc.getLvl1Active() && !lvl1Active && !sound.isPlaying)
-        {
-            i++;
-            // play trapped fire spirit dialog
-            textComponent.text = "";
-            playSound();
-            lvl1Active = true;
-        }
-        // banter
-        if (walk1.getBanter1() && !lvl1Banter && !sound.isPlaying)
-        {
-            i++;
-            // player lvl 1 Banter
-            textComponent.text = "";
-            playSound();
-            lvl1Banter = true;
-        }
-        if (mqc.getLvl1Complete() && !playLvl2Intro && !sound.isPlaying)
-        {
-            i++;
-            // play intro to lvl 2
-            textComponent.text = "";
-            playSound();
-            playLvl2Intro = true;
-        }
-        if (playLvl2Intro  && !playLvl2BonfireIntro && !sound.isPlaying)
-        {
-            i++;
-            // play intro to lvl 2
-            textComponent.text = "";
-            playSound();
-            playLvl2BonfireIntro = true;
-        }
-        if (q2.getChurchComplete() && !playLvl2TrappedSpirit && !sound.isPlaying)
-        {
-            i++;
-            // play trapped firespirit 2
-            textComponent.text = "";
-            playSound();
-            playLvl2TrappedSpirit = true;
-        }
-   
-        if (walk2.getBanter2() && !lvl2Banter2 && !sound.isPlaying)
-        {
-            i++;
-            // player lvl 2.2 Banter
-            textComponent.text = "";
-            playSound();
-            lvl2Banter2 = true;
-        }
-        if (bcs.getCutSceneDone() && !lvl3CutSceneDone && !sound.isPlaying)
-        {
-            i++;
-            // voiceline f�rdig med cutscene
-            textComponent.text = "";
-            playSound();
-            lvl3CutSceneDone = true;
-        }
-
-        if (!sound.isPlaying)
-        {
+        if (!sound.isPlaying){
             dialogueBox.SetActive(false);
         }
+        if (i<= mainDialogLocalBoolList.Count && ni <= natureDialogLocalBoolList.Count){
+            checkExternalBools();
+        }
+    }
 
+    void SetCondition(List<AudioClip> track, string[] txtDialog,List<bool> externalBool, List<bool> myLocalBools, bool main, int myi, int myj) {
+        if (externalBool[myj] && !myLocalBools[myj] && !sound.isPlaying){
+            textComponent.text = "";
+            playSound(track, txtDialog,myi);
+            myLocalBools[myj] = true;
+            setIncrements(main);
+        }
     }
     bool isPlaying = false;
-    void playSound()
+    void playSound(List<AudioClip> track, string[] txtDialog, int i_)
     {
-        if (!sound.isPlaying)
-        {
+        if (!sound.isPlaying){
             isPlaying = false;
             StopAllCoroutines();
             sound.Stop();
         }
-        if (!isPlaying)
-        {
+        if (!isPlaying){
             isPlaying = true;
             dialogueBox.SetActive(true);
-            StartDialogue();
-            // audioSource.pitch = picth;
-            sound.PlayOneShot(audioTrack[i]);
+            StartDialogue(txtDialog,i_);
+            sound.PlayOneShot(track[i_]);
             sound.Play();
         }
-
     }
-    void StartDialogue()
+    void StartDialogue(string[] txtDialog, int i_)
     {
-        StartCoroutine(TypeLine());
+        StartCoroutine(TypeLine(txtDialog, i_));
     }
-
-    IEnumerator TypeLine()
-    {
-        foreach (char c in sentences[i].ToCharArray())
+    IEnumerator TypeLine(string [] txtDialog,int i_){
+        foreach (char c in txtDialog[i_].ToCharArray())
         {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
     }
+    private void checkExternalBools(){
+        mainDialogExternalBoolList[0] = th.getPlayHammerIntroVoiceLine();
+        mainDialogExternalBoolList[1] = mainDialogLocalBoolList[0];
+        mainDialogExternalBoolList[2] = mqc.getLvl1Active();
+        mainDialogExternalBoolList[3] = walk1.getBanter1();
+        mainDialogExternalBoolList[4] = mqc.getLvl1Complete();
+        mainDialogExternalBoolList[5] = mainDialogLocalBoolList[4];
+        mainDialogExternalBoolList[6] = q2.getChurchComplete();
+        mainDialogExternalBoolList[7] = walk2.getBanter2();
+        mainDialogExternalBoolList[8] = bcs.getCutSceneDone();
+
+        natureDialogExternalBoolList[0] = walk1.getWalkHasStarted();
+        natureDialogExternalBoolList[2] = walk2.getWalkHasStarted();
+    }
+    public void setNatureExternalList(int index, bool set) {
+        natureDialogExternalBoolList[index] = set;
+    }
+    void setIncrements(bool main) {
+        if (main){
+            i++;
+            j++;
+        }else{
+            ni++;
+            nj++;
+        }
+    }
+
 }

@@ -48,7 +48,7 @@ public class WeaponScript : MonoBehaviour
         GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
         GetComponent<Rigidbody>().isKinematic = true;*/
         
-        print(collision.gameObject.name);
+      //  print(collision.gameObject.name);
         audioSource.PlayOneShot(hammerHit, volume);
         if (!activated && collision.collider.tag == "Ice")
         {

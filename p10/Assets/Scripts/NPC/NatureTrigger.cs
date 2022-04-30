@@ -10,14 +10,17 @@ public class NatureTrigger : MonoBehaviour
     [SerializeField] private NatureTrigger nature;
     [SerializeField] private GameObject natureEffect;
     [SerializeField] private AudioSource sound;
+    [SerializeField] private HammerDialogScript hds;
     bool hasPressed = false;
     BoxCollider col;
+    bool canTalk;
     // Start is called before the first frame update
     void Start()
     {
    
         col = GetComponent<BoxCollider>();
         col.enabled = true;
+        canTalk = myNr == 1 || myNr == 3 || myNr == 4;
     }
 
     // Update is called once per frame
@@ -47,6 +50,10 @@ public class NatureTrigger : MonoBehaviour
             hasPressed = true;
             
             natureEffect.SetActive(true);
+            if (canTalk) {
+                Debug.LogError("myNumber = " + myNr);
+                hds.setNatureExternalList(myNr, true);
+            }
         }
     }
 

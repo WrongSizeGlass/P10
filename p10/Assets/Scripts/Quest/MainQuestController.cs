@@ -84,7 +84,7 @@ public class MainQuestController : MonoBehaviour
         lvl2Complete = getWalkRouteComplete(Q2WalkRoute);
         lvl3Complete = getIsBossDead();
         if (!lvl1Complete) {
-            Debug.LogError("## " + q1.getBoatsSinked());
+           // Debug.LogError("## " + q1.getBoatsSinked());
             level1Controller();
         }
         if (lvl1Complete && !lvl2Complete) {
@@ -147,6 +147,7 @@ public class MainQuestController : MonoBehaviour
     }
     public bool getLvl1Active()
     {
+        Debug.Log("lvl1 is active: " + lvl1Active);
         return lvl1Active;
     }
     public void setPlayerIsDead(bool set) {

@@ -14,6 +14,7 @@ TagManager:
   - Quest3
   - PressE
   - Water
+  - newTag
   layers:
   - Default
   - TransparentFX
