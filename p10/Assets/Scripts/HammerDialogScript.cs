@@ -36,7 +36,7 @@ public class HammerDialogScript : MonoBehaviour
     [SerializeField] private string[] sentences;
     [TextArea(4, 10)]
     [SerializeField] private string[] natureSentences;
-
+    string lastDialog;
     void Start()
     {
         mainDialogLocalBoolList = new List<bool>();
@@ -70,7 +70,9 @@ public class HammerDialogScript : MonoBehaviour
                 SetCondition(natureTrack, natureSentences, natureDialogExternalBoolList, natureDialogLocalBoolList, false, ni, nj);
             }
         }
-        if (!sound.isPlaying){
+        
+        showLastDialog();
+        if (!sound.isPlaying && !showDialog){
             dialogueBox.SetActive(false);
         }
         if (i<= mainDialogLocalBoolList.Count && ni <= natureDialogLocalBoolList.Count){
@@ -94,6 +96,7 @@ public class HammerDialogScript : MonoBehaviour
             StopAllCoroutines();
             sound.Stop();
         }
+        lastDialog = txtDialog[i_];
         if (!isPlaying){
             isPlaying = true;
             dialogueBox.SetActive(true);
@@ -113,6 +116,19 @@ public class HammerDialogScript : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
     }
+    void showLastDialog() {
+        if (Input.GetKey(KeyCode.Q)){
+            if (!sound.isPlaying) {
+                dialogueBox.SetActive(true);
+                textComponent.text = lastDialog;
+                showDialog = true;
+            }
+        }else {
+            showDialog = false;
+        }
+    
+    }
+    bool showDialog = false;
     private void checkExternalBools(){
         mainDialogExternalBoolList[0] = th.getPlayHammerIntroVoiceLine();
         mainDialogExternalBoolList[1] = mainDialogLocalBoolList[0];
