@@ -37,8 +37,10 @@ public class HammerDialogScript : MonoBehaviour
     [TextArea(4, 10)]
     [SerializeField] private string[] natureSentences;
     string lastDialog;
+    [SerializeField] private GameObject Qbutton;
     void Start()
     {
+        Qbutton.SetActive(false);
         mainDialogLocalBoolList = new List<bool>();
         natureDialogLocalBoolList = new List<bool>();
         mainDialogExternalBoolList = new List<bool>();
@@ -77,6 +79,10 @@ public class HammerDialogScript : MonoBehaviour
         }
         if (i<= mainDialogLocalBoolList.Count && ni <= natureDialogLocalBoolList.Count){
             checkExternalBools();
+        }
+        if (mainDialogLocalBoolList[1] && !mainDialogLocalBoolList[2])
+        {
+            Qbutton.SetActive(true);
         }
     }
 
@@ -119,6 +125,7 @@ public class HammerDialogScript : MonoBehaviour
     void showLastDialog() {
         if (Input.GetKey(KeyCode.Q)){
             if (!sound.isPlaying) {
+                Qbutton.SetActive(false);
                 dialogueBox.SetActive(true);
                 textComponent.text = lastDialog;
                 showDialog = true;
