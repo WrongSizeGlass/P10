@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using System;
 public class ThrowableHammer : MonoBehaviour
 {
     public Image crosshair;
@@ -51,35 +52,39 @@ public class ThrowableHammer : MonoBehaviour
     }
     void Update()
     {
-
-        //Range
-        if (Input.GetButtonUp("Fire1") && !hammerIsThrown)
+        try
         {
-            audioSource.PlayOneShot(hammerThrow, volume);
-            ThrowHammer();
-            hammerIsThrown = true;
-        }
-
-        if (Input.GetButtonDown("Fire1")&& hammerIsThrown && !isReturning)
-        {
-            audioSource.PlayOneShot(hammerBack, volume);
-            ThrowBackForce();
-            ReturnHammer();
-            temp = null;
-        }
-
-        if (isReturning) //returning Calcs - Quadratic Bezier curves
-        {
-            if(time < 1.0f)
+            //Range
+            if (Input.GetButtonUp("Fire1") && !hammerIsThrown)
             {
-                hammer.position = getBQCPoint(time, old_pos, curve_point.position, target.position);
-                hammer.rotation = Quaternion.Lerp(hammer.transform.rotation, target.rotation, 50 * Time.deltaTime);
-                time += Time.deltaTime;
+                audioSource.PlayOneShot(hammerThrow, volume);
+                ThrowHammer();
+                hammerIsThrown = true;
             }
-            else
-            {            
-                ResetHammer();
+
+            if (Input.GetButtonDown("Fire1") && hammerIsThrown && !isReturning)
+            {
+                audioSource.PlayOneShot(hammerBack, volume);
+                ThrowBackForce();
+                ReturnHammer();
+                temp = null;
             }
+
+            if (isReturning) //returning Calcs - Quadratic Bezier curves
+            {
+                if (time < 1.0f)
+                {
+                    hammer.position = getBQCPoint(time, old_pos, curve_point.position, target.position);
+                    hammer.rotation = Quaternion.Lerp(hammer.transform.rotation, target.rotation, 50 * Time.deltaTime);
+                    time += Time.deltaTime;
+                }
+                else
+                {
+                    ResetHammer();
+                }
+            }
+        } catch (Exception e) {
+            Debug.LogWarning(" thowable hammer exception " + e);
         }
     }
 

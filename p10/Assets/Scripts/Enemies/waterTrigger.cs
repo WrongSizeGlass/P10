@@ -21,7 +21,7 @@ public class waterTrigger : MonoBehaviour
     {
         if (other.tag =="Player") {
             h.respondPlayerFromWater();
-            Debug.LogError("PLAYER ### ");
+          //  Debug.LogError("PLAYER ### ");
 
         }
     }

@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
 public class Health : MonoBehaviour
 {
-
-    [SerializeField] private AudioClip takeDmgSound;
-    [SerializeField] private AudioClip isDeadSound;
+    
+    
+    [SerializeField] protected AudioClip takeDmgSound;
+    [SerializeField] protected AudioClip isDeadSound;
+    [SerializeField] protected FireSpiretWalkRoute Trapped;
     public int hp = 2;
     public int currentHealth;
     public HealthBar healthBar;
@@ -18,47 +20,59 @@ public class Health : MonoBehaviour
     private string myTag;
     AudioSource sound;
     private bool IamDead = false;
-    private Transform player;
+    [SerializeField] protected Transform player;
+    [SerializeField] protected Quest1Controller q1;
+    [SerializeField] protected Transform deadpos;
+    [SerializeField] protected GameObject boat;
     bool once = false;
     private bool damageEffect = false;
     public int hpLost = 1;
     float x, y, z;
     public bool bossIce = false;
-    [SerializeField] private BossBehavior bb;
-    [SerializeField] private MainQuestController mqc;
-    [SerializeField] private Transform waterRespawnGroup;
-    [SerializeField] private Transform ChurchRespawnGroup;
-    [SerializeField] private Transform BossRespawnGroup;
-    [SerializeField] private RotateObjects ro;
-    private List<Transform> waterRespawnList;
-    private List<Transform> ChurchRespawnList;
-    private List<Transform> BossRespawnList;
+    [SerializeField] protected BossBehavior bb;
+    [SerializeField] protected MainQuestController mqc;
+    [SerializeField] protected Transform waterRespawnGroup;
+    [SerializeField] protected Transform ChurchRespawnGroup;
+    [SerializeField] protected Transform BossRespawnGroup;
+    [SerializeField] protected RotateObjects ro;
+    protected List<Transform> waterRespawnList;
+    protected List<Transform> ChurchRespawnList;
+    protected List<Transform> BossRespawnList;
     Vector3 closesPos;
     Vector3 startClosesPos;
     bool playerHitWater = false;
-    private CharacterController cc;
+    protected CharacterController cc;
     string dmgByQuest="";
     int startHp;
     int hitCounter = 0;
     // Vector3 IwasHitHere;
     // Start is called before the first frame update
     void Awake() {
+        myTag = this.gameObject.tag;
+        rb = GetComponent<Rigidbody>();
         sound = GetComponent<AudioSource>();
         startHp = hp;
         if (healthBar != null)
         {
             healthBar.SetMaxHealth(hp);
         }
-        
-        cc = GetComponent<CharacterController>();
+        if (this.tag == "Player")
+        {
+            cc = GetComponent<CharacterController>();
+        }
+        else {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
+       
         startClosesPos = new Vector3(999, 999, 999);
         closesPos = startClosesPos;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        myTag = this.gameObject.tag;
-        rb = GetComponent<Rigidbody>();
-        x = transform.localScale.x;
-        y = transform.localScale.y;
-        z = transform.localScale.z;
+        
+        
+        if (this.tag == "Ice") {
+            x = transform.localScale.x;
+            y = transform.localScale.y;
+            z = transform.localScale.z;
+        }
         if (waterRespawnGroup!=null) {
             waterRespawnList = new List<Transform>();
             for (int i = 0; i < waterRespawnGroup.childCount; i++) {
@@ -87,7 +101,11 @@ public class Health : MonoBehaviour
     }
     // Update is called once per frame
     void Update() {
-        updateMyState();
+        try {
+            updateMyState();
+        } catch (Exception e) {
+            Debug.LogWarning("health exception" + e);
+        }
         /*if (ro != null) {
             if (ro.getDealDmg()) {
                 damageEffect = true;
@@ -147,6 +165,7 @@ public class Health : MonoBehaviour
                 damageEffect = false;
                 break;
             case "Boat":
+                deadBoat();
                 setHp(hpLost);
                 damageEffect = false;
                 break;
@@ -220,17 +239,23 @@ public class Health : MonoBehaviour
     bool onceDmg = false;
     bool deadOnce = false;
     private void deadIce() {
-        if (!deadOnce) {
-            playSound(isDeadSound,0);
+        if (!deadOnce)
+        {
+            playSound(isDeadSound, 0);
             deadOnce = true;
         }
-        if (bossIce && !onceDmg) {
-            bb.degrementHP();
-            onceDmg = true;
+            if (bossIce && !onceDmg) {
+                bb.degrementHP();
+                onceDmg = true;
+            }
+        if (Trapped!=null) {
+            Trapped.setCanWalk(true);
         }
-        if (!sound.isPlaying) {
-            Destroy(gameObject);
-        }
+            if (!sound.isPlaying) {
+            gameObject.transform.position = Vector3.zero;
+            }
+     
+
     }
     bool playing = false;
     public void playSound(AudioClip audio, int index)
@@ -288,7 +313,7 @@ public class Health : MonoBehaviour
     bool deadboat = false;
     private void deadBoat() {
         if (!once) {
-            player.GetComponent<Quest1Controller>().incrementBoatsSinked();
+            q1.incrementBoatsSinked();
             once = true;
         }
         if (!deadboat) {
@@ -298,9 +323,9 @@ public class Health : MonoBehaviour
         GetComponent<MeshCollider>().convex = true;
         GetComponent<MeshCollider>().isTrigger = true;
         int child = transform.childCount-1;
-        transform.position = Vector3.MoveTowards(transform.position,transform.GetChild(child).transform.position, 1 * Time.deltaTime);
-        if (transform.position== transform.GetChild(child).transform.position) {
-            Destroy(this.gameObject);
+        boat.transform.position =  Vector3.MoveTowards(boat.transform.position,transform.GetChild(child).transform.position, 1 * Time.deltaTime);
+        if (boat.transform.position == transform.GetChild(child).transform.position) {
+            boat.SetActive(false);
         }
     }
 
@@ -308,6 +333,11 @@ public class Health : MonoBehaviour
     {
         if (collision.collider.tag == "Hammer" && myTag != "Player" || collision.collider.tag == "shockWave") {
             damageEffect = true;
+            Debug.LogError("I was hit");
+            if (this.tag == "Boat") {
+                deadBoat();
+                Debug.LogWarning("dead boat");
+            }
             //IwasHitHere = collision.transform.position;
         }
         if (collision.collider.tag=="Water" && myTag =="Player") {
