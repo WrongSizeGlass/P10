@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 using Cinemachine;
 
 public class ThirdPersonController : MonoBehaviour
@@ -35,18 +36,30 @@ public class ThirdPersonController : MonoBehaviour
     public bool mThrow = false;
     public bool mJumping = false;
     public bool mPull = false;
+    public bool pressE = false;
+    //public bool interactable = false;
     [Space]
     [Header("Parameters")]
     public float cameraZoomOffset = .3f;
+    [Space]
+    [Header("Tutorial UI and interact")]
+    [SerializeField]
+    private LayerMask layerMask;
+    [SerializeField]
+    public GameObject interactButton;
+    [SerializeField]
+    public GameObject movementinfo;
+    [SerializeField]
+    public GameObject mouseinfo;
+    [SerializeField]
+    public GameObject interactinfo;
 
     float x;
     float z;
     CameraTest cam;
     ThrowableHammer th;
-    [Header("Cinemachine")]
-    [Space]
-    public CinemachineFreeLook virtualCamera;
-    public CinemachineImpulseSource impulseSource;
+
+
 
     void Awake()
     {
@@ -58,6 +71,10 @@ public class ThirdPersonController : MonoBehaviour
         th = GetComponent<ThrowableHammer>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        interactButton.SetActive(false);
+        movementinfo.SetActive(true);
+        mouseinfo.SetActive(true);
+        interactinfo.SetActive(true);
     }
     void activateTHscript() {
         if (th.enabled==false && Input.GetKeyDown(KeyCode.E)) {
@@ -85,10 +102,61 @@ public class ThirdPersonController : MonoBehaviour
         }
 
     }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "PressE" && !pressE)
+        {
+            Debug.Log("Im here");
+            if(other.name == "Thor Hammer")
+            {
+                other.tag = "Hammer";
+            }
+            pressE = true;
+            interactButton.SetActive(true);
+        }
+    }
+
+    void onTriggerExit(Collider collider)
+    {
+        if (collider.tag == "PressE")
+        {
+        Debug.Log("Im out");
+        pressE = false;
+        interactButton.SetActive(false);
+        }
+        
+    }
+
+
     void Update()
     {
 
-        
+        if(pressE == true)
+        {
+            if (Input.GetKey(KeyCode.E) == true)
+            {
+                pressE = false;
+                interactButton.SetActive(false);
+                //GetComponent<Collider>().enabled = false;
+            }
+        }
+
+        if (x != 0 || z != 0 == true && hasWeapon)
+        {
+            movementinfo.SetActive(false);
+        }
+
+        if(Input.GetKey(KeyCode.E) == true || Input.GetKey(KeyCode.LeftShift) == true && hasWeapon)
+        {
+            interactinfo.SetActive(false);
+        }
+
+        if (Input.GetMouseButtonDown(0) == true)
+        {
+            mouseinfo.SetActive(false);
+        }
+
         if (RotationSpeed<2 && x!=0) {
             RotationSpeed = 2;
         }
@@ -120,7 +188,6 @@ public class ThirdPersonController : MonoBehaviour
         if (movementBool && !audioSource.isPlaying && mSprinting){
             playSound(run);
         }
-
 
         /*if (Input.GetButton("Horizontal"))
         {

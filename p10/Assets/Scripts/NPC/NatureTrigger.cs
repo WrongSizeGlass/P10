@@ -12,13 +12,13 @@ public class NatureTrigger : MonoBehaviour
     [SerializeField] private AudioSource sound;
     [SerializeField] private HammerDialogScript hds;
     bool hasPressed = false;
-    BoxCollider col;
+    SphereCollider col;
     bool canTalk;
     // Start is called before the first frame update
     void Start()
     {
    
-        col = GetComponent<BoxCollider>();
+        col = GetComponent<SphereCollider>();
         col.enabled = true;
         canTalk = myNr == 1 || myNr == 3 || myNr == 4;
     }
