@@ -9276,6 +9276,10 @@ PrefabInstance:
       propertyPath: isDeadSound
       value: 
       objectReference: {fileID: 8300000, guid: 864c26e8c62b7b345b4603b3b37382be, type: 3}
+    - target: {fileID: 8668584222806652838, guid: 5e447f6ac1127644d8736a4d210af5b8, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8668584222806652839, guid: 5e447f6ac1127644d8736a4d210af5b8, type: 3}
       propertyPath: isDeadSound
       value: 
