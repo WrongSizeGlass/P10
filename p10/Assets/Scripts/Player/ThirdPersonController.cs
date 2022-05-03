@@ -102,7 +102,9 @@ public class ThirdPersonController : MonoBehaviour
         }
 
     }
+    string tempHammer;
     Vector3 temp;
+    bool onceHammer = false;
     void OnTriggerStay(Collider other)
     {
         if (other.tag == "PressE" && !pressE)
@@ -110,8 +112,11 @@ public class ThirdPersonController : MonoBehaviour
             temp = other.transform.position;
             Debug.Log("## Im here");
             pressE = true;
-            if (other.name == "Thor Hammer" && pressE)
+            if (other.name == "Thor Hammer" && pressE && !onceHammer)
             {
+                tempHammer = other.name;
+                 onceHammer = true;
+               
                 other.tag = "Hammer";
             }
            
@@ -140,6 +145,10 @@ public class ThirdPersonController : MonoBehaviour
             if (Input.GetKey(KeyCode.E) == true)
             {
                 pressE = false;
+                if (tempHammer == "Thor Hammer") {
+                    th.enabled = true;
+                    tempHammer = "";
+                }
                 //interactButton.SetActive(false);
                 //GetComponent<Collider>().enabled = false;
             }
@@ -167,7 +176,7 @@ public class ThirdPersonController : MonoBehaviour
         if (RotationSpeed<2 && x!=0) {
             RotationSpeed = 2;
         }
-        activateTHscript();
+        //activateTHscript();
         x = Input.GetAxisRaw("Horizontal");
         z = Input.GetAxisRaw("Vertical");
         movementBool = x != 0 || z != 0;

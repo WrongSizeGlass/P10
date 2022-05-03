@@ -242,6 +242,7 @@ public class Health : MonoBehaviour
     private void deadIce() {
         if (!deadOnce)
         {
+            GetComponent<MeshRenderer>().enabled = false;
             playSound(isDeadSound, 0);
             deadOnce = true;
         }

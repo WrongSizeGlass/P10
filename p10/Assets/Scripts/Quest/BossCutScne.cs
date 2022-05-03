@@ -7,6 +7,7 @@ public class BossCutScne : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private Transform waypointGroup;
     [SerializeField] private Transform player;
+    [SerializeField] private Transform cameraEnd;
     [SerializeField] private GameObject cam;
     [SerializeField] private BossBehavior bb;
     private List<Transform> waypoint;
@@ -100,14 +101,20 @@ public class BossCutScne : MonoBehaviour
 
         setTransform(waypoint[descindex].position, 5, true);//bb.getReturnCamera());
     }
+    bool once1 = false;
     void setTransform(Vector3 target, float speed, bool boss)
     {
 
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         if (!boss) {
-            targetDirection = looktarget.position - transform.position;
-            newDirection = Vector3.RotateTowards(transform.forward, targetDirection, (speed / 2) * Time.deltaTime, 0.0f);
-            transform.rotation = Quaternion.LookRotation(newDirection);
+            if (!once1) {
+                targetDirection = looktarget.position - transform.position;
+                newDirection = Vector3.RotateTowards(transform.forward, targetDirection, (speed / 2) * Time.deltaTime, 0.0f);
+                transform.rotation = cameraEnd.rotation;
+                if (transform.rotation == Quaternion.LookRotation(newDirection)) {
+                    once = true;
+                }
+            }
             /*targetDirection = target - transform.position;
             newDirection = Vector3.RotateTowards(transform.forward, targetDirection, (speed / 2) * Time.deltaTime, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDirection);*/
@@ -117,7 +124,7 @@ public class BossCutScne : MonoBehaviour
             targetDirection = looktarget.position - transform.position;
             newDirection = Vector3.RotateTowards(transform.forward, targetDirection, (speed / 2) * Time.deltaTime, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDirection);
-
+            once = false;
         }
     }
     bool cutSceneDone = false;
