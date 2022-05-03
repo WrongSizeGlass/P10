@@ -100,11 +100,6 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_MONO
 --compilation-defines=NET_4_6
 --compilation-defines=NET_UNITY_4_8
---compilation-defines=DEVELOPMENT_BUILD
---compilation-defines=ENABLE_PROFILER
---compilation-defines=DEBUG
---compilation-defines=TRACE
---compilation-defines=UNITY_ASSERTIONS
 --compilation-defines=ENABLE_CUSTOM_RENDER_TEXTURE
 --compilation-defines=ENABLE_DIRECTOR
 --compilation-defines=ENABLE_LOCALIZATION
@@ -144,7 +139,6 @@ Library: lib_burst_generated
 --compilation-defines=TIMELINE_FRAMEACCURATE
 --linker-options=PdbAltPath="p10_Data/Plugins/x86_64"
 --generate-link-xml=Temp\burst.link.xml
---debug=Full
 --output=C:\Users\udena\Documents\GitHub\P10\p10\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
 --root-assembly=C:\Users\udena\Documents\GitHub\P10\p10\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
 --root-assembly=C:\Users\udena\Documents\GitHub\P10\p10\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Core.Runtime.dll
@@ -278,11 +272,6 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_MONO
 --compilation-defines=NET_4_6
 --compilation-defines=NET_UNITY_4_8
---compilation-defines=DEVELOPMENT_BUILD
---compilation-defines=ENABLE_PROFILER
---compilation-defines=DEBUG
---compilation-defines=TRACE
---compilation-defines=UNITY_ASSERTIONS
 --compilation-defines=ENABLE_CUSTOM_RENDER_TEXTURE
 --compilation-defines=ENABLE_DIRECTOR
 --compilation-defines=ENABLE_LOCALIZATION
@@ -322,7 +311,6 @@ Library: lib_burst_generated
 --compilation-defines=TIMELINE_FRAMEACCURATE
 --linker-options=PdbAltPath="p10_Data/Plugins/x86_64"
 --generate-link-xml=Temp\burst.link.xml
---debug=Full
 --output=C:\Users\udena\Documents\GitHub\P10\p10\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
 --root-assembly=C:\Users\udena\Documents\GitHub\P10\p10\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
 --root-assembly=C:\Users\udena\Documents\GitHub\P10\p10\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Core.Runtime.dll
