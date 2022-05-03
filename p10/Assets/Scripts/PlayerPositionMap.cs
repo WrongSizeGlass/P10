@@ -79,15 +79,15 @@ public class PlayerPositionMap : MonoBehaviour
     public bool writeJason2 = false;
     public bool writeJason3 = false;
     static int indexCounter = 0;
-    static double MyUniqueID;
+    private double MyUniqueID;
     private int questNumber = 1;
     int seconds = 0;
     void Start()
     {
 
-      //  GUI = GameObject.FindGameObjectWithTag("GUI");
-      ///  mGUI = GUI.GetComponent<MenuGUI>();
-
+        //  GUI = GameObject.FindGameObjectWithTag("GUI");
+        ///  mGUI = GUI.GetComponent<MenuGUI>();
+        MyUniqueID = Random.Range(0,200);
         MyList = new List<string>();
         // p2pos = new List<string>();
         //  p3pos = new List<string>();
