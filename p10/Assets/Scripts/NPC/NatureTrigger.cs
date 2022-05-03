@@ -53,6 +53,7 @@ public class NatureTrigger : MonoBehaviour
             if (canTalk) {
              //   Debug.LogError("myNumber = " + myNr);
                 hds.setNatureExternalList(myNr, true);
+                col.enabled = false;
             }
         }
     }

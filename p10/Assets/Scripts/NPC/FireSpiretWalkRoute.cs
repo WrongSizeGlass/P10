@@ -50,7 +50,7 @@ public class FireSpiretWalkRoute : MonoBehaviour
 
     // Walking the route
     void Update(){
-        if (getCanWalk()) {
+        if (getCanWalk() && activeWaypoint<waypointList.Count) {
 
            followWaypoints();
             walkHasStarted = true;

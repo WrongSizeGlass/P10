@@ -16,7 +16,7 @@ public class Logs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ( Vector3.Distance( player.transform.position, transform.position)<1f && Input.GetKeyDown(KeyCode.E)) {
+        if ( Vector3.Distance( player.transform.position, transform.position)<2f && Input.GetKeyDown(KeyCode.E)) {
             fire.SetActive(true);
             ice.GetComponent<AudioSource>().volume = 0;
             ice.SetActive(false);
