@@ -50,7 +50,7 @@ public class WeaponScript : MonoBehaviour
         
       //  print(collision.gameObject.name);
         audioSource.PlayOneShot(hammerHit, volume);
-        if (!activated && collision.collider.tag == "Ice")
+        if (!activated && collision.collider.tag == "Ice" || !activated && collision.collider.tag == "Boat")
         {
             tempTarget = collision.transform;
             rB.isKinematic = true;

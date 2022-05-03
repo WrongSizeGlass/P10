@@ -45,6 +45,7 @@ public class Health : MonoBehaviour
     string dmgByQuest="";
     int startHp;
     int hitCounter = 0;
+    
     // Vector3 IwasHitHere;
     // Start is called before the first frame update
     void Awake() {
@@ -323,7 +324,11 @@ public class Health : MonoBehaviour
         GetComponent<MeshCollider>().convex = true;
         GetComponent<MeshCollider>().isTrigger = true;
         int child = transform.childCount-1;
-        boat.transform.position =  Vector3.MoveTowards(boat.transform.position,transform.GetChild(child).transform.position, 1 * Time.deltaTime);
+        rb.isKinematic = false;
+        rb.useGravity = true;
+        
+        //boat.transform.position =  Vector3.MoveTowards(boat.transform.position,transform.GetChild(child).transform.position, 1 * Time.deltaTime);
+      //  boat.transform.position =  transform.GetChild(child).transform.position;
         if (boat.transform.position == transform.GetChild(child).transform.position) {
             boat.SetActive(false);
         }
