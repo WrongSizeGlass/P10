@@ -102,28 +102,31 @@ public class ThirdPersonController : MonoBehaviour
         }
 
     }
-
+    Vector3 temp;
     void OnTriggerStay(Collider other)
     {
         if (other.tag == "PressE" && !pressE)
         {
-            Debug.Log("Im here");
-            if(other.name == "Thor Hammer")
+            temp = other.transform.position;
+            Debug.Log("## Im here");
+            pressE = true;
+            if (other.name == "Thor Hammer" && pressE)
             {
                 other.tag = "Hammer";
             }
-            pressE = true;
-            interactButton.SetActive(true);
+           
+           
         }
     }
 
-    void onTriggerExit(Collider collider)
+    void onTriggerExit(Collider other)
     {
-        if (collider.tag == "PressE")
+        temp = new Vector3(999,999,999);
+        if (other.tag == "PressE" )
         {
-        Debug.Log("Im out");
-        pressE = false;
-        interactButton.SetActive(false);
+            Debug.Log(" ## Im out");
+            pressE = false;
+           // interactButton.SetActive(false);
         }
         
     }
@@ -131,15 +134,19 @@ public class ThirdPersonController : MonoBehaviour
 
     void Update()
     {
-
-        if(pressE == true)
+        interactButton.SetActive(pressE);
+        if (pressE == true)
         {
             if (Input.GetKey(KeyCode.E) == true)
             {
                 pressE = false;
-                interactButton.SetActive(false);
+                //interactButton.SetActive(false);
                 //GetComponent<Collider>().enabled = false;
             }
+           
+        }
+        if (Vector3.Distance(transform.position, temp)>2) {
+            pressE = false;
         }
 
         if (x != 0 || z != 0 == true && hasWeapon)
