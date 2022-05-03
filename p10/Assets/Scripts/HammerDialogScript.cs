@@ -58,7 +58,7 @@ public class HammerDialogScript : MonoBehaviour
         sound = GetComponent<AudioSource>();
        
     }
-
+    bool qPressed = false;
     // Update is called once per frame
     void FixedUpdate(){
         counter++;
@@ -80,7 +80,7 @@ public class HammerDialogScript : MonoBehaviour
         if (i<= mainDialogLocalBoolList.Count && ni <= natureDialogLocalBoolList.Count){
             checkExternalBools();
         }
-        if (mainDialogLocalBoolList[1] && !mainDialogLocalBoolList[2])
+        if (mainDialogLocalBoolList[1] && !mainDialogLocalBoolList[2]&& !qPressed && !sound.isPlaying)
         {
             Qbutton.SetActive(true);
         }
@@ -129,6 +129,7 @@ public class HammerDialogScript : MonoBehaviour
                 dialogueBox.SetActive(true);
                 textComponent.text = lastDialog;
                 showDialog = true;
+                qPressed = true;
             }
         }else {
             showDialog = false;
