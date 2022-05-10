@@ -7,6 +7,20 @@ using UnityEngine;
 using System.IO;
 using LitJson;
 using UnityEngine.SceneManagement;
+
+/*
+ Quest data is what each index in the json will look like fx
+ "SavedDataList": [
+    {
+      "UniqueID": 11,
+      "QuestNr": 1,
+      "Time": 273,
+      "mapName": "Multiple_Nuclei",
+      "Player_Positions": [
+        "(287.53, 6.91, 45.69)",
+        "(287.67, 6.97, 44.85)",.........]
+        },
+ */
 public class QuestData
 {
 
@@ -26,7 +40,7 @@ public class QuestData
        // this.EventCapsuleCounter = EventCapsuleCounter;
     }
 }
-
+// this will store all QuestData classes in a list
 public class SavedData
 {
     public List<QuestData> SavedDataList;
@@ -39,42 +53,34 @@ public class SavedData
 }
 public class PlayerPositionMap : MonoBehaviour
 {
+//  where you will store the json file, this was the pos where it was stored when you tested my project
     private static string path = "SaveFile.json";
 
-  //  public GameObject GUIMenu;
-   // private MenuGUI MGUI;
- //   public bool Emergent = false;
-    //private bool MyEmergent = false;
+
     private string mapName;
-   // public GameObject p1TimerObject;
-  //  public GameObject p2TimerObject;
-  //  public GameObject p3TimerObject;
-  //  private GameObject GUI;
-  //  private static MenuGUI mGUI;
+
+    // a seperat script from where we gets the data, you can store the data in this script it is up to you:)
     [SerializeField] private PlayerData pd;
 
-
+    // assign class data onces
     private bool p1once = false;
     private bool p2once = false;
     private bool p3once = false;
 
+    // quest data list
     static SavedData sd;
+    // I only needed 3 indexs for my json you can add more 
     public QuestData q1 = null;
     public QuestData q2 = null;
     public QuestData q3 = null;
 
-    List<string> MyList;
-    List<string> p2pos;
-    List<string> p3pos;
-
-
-    /*public static PuzzleData P1Data_2 = null;
-    public static PuzzleData P2Data_2 = null;
-    public static PuzzleData P3Data_2 = null;*/
+    private List<string> MyList;
 
     static bool staticOnce = false;
     static bool staticWriteOnce = false;
-    private bool JustOnce = false;
+
+
+    // just aditional conditions so I can see in the inspector how many classes that has been assigned
     public bool writeJason1 = false;
     public bool writeJason2 = false;
     public bool writeJason3 = false;
@@ -84,54 +90,27 @@ public class PlayerPositionMap : MonoBehaviour
     int seconds = 0;
     void Start()
     {
-
-        //  GUI = GameObject.FindGameObjectWithTag("GUI");
-        ///  mGUI = GUI.GetComponent<MenuGUI>();
         MyUniqueID = Random.Range(0,200);
         MyList = new List<string>();
-        // p2pos = new List<string>();
-        //  p3pos = new List<string>();
-       /* q1 = p1TimerObject.GetComponent<PuzzleTimer>();
-        q1 = p2TimerObject.GetComponent<PuzzleTimer>();
-        p3timer = p3TimerObject.GetComponent<PuzzleTimer>();*/
         p1once = false;
         p2once = false;
         p3once = false;
-
-
-    }
-
-    /* static bool getGameType()
-     {
-         return mGUI.getGameType();
-     }
-     static double getUniqueID()
-     {
-         return mGUI.getUniqeID();
-     }
-
-     public bool CanSkipCutScenes()
-     {
-         return csd.CollectionList.Count == 3;
-
-     }*/
-
-    void setQuestData(QuestData q) { 
-    
     }
     bool setOnce = false;
     private void Update(){
+        // for some reason it works better in update then in start xD
         if (!setOnce){
-           // MyUniqueID = getUniqueID();
+          
             sd = new SavedData();
             staticOnce = true;
             mapName = SceneManager.GetActiveScene().name;
             setOnce = true;
         }
-       // Debug.LogError("j1:" + writeJason1 + " j2: " + writeJason2 + " j3 " + writeJason3);
 
+        // When player has completed quest 1 create a new QuestData class
         if (!p1once && writeJason1){
             if (q1 == null && !p1once){
+                // pd. is the script where we gets the data
                 q1 = new QuestData(MyUniqueID, 1, pd.getPlayerPosQ1List().Count+1, mapName);
                 for (int i = 0; i < pd.getPlayerPosQ1List().Count; i++){
                     q1.Player_Positions.Insert(0, pd.getPlayerPosQ1List()[i].ToString());
@@ -143,9 +122,11 @@ public class PlayerPositionMap : MonoBehaviour
             }
             
         }
+        // When player has completed quest 2 create a new QuestData class
         if (!p2once && writeJason2){
             if (q2 == null && !p2once){
                 questNumber = 2;
+                // pd. is the script where we gets the data
                 q2 = new QuestData(MyUniqueID, 2, pd.getPlayerPosQ2List().Count + 1, mapName);
                 for (int i = 0; i < pd.getPlayerPosQ2List().Count; i++){
                     q2.Player_Positions.Insert(0, pd.getPlayerPosQ2List()[i].ToString());
@@ -153,13 +134,15 @@ public class PlayerPositionMap : MonoBehaviour
                 sd.SavedDataList.Insert(indexCounter, q2);
                 indexCounter++;
                 p2once = true;
-                // Debug.Log("event capsule score: " + (p1timer.ECC_1 + p1timer.ECC_2));
+               
             }
            
         }
+        // When player has completed quest 3 create a new QuestData class
         if (!p3once && writeJason3){
             if (q3 == null && !p3once){
                 questNumber = 3;
+                // pd. is the script where we gets the data
                 q3 = new QuestData(MyUniqueID, 3, pd.getPlayerPosQ3List().Count + 1, mapName);
                 for (int i = 0; i < pd.getPlayerPosQ3List().Count; i++){
                     q3.Player_Positions.Insert(0, pd.getPlayerPosQ3List()[i].ToString());
@@ -167,16 +150,18 @@ public class PlayerPositionMap : MonoBehaviour
                 sd.SavedDataList.Insert(indexCounter, q3);
                 indexCounter++;
                 p3once = true;
-                // Debug.Log("event capsule score: " + (p1timer.ECC_1 + p1timer.ECC_2));
+                
             }
             
         }
-      
+        // when the 3th QuestData has been created and we haven't written json yet
         if (p3once && !staticWriteOnce)
         {
             writeJson(sd);
             staticWriteOnce = true;
         }
+
+        // when we have written json we can change scene
         if (Exit()) {
             SceneManager.LoadSceneAsync(2);
         }
@@ -187,6 +172,7 @@ public class PlayerPositionMap : MonoBehaviour
         return canExit;
     }
     public static bool canExit = false;
+    // write json
     static void writeJson(SavedData ClassData)
     {
         Debug.LogError("Writing Jason");
@@ -199,7 +185,7 @@ public class PlayerPositionMap : MonoBehaviour
         File.WriteAllText(Application.dataPath + path, data);
 
         Debug.LogError(" Json is done ");
-        //SceneManager.LoadSceneAsync(0);
+       
         canExit = true;
 
     }

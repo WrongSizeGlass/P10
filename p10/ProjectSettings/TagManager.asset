@@ -15,6 +15,7 @@ TagManager:
   - PressE
   - Water
   - newTag
+  - Positions
   layers:
   - Default
   - TransparentFX
