@@ -89,7 +89,7 @@ public class ReadJson : MonoBehaviour
         q2List.setLists(Q2positions);
         q3List.setLists(Q3positions);
     }
-    private int seconds = 1;
+    private float seconds = 0.25f;
     private void FixedUpdate(){   
         counter++;
         if (counter % Mathf.Round(seconds / Time.fixedDeltaTime) == 0 && seconds<4){
@@ -98,17 +98,17 @@ public class ReadJson : MonoBehaviour
                     CreateHeatMap(i, q1List, 1); 
                 }
             }
-            if (seconds ==2) {
+            if (seconds ==0.5f) {
                 for (int j = 0; j < q2List.count; j++){
                     CreateHeatMap(j, q2List, 2);
                 }
             }
-            if (seconds ==3) {
+            if (seconds ==0.75f) {
                 for (int k = 0; k < q3List.count; k++){
                     CreateHeatMap(k, q3List, 3);
                 }
             }
-            seconds++;
+            seconds +=0.25f;
         }
     }
 

@@ -33,7 +33,8 @@ public class ChangeColor : MonoBehaviour
 
     private void FixedUpdate() {
         Fixedcounter++;
-        if (!JustOnce ){
+        if (!JustOnce && Fixedcounter % Mathf.Round(1f / Time.fixedDeltaTime) == 0)
+        {
             ChangeColorPrSharedPos();
             JustOnce = true;
         }
