@@ -5,13 +5,14 @@ using UnityEngine;
 public class ChangeColor : MonoBehaviour
 {
     public int counter = 0;
+    public int counter2 = 0;
     Material mat;
-    public List<string> neihboors;
     bool JustOnce = false;
     public int neighboor;
     int Fixedcounter = 0;
     public int questNR = 1;
     byte red, green, blue,transparentsy;
+    public int dublicants = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,36 +25,19 @@ public class ChangeColor : MonoBehaviour
         mat.SetColor("_BaseColor", new Color32(255, 255, 255, 25));
         // neihboors.Insert(0, gameObject.name);
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.name.Contains("pos"))
-        {
+    private void OnTriggerEnter(Collider other){
+        if (other.name.Contains("pos")){
             neighboor++;
         }
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         Fixedcounter++;
-        // 1 sec delay before color changes
-        if (!JustOnce && Fixedcounter % Mathf.Round(1f / Time.fixedDeltaTime) == 0)
-        {
+        if (!JustOnce ){
             ChangeColorPrSharedPos();
-            // ColorChange();
             JustOnce = true;
         }
     }
-
-    /*
-        default color if there is less than 10 shared positions = white
-        depended on which quest that is active the color will go from
-        white -> red
-        white -> green
-        white -> blue
-        with transparentsy groes from 100 -> 175
-        just for fun I have said that if there are more than 300 shared positions the color should be black
-     
-     */
     public void quest(int nr, byte myC ,byte notMyC, byte notMyC2, byte t) {
         
             if (counter  < 20){
@@ -96,30 +80,89 @@ public class ChangeColor : MonoBehaviour
                 notMyC2 = 250;
                 t= 175;
             }else if (counter >= 300) {
-                myC = 0;
-                notMyC = 0;
-                notMyC2 = 0;
-                t= 255;
+                notMyC = 255;
+                notMyC2 = 255;
+                t = 255;
             }else {
                 notMyC = 255;
                 notMyC2 = 255;
                 t= 175;
             }
-        if(nr==1){
-            // mosted shared pos = red
+        if (dublicants>10) { t = (byte)(t + dublicants); }
+        if(nr==1){          
             mat.SetColor("_Color", new Color32(myC, notMyC, notMyC2, t));
-        } else if (nr == 2) {
-            // mosted shared pos = green
+        } else if (nr == 2) {           
             mat.SetColor("_Color", new Color32(notMyC2, myC, notMyC2, t));
-        } else if (nr==3) {
-            // mosted shared pos = blue
+        } else if (nr==3) {          
             mat.SetColor("_Color", new Color32(notMyC2, notMyC2, myC, t));
         } 
     }
 
 
     void ChangeColorPrSharedPos(){
-        counter = neighboor;
+        counter = (neighboor + getDub());
         quest(questNR, red, green, blue, transparentsy);        
+        //cc();
     }
+
+
+   public  void setDub(int set) {
+        dublicants = set;
+    }
+
+    int getDub() {
+        return dublicants;
+    }
+
+    void cc()
+    {
+        counter = (neighboor + dublicants);
+        // start green
+        if (counter < 10)
+        {
+            mat.SetColor("_Color", new Color32(200, 200, 200, 25));
+        }
+        else
+        if (counter >= 10 && counter < 20)
+        {
+            mat.SetColor("_Color", new Color32(225, 225, 225, 50));
+        }
+        else
+        if (counter >= 20 && counter < 30)
+        {
+            mat.SetColor("_Color", new Color32(255, 255, 255, 75));
+        }
+        // start blue
+        else if (counter >= 30 && counter < 40)
+        {
+            mat.SetColor("_Color", new Color32(0, 0, 150, 150));
+        }
+        else if (counter >= 40 && counter < 50)
+        {
+            mat.SetColor("_Color", new Color32(0, 0, 200, 150));
+        }
+        else if (counter >= 60 && counter < 70)
+        {
+            mat.SetColor("_Color", new Color32(0, 0, 255, 150));
+
+            // start red
+        }
+        else if (counter >= 70 && counter < 80)
+        {
+            mat.SetColor("_Color", new Color32(150, 0, 0, 185));
+        }
+        else if (counter >= 80 && counter < 90)
+        {
+            mat.SetColor("_Color", new Color32(200, 0, 0, 200));
+        }
+        else if (counter >= 90)
+        {
+            mat.SetColor("_Color", new Color32(255, 0, 0, 255));
+        }
+        else
+        {
+            mat.SetColor("_Color", new Color32(255, 0, 0, 255));
+        }
+    }
+
 }
