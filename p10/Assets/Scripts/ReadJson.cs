@@ -47,8 +47,10 @@ public class ReadJson : MonoBehaviour
     DublicantFree q3List;
     private string jsonString;
     private string path;
+    //private string pathA = "/Json/ImmersionGroupA.json";
     private string pathA = "/Json/MergedGroupA.json";
     private string pathB = "/Json/MergedGroupB.json";
+    //private string pathB = "/Json/ImmersionGroupB.json";
     private JsonData itemData;
     private List<Vector3> Q1positions;
     private List<Vector3> p1;
